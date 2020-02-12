@@ -1,0 +1,37 @@
+body {
+    text-align: center;
+    background-color: lightblue;
+    color: black;
+    font-family: Comic Sans MS
+    
+  }
+
+h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 12px;
+    
+  }
+
+  table {
+    font-size: auto;
+    max-width: 80%;
+    text-align: center;
+    border-style: solid;
+  }
+
+
+  
+  td {
+    border-style: groove;
+    width: 10%;
+    max-height: 10%;
+    border-radius: 10%;
+  }
+
