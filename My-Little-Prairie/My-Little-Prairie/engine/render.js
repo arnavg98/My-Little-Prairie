@@ -7,8 +7,7 @@ export const renderGame = function(game) {
     let board = game.gameState.board;
     let score = game.gameState.score;
 
-    let string = `<h2>My Little Prairie</h2>
-    <button id="weed">Weed</button>
+    let string = `<button id="weed">Weed</button>
     <button id="plant">Plant</button>
     <ul id="hexGrid">`;
     for (let i = 0; i < 59; i++){
@@ -87,8 +86,7 @@ export const renderWeedingBoard = function(game) {
     let score = game.gameState.score;
     
     
-    let string = `<h2>My Little Prairie</h2>
-    <button id="finish">Finish Weeding</button>
+    let string = `<button id="finish">Finish Weeding</button>
     <ul id="hexGrid">`;
     for (let i = 0; i < 59; i++){
         //identifier=i;
@@ -147,8 +145,7 @@ export const renderPlantingBoard = function(game) {
     let score = game.gameState.score;
     
     
-    let string = `<h2>My Little Prairie</h2>
-    <button id="finish">Finish Planting</button>
+    let string = `<button id="finish">Finish Planting</button>
     <ul id="hexGrid">`;
     for (let i = 0; i < 59; i++){
         //identifier=i;
@@ -251,7 +248,7 @@ export const handleFinishWeedingButtonPress = function(event) {
 
 
 export const renderSite = function() {
-    return `<div><h1>My Little Prairie</h1>`;
+    return `<div><header>My Little Prairie</header>`;
 }
 
 export const main = function(game) {
