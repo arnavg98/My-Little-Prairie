@@ -14,14 +14,22 @@ body {
   max-width: 75%;
 }
 
+header {
+  font-size: 24pt;
+  font-family: 'Raleway', sans-serif;
+  color: whitesmoke;
+  padding: 10px;
+
+}
+
 
 /* USED THIS TUTORIAL: https://www.youtube.com/watch?v=jPIskLkEvU4 for Hex shape*/
 
 #hexGrid {
   display: grid;
-  grid-gap:5px;
-  grid-template-columns: repeat(10,1fr);
-  width: 90%;
+  grid-gap: 5px;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
   margin: 0 auto;
   font-family: 'Raleway', sans-serif;
   font-size: 15px;
@@ -133,12 +141,49 @@ body {
 /*** HEXAGON SIZING AND EVEN ROW INDENTATION */
 /* USED THIS GIT CODE: https://github.com/web-tiki/responsive-grid-of-hexagons/blob/css-grid/index.html for griding practices and above hover effect*/
 
-@media (min-width:1201px) { /* 5 hexes in first row*/
+@media (min-width:1201px) { /* <- 5-4  hexagons per row */
   #hexGrid{
     padding-bottom: 4.4%;
   }
-  .hex:nth-child(9n+6){ /* 4 hexes in next row */
+  .hex:nth-child(9n+6){ /* first hexagon of even rows */
     grid-column-start: 2;
+  }
+}
+
+@media (max-width: 1200px) and (min-width:901px) { /* <- 4-3  hexagons per row */
+  #hexGrid{
+    grid-template-columns: repeat(8,1fr);
+    padding-bottom: 5.5%;
+  }
+  .hex:nth-child(7n+5){ /* first hexagon of even rows */
+    grid-column-start: 2;
+  }
+}
+
+@media (max-width: 900px) and (min-width:601px) { /* <- 3-2  hexagons per row */
+  #hexGrid{
+    grid-template-columns: repeat(6,1fr);
+    padding-bottom: 7.4%;
+  }
+  .hex:nth-child(5n+4){ /* first hexagon of even rows */
+    grid-column-start: 2;
+  }
+}
+
+@media (max-width: 600px) { /* <- 2-1  hexagons per row */
+#hexGrid{
+  grid-template-columns: repeat(4,1fr);
+  padding-bottom: 11.2%;
+  grid-gap:5px;
+}
+.hex:nth-child(3n+3){ /* first hexagon of even rows */
+  grid-column-start: 2;
+}
+}
+
+@media (max-width: 400px) {
+  #hexGrid {
+      font-size: 13px;
   }
 }
 
