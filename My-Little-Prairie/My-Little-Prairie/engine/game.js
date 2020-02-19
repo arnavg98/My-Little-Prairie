@@ -2,7 +2,7 @@ export default class Game {
     constructor(size) {
         this.size = size;
         this.gameState = {
-            board: new Array(this.size**2),
+            board: new Array(this.size),
             score: 0,
             won: false,
             over: false
