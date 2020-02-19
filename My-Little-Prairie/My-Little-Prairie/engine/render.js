@@ -6,7 +6,8 @@ export const renderGame = function(game) {
     let board = game.gameState.board;
     let score = game.gameState.score;
 
-    let string = `<ul id="hexGrid">`;
+    let string = `<h2>My Little Prairie</h2>
+    <ul id="hexGrid">`;
     for (let i = 0; i < 59; i++){
         string+=`<li class="hex">
         <div class="hexIn">
