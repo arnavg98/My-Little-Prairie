@@ -95,7 +95,7 @@ export const renderWeedingBoard = function(game) {
         let idString=i;
 
         if(tileState[i]==1) {
-            string+=`<li class="hexWeed" id="${idString} data-id="${idString}">
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="pics/weeds.jpg" alt="" />
@@ -107,7 +107,7 @@ export const renderWeedingBoard = function(game) {
     $root.on('click', '#'+idString, handleWeedActionClick);
         }
         else if(tileState[i]==0){
-        string+=`<li class="hexWeed" id="${idString} data-id="${idString}">
+        string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="pics/blankTile.jpg" alt="" />
@@ -120,7 +120,7 @@ export const renderWeedingBoard = function(game) {
     //weedCount++;
         }
         else {
-            string+=`<li class="hexWeed" id="${idString} data-id="${idString}">
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="pics/grass.jpg" alt="" />
@@ -155,7 +155,7 @@ export const renderPlantingBoard = function(game) {
         let idString=i;
 
         if(tileState[i]==1) {
-            string+=`<li class="hexPlant" id="${idString} data-id="${idString}">
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="pics/weeds.jpg" alt="" />
@@ -167,7 +167,7 @@ export const renderPlantingBoard = function(game) {
     $root.on('click', '#'+idString, handlePlantActionClick);
         }
         else if(tileState[i]==0){
-        string+=`<li class="hexPlant" id="${idString} data-id="${idString}">
+        string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="pics/blankTile.jpg" alt="" />
@@ -180,7 +180,7 @@ export const renderPlantingBoard = function(game) {
     //weedCount++;
         }
         else {
-            string+=`<li class="hexPlant" id="${idString} data-id="${idString}">
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="pics/grass.jpg" alt="" />
