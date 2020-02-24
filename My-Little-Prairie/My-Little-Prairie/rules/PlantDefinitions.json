@@ -1,0 +1,19 @@
+[
+	{
+		"name": "Unknown Plant",
+		"description": "There is no description written for this plant",
+
+		"spring": "fast",
+		"summer": "normal",
+		"fall": "fast",
+		"winter": "slow",
+
+		"image": "default.jpg"
+	},
+
+	{
+		"name": "bluegrass"
+
+	}
+
+]

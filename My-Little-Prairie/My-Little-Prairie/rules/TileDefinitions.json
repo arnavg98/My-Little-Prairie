@@ -1,0 +1,20 @@
+[
+	{
+		"type": "blank",
+		"onclick": "",
+
+	},
+	{
+		"type": "plant",
+		"onclick": "playerAction(this)",
+
+	},
+	{
+		"type": "weed",
+		"spread": true,
+
+		
+
+	}
+
+]
