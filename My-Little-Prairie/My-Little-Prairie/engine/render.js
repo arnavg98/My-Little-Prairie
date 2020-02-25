@@ -16,7 +16,7 @@ export const renderGame = function(game) {
             string+=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink" href="#" onclick="popup(this)">
-            <img src="pics/weeds.jpg" alt="" />
+            <img src="Assets/weeds.jpg" alt="" />
             <h1>This tile has a weed!</h1>
             <p>Description of plant</p>
         </a>
@@ -28,7 +28,7 @@ export const renderGame = function(game) {
         string+=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img src="pics/blankTile.jpg" alt="" />
+            <img src="Assets/dirt.jpg" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
@@ -39,7 +39,7 @@ export const renderGame = function(game) {
             string+=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img src="pics/grass.jpg" alt="" />
+            <img src="Assets/grass.jpg" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
@@ -96,7 +96,7 @@ export const renderWeedingBoard = function(game) {
             string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="pics/weeds.jpg" alt="" />
+            <img src="Assets/weeds.jpg" alt="" />
             <h1>Remove Weed</h1>
             <p></p>
         </a>
@@ -108,7 +108,7 @@ export const renderWeedingBoard = function(game) {
         string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="pics/blankTile.jpg" alt="" />
+            <img src="Assets/dirt.jpg" alt="" />
             <h1>Remove Weed</h1>
             <p></p>
         </a>
@@ -121,7 +121,7 @@ export const renderWeedingBoard = function(game) {
             string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="pics/grass.jpg" alt="" />
+            <img src="Assets/grass.jpg" alt="" />
             <h1>Remove Weed</h1>
             <p></p>
         </a>
@@ -155,7 +155,7 @@ export const renderPlantingBoard = function(game) {
             string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="pics/weeds.jpg" alt="" />
+            <img src="Assets/weeds.jpg" alt="" />
             <h1>Plant Here</h1>
             <p></p>
         </a>
@@ -167,7 +167,7 @@ export const renderPlantingBoard = function(game) {
         string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="pics/blankTile.jpg" alt="" />
+            <img src="Assets/dirt.jpg" alt="" />
             <h1>Plant Here</h1>
             <p></p>
         </a>
@@ -180,7 +180,7 @@ export const renderPlantingBoard = function(game) {
             string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="pics/grass.jpg" alt="" />
+            <img src="Assets/grass.jpg" alt="" />
             <h1>Uproot</h1>
             <p></p>
         </a>
@@ -248,7 +248,7 @@ export const handleFinishWeedingButtonPress = function(event) {
 
 
 export const renderSite = function() {
-    return `<div><header>My Little Prairie</header>`;
+    return `<header><img class="logo" src="Assets/logo.png"></img></header>`;
 }
 
 export const main = function(game) {
