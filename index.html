@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>My Little Prairie</title>
+
+        <!-- Include links to CSS stylesheets below -->
+        <link rel="stylesheet" href="public/css/style.css" />
+    </head>
+
+    <body>
+        <div id="root"></div>
+        
+        <!-- Include links to JavaScript files below -->
+        <!-- TODO: Add link to jQuery here -->
+        <head>
+        <script src="public/libs/jquery-3.4.1.min.js"></script>
+    </head>
+        <script src="engine/render.js" type="module"></script>       
+        <script type='text/javascript'>
+            function popup(el){
+                if (window.confirm("You selected the cell containing " + el.innerText + ", is that correct?")) {
+                    el.innerHTML = `<img src="public/img/grass.jpg" alt="" /><h1>Selected this plant</h1><p>Selected tile</p>`;
+                };
+            }
+            </script> 
+    </body>
+</html>
