@@ -1,7 +1,7 @@
 {
-  "name": "a07",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "My Little Prairie",
+  "version": "0.1.0",
+  "main": "server.js",
   "scripts": {
     "console": "node -r esm run_in_console.js"
   },
