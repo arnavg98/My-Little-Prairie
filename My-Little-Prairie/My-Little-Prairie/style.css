@@ -34,14 +34,14 @@ header {
   display: grid;
   grid-gap: 5px;
   grid-template-columns: repeat(10, 1fr);
-  width: 50%;
+  width: 90%;
   font-family: 'Raleway', sans-serif;
   font-size: 15px;
   list-style-type: none;
   overflow:hidden;
   text-align: center;
-  margin-left: 25%;
-  margin-right: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .hex {
@@ -149,7 +149,7 @@ header {
 /*** HEXAGON SIZING AND EVEN ROW INDENTATION */
 /* USED THIS GIT CODE: https://github.com/web-tiki/responsive-grid-of-hexagons/blob/css-grid/index.html for griding practices and above hover effect*/
 
-@media (min-width:1201px) { /* <- 5-4  hexagons per row */
+@media (min-width:1px) { /* <- 5-4  hexagons per row */
   #hexGrid{
     padding-bottom: 4.4%;
   }
@@ -158,42 +158,44 @@ header {
   }
 }
 
-@media (max-width: 1200px) and (min-width:901px) { /* <- 4-3  hexagons per row */
+/*
+@media (max-width: 1200px) and (min-width:901px) { <- 4-3  hexagons per row 
   #hexGrid{
     grid-template-columns: repeat(8,1fr);
     padding-bottom: 5.5%;
   }
-  .hex:nth-child(7n+5){ /* first hexagon of even rows */
+  .hex:nth-child(7n+5){  first hexagon of even rows 
     grid-column-start: 2;
   }
 }
 
-@media (max-width: 900px) and (min-width:601px) { /* <- 3-2  hexagons per row */
+@media (max-width: 900px) and (min-width:601px) {  <- 3-2  hexagons per row 
   #hexGrid{
     grid-template-columns: repeat(6, 1fr);
     padding-bottom: 7.4%;
   }
-  .hex:nth-child(5n+4){ /* first hexagon of even rows */
+  .hex:nth-child(5n+4){  first hexagon of even rows
     grid-column-start: 2;
   }
 }
 
-@media (max-width: 600px) { /* <- 2-1  hexagons per row */
+@media (max-width: 600px) { <- 2-1  hexagons per row
 #hexGrid{
   grid-template-columns: repeat(4,1fr);
   padding-bottom: 11.2%;
   grid-gap:5px;
-}
-.hex:nth-child(3n+3){ /* first hexagon of even rows */
+} 
+.hex:nth-child(3n+3){  first hexagon of even rows 
   grid-column-start: 2;
 }
 }
+
 
 @media (max-width: 400px) {
   #hexGrid {
       font-size: 13px;
   }
-}
+} */
 
 /*info for weed board*/
 
@@ -500,7 +502,7 @@ padding: 4px 12px;
 /* Larger buttons styles */
 
 .button.large{
-padding: 20px 40px;
+padding: 15px 10px;
 text-transform: uppercase;
 }
 

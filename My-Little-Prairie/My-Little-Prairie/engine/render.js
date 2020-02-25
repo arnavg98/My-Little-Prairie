@@ -202,12 +202,35 @@ export const renderPlantingBoard = function(game) {
 export const handleWeedActionClick = function(event) {
     let currentTile = event.currentTarget.getAttribute("id");
     console.log(currentTile);
-    actions = actions + 1;
     if(tileState[currentTile]==1) {
         tileState[currentTile]=0;
         alert("Tile " + currentTile + " weeded!");
-    }
-    else {
+        actions = actions + 1;
+        console.log(actions);
+        if (actions % 4 == 0) {
+            let i = Math.floor(Math.random() * 59);
+            let random = Math.floor(Math.random() * 8);
+            if(random == 5 && i != currentTile) {
+                if (tileState[i] == 2) {
+                    tileState[i] = 3;
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                } else if (tileState[i] == 4) {
+                    tileState[i] = 5;
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                } else if (tileState[i] == 6) {
+                    tileState[i] = 7
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                } else if (tileState[i] == 0){
+                    tileState[i] = 1;
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                }
+            } 
+        }
+    }   else {
         alert("Tile " + currentTile +" does not have weeds!");
     }
 
@@ -221,15 +244,38 @@ export const handleWeedActionClick = function(event) {
 
 export const handlePlantActionClick = function(event) {
     let currentTile = event.currentTarget.getAttribute("id");
-    actions = actions + 1;
     console.log(currentTile);
     if(tileState[currentTile]==1) {
-        
         alert("Cannot plant on Tile " + currentTile + "!");
     }
     else {
         tileState[currentTile]=2;
         alert("Planted on Tile " + currentTile +".");
+        actions = actions + 1;
+        console.log(actions);
+        if (actions % 4 == 0) {
+            let i = Math.floor(Math.random() * 59);
+            let random = Math.floor(Math.random() * 8);
+            if(random == 5 && i != currentTile) {
+                if (tileState[i] == 2) {
+                    tileState[i] = 3;
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                } else if (tileState[i] == 4) {
+                    tileState[i] = 5;
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                } else if (tileState[i] == 6) {
+                    tileState[i] = 7
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                } else if (tileState[i] == 0){
+                    tileState[i] = 1;
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                }
+            } 
+        }
     }
 
     const $root = $('#root');
