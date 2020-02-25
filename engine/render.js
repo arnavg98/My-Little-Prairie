@@ -2,7 +2,6 @@ import Game from "./game.js";
 
 let game = {};
 let tileState = []; //array that will have a zero or a 1 depending on if it has weed or not
-let actions = 0;
 
 export const renderGame = function(game) {
     let board = game.gameState.board;
@@ -202,7 +201,6 @@ export const renderPlantingBoard = function(game) {
 export const handleWeedActionClick = function(event) {
     let currentTile = event.currentTarget.getAttribute("id");
     console.log(currentTile);
-    actions = actions + 1;
     if(tileState[currentTile]==1) {
         tileState[currentTile]=0;
         alert("Tile " + currentTile + " weeded!");
@@ -221,7 +219,6 @@ export const handleWeedActionClick = function(event) {
 
 export const handlePlantActionClick = function(event) {
     let currentTile = event.currentTarget.getAttribute("id");
-    actions = actions + 1;
     console.log(currentTile);
     if(tileState[currentTile]==1) {
         
