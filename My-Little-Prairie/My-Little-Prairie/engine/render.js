@@ -59,6 +59,7 @@ export const handleWeedButtonPress = function(event) {
 
     //alert("button pressed");
     let game = new Game(59);
+    this.game.actions = game.actions + 1;
     const $root = $('#root');
     $root.empty();
     $root.append(renderSite());
@@ -71,6 +72,7 @@ export const handlePlantButtonPress = function(event) {
 
     //alert("button pressed");
     let game = new Game(59);
+    this.game.actions = game.actions + 1;
     const $root = $('#root');
     $root.empty();
     $root.append(renderSite());
@@ -201,6 +203,7 @@ export const renderPlantingBoard = function(game) {
 export const handleWeedActionClick = function(event) {
     let currentTile = event.currentTarget.getAttribute("id");
     console.log(currentTile);
+    game.actions = game.actions + 1;
     if(tileState[currentTile]==1) {
         tileState[currentTile]=0;
         alert("Tile " + currentTile + " weeded!");
@@ -219,6 +222,7 @@ export const handleWeedActionClick = function(event) {
 
 export const handlePlantActionClick = function(event) {
     let currentTile = event.currentTarget.getAttribute("id");
+    game.actions = game.actions + 1;
     console.log(currentTile);
     if(tileState[currentTile]==1) {
         
