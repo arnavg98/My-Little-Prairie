@@ -10,7 +10,6 @@ export default class Game {
       this.moveCalls = [];
       this.winCalls = [];
       this.loseCalls = [];
-      this.actions = 0;
       this.setupNewGame();
   }
   
