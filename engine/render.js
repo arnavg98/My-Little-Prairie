@@ -3,13 +3,30 @@ import Game from "./game.js";
 let game = {};
 let tileState = []; //array that will have a zero or a 1 depending on if it has weed or not
 let actions = 0;
+let growthCounter = [];
+let weedCounter = [];
+for(let i = 0; i<59; i++) {
+    growthCounter[i]=0;
+    weedCounter[i]=0;
+}
+/*
+tileState UPDATE:
+0: Empty
+1: Empty with weed
+2: Baby Plant
+3: Baby plant with weed
+4: Medium plant
+5: Medium Plant with weed
+6: Adult Plant
+7: Adult Plant with weed
+*/
 
 export const renderGame = function(game) {
     let board = game.gameState.board;
     let score = game.gameState.score;
 
-    let string = `<button id="weed">Weed</button>
-    <button id="plant">Plant</button>
+    let string = `<button id="weed" class="large blue button">Weed</button>
+    <button class="large blue button" id="plant">Plant</button>
     <ul id="hexGrid">`;
     for (let i = 0; i < 59; i++){
         
@@ -17,7 +34,7 @@ export const renderGame = function(game) {
             string+=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink" href="#" onclick="popup(this)">
-            <img src="public/img/weeds.jpg" alt="" />
+            <img src="public/assets/weeds.jpg" alt="" />
             <h1>This tile has a weed!</h1>
             <p>Description of plant</p>
         </a>
@@ -29,18 +46,73 @@ export const renderGame = function(game) {
         string+=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img src="public/img/dirt.jpg" alt="" />
+            <img src="public/assets/dirt.jpg" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
         </div>
     </li>`;
         }
-        else {
+        else if(tileState[i]==2){
             string+=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img src="public/img/grass.jpg" alt="" />
+            <img src="public/assets/sproutPlaceholder.jpg" alt="" />
+            <h1>Plant Name Here</h1>
+            <p>Description of plant</p>
+        </a>
+        </div>
+    </li>`;
+        }
+        else if(tileState[i]==3){
+            string+=`<li class="hex">
+        <div class="hexIn">
+        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+            <img src="public/assets/weeds.jpg" alt="" />
+            <h1>Plant Name Here</h1>
+            <p>Description of plant</p>
+        </a>
+        </div>
+    </li>`;
+        }
+        else if(tileState[i]==4){
+            string+=`<li class="hex">
+        <div class="hexIn">
+        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+            <img src="public/assets/mediumPlaceholder.jpg" alt="" />
+            <h1>Plant Name Here</h1>
+            <p>Description of plant</p>
+        </a>
+        </div>
+    </li>`;
+        }
+        else if(tileState[i]==5){
+            string+=`<li class="hex">
+        <div class="hexIn">
+        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+            <img src="public/assets/mediumWithWeedsPlaceholder.jpg" alt="" />
+            <h1>Plant Name Here</h1>
+            <p>Description of plant</p>
+        </a>
+        </div>
+    </li>`;
+        }
+        else if(tileState[i]==6){
+            string+=`<li class="hex">
+        <div class="hexIn">
+        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+            <img src="public/assets/grass.jpg" alt="" />
+            <h1>Plant Name Here</h1>
+            <p>Description of plant</p>
+        </a>
+        </div>
+    </li>`;
+        }
+        else if(tileState[i]==7){
+            string+=`<li class="hex">
+        <div class="hexIn">
+        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+            <img src="public/assets/adultPlantPlaceholder.jpg" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
@@ -87,7 +159,7 @@ export const renderWeedingBoard = function(game) {
     let score = game.gameState.score;
     
     
-    let string = `<button id="finish">Finish Weeding</button>
+    let string = `<button class="large blue button" id="finish">Finish Weeding</button>
     <ul id="hexGrid">`;
     for (let i = 0; i < 59; i++){
         //identifier=i;
@@ -97,7 +169,7 @@ export const renderWeedingBoard = function(game) {
             string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="public/img/weeds.jpg" alt="" />
+            <img src="public/assets/weeds.jpg" alt="" />
             <h1>Remove Weed</h1>
             <p></p>
         </a>
@@ -109,7 +181,7 @@ export const renderWeedingBoard = function(game) {
         string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="public/img/dirt.jpg" alt="" />
+            <img src="public/assets/dirt.jpg" alt="" />
             <h1>Remove Weed</h1>
             <p></p>
         </a>
@@ -118,11 +190,71 @@ export const renderWeedingBoard = function(game) {
     $root.on('click', '#'+idString, handleWeedActionClick);
     //weedCount++;
         }
-        else {
+        else if(tileState[i]==2){
             string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="public/img/grass.jpg" alt="" />
+            <img src="public/assets/sproutPlaceholder.jpg" alt="" />
+            <h1>Remove Weed</h1>
+            <p></p>
+        </a>
+        </div>
+    </li>`;
+    $root.on('click', '#'+idString, handleWeedActionClick);
+        }
+        else if(tileState[i]==3){
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
+        <div class="hexIn">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
+            <img src="public/assets/weeds.jpg" alt="" />
+            <h1>Remove Weed</h1>
+            <p></p>
+        </a>
+        </div>
+    </li>`;
+    $root.on('click', '#'+idString, handleWeedActionClick);
+        }
+        else if(tileState[i]==4){
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
+        <div class="hexIn">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
+            <img src="public/assets/mediumPlaceholder.jpg" alt="" />
+            <h1>Remove Weed</h1>
+            <p></p>
+        </a>
+        </div>
+    </li>`;
+    $root.on('click', '#'+idString, handleWeedActionClick);
+        }
+        else if(tileState[i]==5){
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
+        <div class="hexIn">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
+            <img src="public/assets/mediumWithWeedsPlaceHolder.jpg" alt="" />
+            <h1>Remove Weed</h1>
+            <p></p>
+        </a>
+        </div>
+    </li>`;
+    $root.on('click', '#'+idString, handleWeedActionClick);
+        }
+        else if(tileState[i]==6){
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
+        <div class="hexIn">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
+            <img src="public/assets/grass.jpg" alt="" />
+            <h1>Remove Weed</h1>
+            <p></p>
+        </a>
+        </div>
+    </li>`;
+    $root.on('click', '#'+idString, handleWeedActionClick);
+        }
+        else if(tileState[i]==7){
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
+        <div class="hexIn">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
+            <img src="public/assets/adultPlantPlaceholder.jpg" alt="" />
             <h1>Remove Weed</h1>
             <p></p>
         </a>
@@ -146,7 +278,7 @@ export const renderPlantingBoard = function(game) {
     let score = game.gameState.score;
     
     
-    let string = `<button id="finish">Finish Planting</button>
+    let string = `<button class="large blue button" id="finish">Finish Planting</button>
     <ul id="hexGrid">`;
     for (let i = 0; i < 59; i++){
         //identifier=i;
@@ -156,7 +288,7 @@ export const renderPlantingBoard = function(game) {
             string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="public/img/weeds.jpg" alt="" />
+            <img src="public/assets/weeds.jpg" alt="" />
             <h1>Plant Here</h1>
             <p></p>
         </a>
@@ -168,7 +300,7 @@ export const renderPlantingBoard = function(game) {
         string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="public/img/dirt.jpg" alt="" />
+            <img src="public/assets/dirt.jpg" alt="" />
             <h1>Plant Here</h1>
             <p></p>
         </a>
@@ -177,12 +309,72 @@ export const renderPlantingBoard = function(game) {
     $root.on('click', '#'+idString, handlePlantActionClick);
     //weedCount++;
         }
-        else {
+        else if(tileState[i]==2){
             string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="public/img/grass.jpg" alt="" />
-            <h1>Uproot</h1>
+            <img src="public/assets/sproutPlaceholder.jpg" alt="" />
+            <h1>Remove Weed</h1>
+            <p></p>
+        </a>
+        </div>
+    </li>`;
+    $root.on('click', '#'+idString, handlePlantActionClick);
+        }
+        else if(tileState[i]==3){
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
+        <div class="hexIn">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
+            <img src="public/assets/weeds.jpg" alt="" />
+            <h1>Remove Weed</h1>
+            <p></p>
+        </a>
+        </div>
+    </li>`;
+    $root.on('click', '#'+idString, handlePlantActionClick);
+        }
+        else if(tileState[i]==4){
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
+        <div class="hexIn">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
+            <img src="public/assets/mediumPlaceholder.jpg" alt="" />
+            <h1>Remove Weed</h1>
+            <p></p>
+        </a>
+        </div>
+    </li>`;
+    $root.on('click', '#'+idString, handlePlantActionClick);
+        }
+        else if(tileState[i]==5){
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
+        <div class="hexIn">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
+            <img src="public/assets/mediumWithWeedsPlaceHolder.jpg" alt="" />
+            <h1>Remove Weed</h1>
+            <p></p>
+        </a>
+        </div>
+    </li>`;
+    $root.on('click', '#'+idString, handlePlantActionClick);
+        }
+        else if(tileState[i]==6){
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
+        <div class="hexIn">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
+            <img src="public/assets/grass.jpg" alt="" />
+            <h1>Remove Weed</h1>
+            <p></p>
+        </a>
+        </div>
+    </li>`;
+    $root.on('click', '#'+idString, handlePlantActionClick);
+        }
+        else if(tileState[i]==7){
+            string+=`<li class="hex" id="${idString} data-id="${idString}">
+        <div class="hexIn">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
+            <img src="public/assets/adultPlantPlaceholder.jpg" alt="" />
+            <h1>Remove Weed</h1>
             <p></p>
         </a>
         </div>
@@ -201,14 +393,75 @@ export const renderPlantingBoard = function(game) {
 
 export const handleWeedActionClick = function(event) {
     let currentTile = event.currentTarget.getAttribute("id");
-    console.log(currentTile);
-    actions = actions + 1;
-    if(tileState[currentTile]==1) {
-        tileState[currentTile]=0;
+    console.log("Tile " + currentTile + " is in plant state " + tileState[currentTile]);
+    if(tileState[currentTile]%2==1) {
+        tileState[currentTile]--;
+        weedCounter[currentTile]=0;
         alert("Tile " + currentTile + " weeded!");
-    }
-    else {
+        actions = actions + 1;
+        console.log(actions);
+        if (actions % 2 == 0) {
+            let i = Math.floor(Math.random() * 59);
+            let random = Math.floor(Math.random() * 5);
+            if(random == 2 && i != currentTile) {
+                if (tileState[i] == 2) {
+                    tileState[i] = 3;
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                } else if (tileState[i] == 4) {
+                    tileState[i] = 5;
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                } else if (tileState[i] == 6) {
+                    tileState[i] = 7
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                } else if (tileState[i] == 0){
+                    tileState[i] = 1;
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                }
+            } 
+        }
+    }   else {
         alert("Tile " + currentTile +" does not have weeds!");
+    }
+
+    for(let i = 0; i<59; i++) {
+        //if it has a weed
+        if(tileState[i]%2==1) {
+            //Countdown to plant death gets closer
+            weedCounter[i]++;
+
+            //If it is this plant's time to die
+            if(weedCounter[i]>5) {
+                //It dies and becomes an Empty with Weed space
+                tileState[i]=1;
+                weedCounter[i]=0;
+            }
+        }
+        //If it does not have a weed
+        else {
+
+            //If it has a plant there that is not fully grown
+            if(tileState[i]>0 && tileState[i]!=6) {
+
+                //It will grow
+                growthCounter[i]++;
+
+                //If it has grown enough
+                if(growthCounter[i]>3){
+
+                    //It transforms into a new phase
+                    tileState[i]+=2;
+                    growthCounter[i]=0;
+                }
+
+            }
+
+        }
+
+        
     }
 
     const $root = $('#root');
@@ -221,15 +474,77 @@ export const handleWeedActionClick = function(event) {
 
 export const handlePlantActionClick = function(event) {
     let currentTile = event.currentTarget.getAttribute("id");
-    actions = actions + 1;
     console.log(currentTile);
     if(tileState[currentTile]==1) {
-        
         alert("Cannot plant on Tile " + currentTile + "!");
     }
     else {
         tileState[currentTile]=2;
         alert("Planted on Tile " + currentTile +".");
+        actions = actions + 1;
+        console.log(actions);
+        if (actions % 2 == 0) {
+            let i = Math.floor(Math.random() * 59);
+            let random = Math.floor(Math.random() * 5);
+            if(random == 2 && i != currentTile) {
+                if (tileState[i] == 2) {
+                    tileState[i] = 3;
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                } else if (tileState[i] == 4) {
+                    tileState[i] = 5;
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                } else if (tileState[i] == 6) {
+                    tileState[i] = 7
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                } else if (tileState[i] == 0){
+                    tileState[i] = 1;
+                    console.log(i + "added weeds!")
+                    handleFinishWeedingButtonPress();
+                }
+            } 
+        }
+    }
+
+        //This next section has will be in the plant method and the weed method.
+    //It involves updating each individual weed and plant state for each tile.
+    for(let i = 0; i<59; i++) {
+        //if it has a weed
+        if(tileState[i]%2==1) {
+            //Countdown to plant death gets closer
+            weedCounter[i]++;
+
+            //If it is this plant's time to die
+            if(weedCounter[i]>5) {
+                //It dies and becomes an Empty with Weed space
+                tileState[i]=1;
+                weedCounter[i]=0;
+            }
+        }
+        //If it does not have a weed
+        else {
+
+            //If it has a plant there that is not fully grown
+            if(tileState[i]>0 && tileState[i]!=6) {
+
+                //It will grow
+                growthCounter[i]++;
+
+                //If it has grown enough
+                if(growthCounter[i]>3){
+
+                    //It transforms into a new phase
+                    tileState[i]+=2;
+                    growthCounter[i]=0;
+                }
+
+            }
+
+        }
+
+        
     }
 
     const $root = $('#root');
@@ -251,7 +566,7 @@ export const handleFinishWeedingButtonPress = function(event) {
 
 
 export const renderSite = function() {
-    return `<header><img class="logo" src="public/img/logo.png"></img></header>`;
+    return `<header><img class="logo" src="public/assets/logo.png"></img></header>`;
 }
 
 export const main = function(game) {
