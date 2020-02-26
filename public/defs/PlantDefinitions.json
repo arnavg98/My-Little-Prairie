@@ -1,19 +1,31 @@
 [
 	{
-		"name": "Unknown Plant",
+		"commonname": "Unknown Plant",
+		"latinname": "Plant ignotum",
 		"description": "There is no description written for this plant",
+		"cultural": "Nothing has been said yet about this plant's cultural connections",
+		"class": "",
+		"image": "default.jpg",
 
-		"spring": "fast",
-		"summer": "normal",
-		"fall": "fast",
-		"winter": "slow",
+		"bloom": {},
+		"growthratemonth": [0,0,0,0,0,0,0,0,0,0,0,0],
+		"growthrateseason": [0,0,0,0],
+		"spread": "none",
+		"removetool": "pull",
 
-		"image": "default.jpg"
+		"unlock": 0,
 	},
-
 	{
-		"name": "bluegrass"
+		"name": "bluegrass",
+		"class": "plant flower deer",
 
+		"bloom": {"march": "pinkish"},
+		"growthrate": [0,0,0,0.5,1,0.5,0,0,0,0,0,0],
+		"growthrateseason": [0,0.5,0.8,0.3],
+		"spread": "rhyzome",
+		"removetool": "pickaxe",
+
+		"unlock": 5,
 	}
 
 ]

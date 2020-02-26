@@ -1,20 +1,20 @@
 [
-{
-	"name": "gloves",
+	{
+		"name": "pull"
 
-},
-{
-	"name": "burn",
+	},
+	{
+		"name": "gloves",
 
-},
-{
-	"name": "weed",
+	},
+	{
+		"name": "burn",
 
-},
-{
-	"name": "inspect",
+	},
+	{
+		"name": "pickaxe",
 
-}
+	},
 
 
 ]

@@ -3,11 +3,14 @@
 		"type": "blank",
 		"onclick": "",
 
+		"damage": 0,
+
 	},
 	{
 		"type": "plant",
 		"onclick": "playerAction(this)",
 
+		"growth": 0,
 	},
 	{
 		"type": "weed",
