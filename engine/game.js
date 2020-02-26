@@ -211,4 +211,3 @@ export const twoOrFour = function() {
       return 2;
   }
 }
-
