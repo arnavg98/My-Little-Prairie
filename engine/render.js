@@ -1,4 +1,5 @@
 import Game from "./game.js";
+import { plantdefs } from "../public/defs/plantdefs.js";
 
 let game = {};
 let tileState = []; //array that will have a zero or a 1 depending on if it has weed or not
