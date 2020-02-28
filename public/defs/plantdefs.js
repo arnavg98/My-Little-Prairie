@@ -1,7 +1,7 @@
-// this file  exports { plantdefs }
+// this file exports { plantdefs }
+// plantdefs - a dictionary with commonname as key and the plant data object as vlaue
 
-// missing properties in plants/weeds are filled in correspondingly from defaultplant
-
+// missing properties in plants/weeds will be filled in correspondingly from this defaultplant
 let defaultplant =
 {
 	commonname: "Unknown Plant",
@@ -194,7 +194,7 @@ let weeds =
 	},
 ]
 
-let plantdefs = [];
+let plantdefs = {};
 
 function fillinmissing(arr, type) {
 	for(let ele of arr) {
@@ -208,7 +208,7 @@ function fillinmissing(arr, type) {
 			if(ele.class !== "") ele.class += " ";
 			ele.class += type;
 		}
-		plantdefs.push(ele);
+		plantdefs[ele.commonname] = ele;
 	}
 }
 
