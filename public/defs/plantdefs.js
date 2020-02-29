@@ -16,6 +16,7 @@ let defaultplant =
 	growthratemonth: [0,0,0,0,0,0,0,0,0,0,0,0],
 	growthrateseason: [0,0,0,0],
 	spread: "none",
+	spreadrate: 0,
 	removetool: "pull",
 
 	unlock: 0,
@@ -25,6 +26,111 @@ let defaultplant =
 
 let plants =
 [
+	{
+		commonname: "Carolina Anemone",
+		latinname: "Anemone caroliniana",
+		cultural: "sacred space plant (like gravesites); very rare; treat with respect",
+
+		pollinators: "bee fly",
+		growthrateseason: [0,0.5,0.8,0.3],
+		spread: "rhizome",
+		spreadrate: 2,
+	},
+	{
+		commonname: "Swamp Milkweed",
+		latinname: "Asclepias incarnata",
+
+		pollinators: "monarch",
+		growthrateseason: [0,0.5,0.8,0.3],
+		spread: "rhizome",
+		spreadrate: 10,
+	},
+	{
+		commonname: "Common Milkweed",
+		latinname: "Asclepias syriaca",
+		cultural: "rope making; eating the pods (can be poisonous if not prepared correctly); clothing insulation",
+
+		pollinators: "monarch",
+		growthrateseason: [0,0.5,0.8,0.3],
+		spread: "rhizome",
+		spreadrate: 4,
+	},
+	{
+		commonname: "Wild Indigo",
+		latinname: "Baptisia alba",
+		cultural: "dyeing using leaves",
+
+		pollinators: "bumblebee",
+		growthrateseason: [0,0.5,0.8,0.3],
+		spread: "fireseed",
+		spreadrate: 10,
+	},
+	{
+		commonname: "Languid Coneflower",
+		latinname: "Echinacea pallida",
+		cultural: "tea for immune health",
+
+		pollinators: "bumblebee goldfinch butterfly",
+		growthrateseason: [0,0.5,0.8,0.3],
+		spread: "seed",
+		spreadrate: 2,
+	},
+	{
+		commonname: "Rattlesnake Master",
+		latinname: "Eryngium yuccifolium",
+		cultural: "Used by southeastern indigenous people for millennia to: - make shoes and bags -cure rattlesnake bites",
+
+		pollinators: "spiderwasp",
+		growthrateseason: [0,0.5,0.8,0.3],
+		spread: "baby",
+		spreadrate: 8,
+	},
+	{
+		commonname: "Southern Sundrops",
+		latinname: "Oenothera frucitcosa",
+
+		pollinators: "sphinxmoth",
+		growthrateseason: [0,0.5,0.8,0.3],
+		spreadrate: 2,
+	},
+	{
+		commonname: "Piney woods Phlox",
+		latinname: "Phlox nivalis",
+
+		pollinators: "butterfly",
+		growthrateseason: [0,0.5,0.8,0.3],
+		spreadrate: 3,
+	},
+	{
+		commonname: "Grey-headed Coneflower",
+		latinname: "Ratibida pinnata",
+
+		pollinators: "goldfinch",
+		growthrateseason: [0,0.5,0.8,0.3],
+		spreadrate: 5,
+	},
+	{
+		commonname: "Goldenrod",
+		latinname: "Ratibida pinnata",
+
+		growthrateseason: [0,0.5,0.8,0.3],
+		spreadrate: 5,
+	},
+	{
+		commonname: "Eastern silver aster",
+		latinname: "Symphyotrichum concolor",
+
+		growthrateseason: [0,0.5,0.8,0.3],
+		spreadrate: 0,
+	},
+	{
+		commonname: "Frost aster",
+		latinname: "Symphyotrichum pilosum",
+
+		growthrateseason: [0,0.5,0.8,0.3],
+		spread: "seed rhizome",
+		spreadrate: 20,
+	},
 	{
 		commonname: "Splitbeard Broomsedge",
 		latinname: "Andropogon ternarius",
