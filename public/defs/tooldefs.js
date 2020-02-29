@@ -1,3 +1,5 @@
+
+let tooldefs = 
 [
 	{
 		"name": "pull",
@@ -15,6 +17,6 @@
 		"name": "pickaxe",
 		"image": "zzz.jpg",
 	},
+];
 
-
-]
+export { tooldefs };
