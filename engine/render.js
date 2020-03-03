@@ -9,6 +9,8 @@ for(let i = 0; i<59; i++) {
     growthCounter[i]=0;
     weedCounter[i]=0;
 }
+let currenttool = 0;
+let currentplant = 0;
 /*
 tileState UPDATE:
 0: Empty
@@ -160,6 +162,10 @@ export const renderWeedingBoard = function(game) {
     
     
     let string = `<button class="large blue button" id="finish">Finish Weeding</button>
+    <br> <button class="button1" value="1" id="tool"></button>
+    <button class="button2" value="2" id="tool"></button>
+    <button class="button3" value="3" id="tool"></button>
+    <button class="button4" value="4" id="tool"></button>
     <ul id="hexGrid">`;
     for (let i = 0; i < 59; i++){
         //identifier=i;
@@ -266,7 +272,7 @@ export const renderWeedingBoard = function(game) {
     string+=`</ul>`;
     
     $root.on('click', '#finish', handleFinishWeedingButtonPress);
-
+    $root.on('click', '#tool', handleToolButtonPress);
     return string;
 
 }
@@ -277,9 +283,14 @@ export const renderPlantingBoard = function(game) {
     let board = game.gameState.board;
     let score = game.gameState.score;
     
-    
+
     let string = `<button class="large blue button" id="finish">Finish Planting</button>
+    <br> <button class="buttonplant1" value="1" id="tool"></button>
+    <button class="buttonplant2" value="2" id="tool"></button>
+    <button class="buttonplant3" value="3" id="tool"></button>
+    <button class="buttonplant4" value="4" id="tool"></button>
     <ul id="hexGrid">`;
+
     for (let i = 0; i < 59; i++){
         //identifier=i;
         let idString=i;
@@ -385,6 +396,7 @@ export const renderPlantingBoard = function(game) {
     string+=`</ul>`;
     
     $root.on('click', '#finish', handleFinishWeedingButtonPress);
+    $root.on('click', '#tool', handlePlantPress);
 
     return string;
 
@@ -392,6 +404,9 @@ export const renderPlantingBoard = function(game) {
 }
 
 export const handleWeedActionClick = function(event) {
+    if (currenttool == 0) { 
+        alert("Please select a tool!");
+    } else {
     let currentTile = event.currentTarget.getAttribute("id");
     console.log("Tile " + currentTile + " is in plant state " + tileState[currentTile]);
     if(tileState[currentTile]%2==1) {
@@ -468,13 +483,16 @@ export const handleWeedActionClick = function(event) {
     $root.off();
     
     handleWeedButtonPress();
-    
+}
 
 }
 
 export const handlePlantActionClick = function(event) {
     let currentTile = event.currentTarget.getAttribute("id");
     console.log(currentTile);
+    if (currentplant == 0) { 
+        alert("Please select a plant!");
+    } else {
     if(tileState[currentTile]==1) {
         alert("Cannot plant on Tile " + currentTile + "!");
     }
@@ -552,16 +570,28 @@ export const handlePlantActionClick = function(event) {
     
     handlePlantButtonPress();
     
-
+    }
 }
 
 export const handleFinishWeedingButtonPress = function(event) {
+    currenttool = 0;
+    currentplant = 0;
     const $root = $('#root');
     $root.off();
     $root.empty();
     let game = new Game(59);
     main(game);
 
+}
+
+export const handleToolButtonPress = function(event) {
+    currenttool = event.target.value;
+    console.log(currenttool);
+}
+
+export const handlePlantPress = function(event) {
+    currentplant = event.target.value;
+    console.log(currentplant);
 }
 
 

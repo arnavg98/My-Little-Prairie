@@ -653,3 +653,111 @@ border-radius: 0 3px 3px 0;
 -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) inset;
 box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) inset;
 }
+
+
+/* these are my own buttons */
+
+.button1{
+  background:url("https://cdn1.iconfinder.com/data/icons/tools-65/100/tool-06-512.png") no-repeat;
+  background-size: cover;
+  background-color: gray;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+  margin-right: 4%;
+}
+.button3{
+  background:url("https://cdn.iconscout.com/icon/premium/png-512-thumb/trowel-1452297-1227258.png") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+  margin-right: 4%;
+}
+.button2{
+  background:url("https://images.vexels.com/media/users/3/146886/isolated/preview/82d967ff391133a0d4380497cc16d75b-fire-clipart-by-vexels.png") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+  margin-right: 4%;
+}
+.button4{
+  background:url("https://clipartart.com/images/shovel-transparent-clipart.png") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+
+.buttonplant1{
+  background:url("https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1557258847-chinese-evergreen-houseplant-1557258690.jpg") no-repeat;
+  background-size: cover;
+  background-color: gray;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+  margin-right: 4%;
+}
+
+.buttonplant3{
+  background:url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/various-beautiful-green-plants-in-pots-on-white-royalty-free-image-931824676-1565950537.jpg?crop=0.544xw:0.816xh;0.255xw,0.0281xh&resize=480:*") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+  margin-right: 4%;
+}
+.buttonplant2{
+  background:url("https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1557178954-houseplant-young-schefflera-a-potted-plant-isolated-royalty-free-image-470248536-1557178881.jpg?crop=0.793xw:0.894xh;0.0673xw,0.0758xh&resize=480:*") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+  margin-right: 4%;
+}
+.buttonplant4{
+  background:url("https://media2.s-nbcnews.com/i/newscms/2019_34/1473033/the-sill_potted-plant_fiddle-leaf-fig-6_hyde_black-7_1500x-progressive_c20b660400aa6a1b24268122b9b639af.jpg") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
