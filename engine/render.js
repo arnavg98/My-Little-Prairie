@@ -548,7 +548,7 @@ export const handleSeason = function() {
         season = "Summer";
     } else if (actions < 90*year) {
         season = "Fall";
-    } else {
+    } else if (action < 120*year){
         season = "Winter";
         year++;
     }
@@ -599,6 +599,12 @@ export const handleSeason = function() {
             break;
     }
     return string;
+}
+
+export const gameEnd = function() {
+    if (year==4) {
+        //end the game 
+    }
 }
 
 export const renderSite = function() {
