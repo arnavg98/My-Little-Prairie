@@ -1,7 +1,7 @@
 import Game from "./game.js";
 import { plantdefs } from "../public/defs/plantdefs.js";
 
-let game = {};
+
 let tileState = []; //array that will have a zero or a 1 depending on if it has weed or not
 let actions = 0;
 let growthCounter = [];
@@ -12,6 +12,8 @@ for(let i = 0; i<59; i++) {
 }
 let currenttool = 0;
 let currentplant = 0;
+let year = 1;
+let season = "";
 /*
 tileState UPDATE:
 0: Empty
@@ -24,10 +26,7 @@ tileState UPDATE:
 7: Adult Plant with weed
 */
 
-export const renderGame = function(game) {
-    let board = game.gameState.board;
-    let score = game.gameState.score;
-
+export const renderGame = function() {
     let string = `<button id="weed" class="large blue button">Weed</button>
     <button class="large blue button" id="plant">Plant</button>
     <ul id="hexGrid">`;
@@ -101,26 +100,10 @@ export const renderGame = function(game) {
     </li>`;
         }
         else if(tileState[i]==6){
-            string+=`<li class="hex">
-        <div class="hexIn">
-        <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img src="public/assets/grass.jpg" alt="" />
-            <h1>Plant Name Here</h1>
-            <p>Description of plant</p>
-        </a>
-        </div>
-    </li>`;
+            string+=handleSeason();
         }
         else if(tileState[i]==7){
-            string+=`<li class="hex">
-        <div class="hexIn">
-        <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img src="public/assets/adultPlantPlaceholder.jpg" alt="" />
-            <h1>Plant Name Here</h1>
-            <p>Description of plant</p>
-        </a>
-        </div>
-    </li>`;
+            string+=handleSeason();
         }
     }
     string+=`</ul>`
@@ -134,11 +117,11 @@ export const renderGame = function(game) {
 export const handleWeedButtonPress = function(event) {
 
     //alert("button pressed");
-    let game = new Game(59);
+    
     const $root = $('#root');
     $root.empty();
     $root.append(renderSite());
-    $root.append(renderWeedingBoard(game));
+    $root.append(renderWeedingBoard());
     
 
 }
@@ -146,20 +129,17 @@ export const handleWeedButtonPress = function(event) {
 export const handlePlantButtonPress = function(event) {
 
     //alert("button pressed");
-    let game = new Game(59);
     const $root = $('#root');
     $root.empty();
     $root.append(renderSite());
-    $root.append(renderPlantingBoard(game));
+    $root.append(renderPlantingBoard());
     
 
 }
 
-export const renderWeedingBoard = function(game) {
+export const renderWeedingBoard = function() {
 
     const $root = $('#root');
-    let board = game.gameState.board;
-    let score = game.gameState.score;
     
     
     let string = `<button class="large blue button" id="finish">Finish Weeding</button>
@@ -246,27 +226,11 @@ export const renderWeedingBoard = function(game) {
     $root.on('click', '#'+idString, handleWeedActionClick);
         }
         else if(tileState[i]==6){
-            string+=`<li class="hex" id="${idString} data-id="${idString}">
-        <div class="hexIn">
-        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="public/assets/grass.jpg" alt="" />
-            <h1>Remove Weed</h1>
-            <p></p>
-        </a>
-        </div>
-    </li>`;
+            string+=handleSeason();
     $root.on('click', '#'+idString, handleWeedActionClick);
         }
         else if(tileState[i]==7){
-            string+=`<li class="hex" id="${idString} data-id="${idString}">
-        <div class="hexIn">
-        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="public/assets/adultPlantPlaceholder.jpg" alt="" />
-            <h1>Remove Weed</h1>
-            <p></p>
-        </a>
-        </div>
-    </li>`;
+            string+=handleSeason();
     $root.on('click', '#'+idString, handleWeedActionClick);
         }
     }
@@ -278,11 +242,10 @@ export const renderWeedingBoard = function(game) {
 
 }
 
-export const renderPlantingBoard = function(game) {
+export const renderPlantingBoard = function() {
 
     const $root = $('#root');
-    let board = game.gameState.board;
-    let score = game.gameState.score;
+ 
     
 
     let string = `<button class="large blue button" id="finish">Finish Planting</button>
@@ -370,27 +333,11 @@ export const renderPlantingBoard = function(game) {
     $root.on('click', '#'+idString, handlePlantActionClick);
         }
         else if(tileState[i]==6){
-            string+=`<li class="hex" id="${idString} data-id="${idString}">
-        <div class="hexIn">
-        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="public/assets/grass.jpg" alt="" />
-            <h1>Remove Weed</h1>
-            <p></p>
-        </a>
-        </div>
-    </li>`;
+            string+=handleSeason();
     $root.on('click', '#'+idString, handlePlantActionClick);
         }
         else if(tileState[i]==7){
-            string+=`<li class="hex" id="${idString} data-id="${idString}">
-        <div class="hexIn">
-        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img src="public/assets/adultPlantPlaceholder.jpg" alt="" />
-            <h1>Remove Weed</h1>
-            <p></p>
-        </a>
-        </div>
-    </li>`;
+            string+=handleSeason();
     $root.on('click', '#'+idString, handlePlantActionClick);
         }
     }
@@ -580,8 +527,7 @@ export const handleFinishWeedingButtonPress = function(event) {
     const $root = $('#root');
     $root.off();
     $root.empty();
-    let game = new Game(59);
-    main(game);
+    main();
 
 }
 
@@ -594,20 +540,79 @@ export const handlePlantPress = function(event) {
     currentplant = event.target.value;
     console.log(currentplant);
 }
-
+export const handleSeason = function() {
+    let string = ``;
+    if (actions < 30*year) {
+        season = "Spring";
+    } else if (actions < 60*year) {
+        season = "Summer";
+    } else if (actions < 90*year) {
+        season = "Fall";
+    } else {
+        season = "Winter";
+        year++;
+    }
+    switch(season) {
+        case "Spring":
+            string=`<li class="hex">
+        <div class="hexIn">
+        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+            <img src="public/assets/adultPlantPlaceholder.jpg" alt="" />
+            <h1>Plant Name Here</h1>
+            <p>Description of plant</p>
+        </a>
+        </div>
+    </li>`;
+            break;
+        case "Summer":
+            string=`<li class="hex">
+        <div class="hexIn">
+        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+            <img src="public/assets/adultPlantPlaceholder.jpg" alt="" />
+            <h1>Plant Name Here</h1>
+            <p>Description of plant</p>
+        </a>
+        </div>
+    </li>`;
+            break;
+        case "Fall":
+            string=`<li class="hex">
+        <div class="hexIn">
+        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+            <img src="public/assets/adultPlantPlaceholder.jpg" alt="" />
+            <h1>Plant Name Here</h1>
+            <p>Description of plant</p>
+        </a>
+        </div>
+    </li>`;
+            break;
+        case "Winter":
+            string=`<li class="hex">
+        <div class="hexIn">
+        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+            <img src="public/assets/dormant-grass-1.jpg" alt="" />
+            <h1>Plant Name Here</h1>
+            <p>Description of plant</p>
+        </a>
+        </div>
+    </li>`;
+            break;
+    }
+    return string;
+}
 
 export const renderSite = function() {
     return `<header><img class="logo" src="public/assets/logo.png"></img></header>`;
 }
 
-export const main = function(game) {
+export const main = function() {
     const $root = $('#root');
     $root.append(renderSite());
-    $root.append(renderGame(game));
+    $root.append(renderGame());
 }
 
 $(function () {
-  let game = new Game(59);
+  
   for(let i =0; i<59; i++) {
       if(i%3==0) {
           tileState[i]=1;
@@ -616,6 +621,6 @@ $(function () {
           tileState[i]=0;
       }
   }
-  main(game);
+  main();
 
   });
