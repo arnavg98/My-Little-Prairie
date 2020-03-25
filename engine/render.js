@@ -62,7 +62,7 @@ export const renderGame = function() {
             string+=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img class="baby" src="public/assets/sproutPlaceholder.jpg" alt="" />
+            <img class="baby" src="${plantdefs[tileState[i].name].image}" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
@@ -84,7 +84,7 @@ export const renderGame = function() {
             string+=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img class="med" src="public/assets/sproutPlaceholder.jpg" alt="" />
+            <img class="med" src="${plantdefs[tileState[i].name].image}" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
@@ -184,7 +184,7 @@ export const renderWeedingBoard = function() {
             string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img class="baby" src="public/assets/sproutPlaceholder.jpg" alt="" />
+            <img class="baby" src="${plantdefs[tileState[i].name].image}" alt="" />
             <h1>Remove Weed</h1>
             <p></p>
         </a>
@@ -208,7 +208,7 @@ export const renderWeedingBoard = function() {
             string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img class="med" src="public/assets/sproutPlaceholder.jpg" alt="" />
+            <img class="med" src="${plantdefs[tileState[i].name].image}" alt="" />
             <h1>Remove Weed</h1>
             <p></p>
         </a>
@@ -291,7 +291,7 @@ export const renderPlantingBoard = function() {
             string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img class="baby" src="public/assets/sproutPlaceholder.jpg" alt="" />
+            <img class="baby" src="${plantdefs[tileState[i].name].image}" alt="" />
             <h1>Remove Weed</h1>
             <p></p>
         </a>
@@ -315,7 +315,7 @@ export const renderPlantingBoard = function() {
             string+=`<li class="hex" id="${idString} data-id="${idString}">
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
-            <img class="med" src="public/assets/sproutPlaceholder.jpg" alt="" />
+            <img class="med" src="${plantdefs[tileState[i].name].image}" alt="" />
             <h1>Remove Weed</h1>
             <p></p>
         </a>
@@ -605,6 +605,7 @@ export const handleToolButtonPress = function(event) {
 export const handlePlantPress = function(event) {
     currentplant = event.target.value;
     console.log(currentplant);
+    console.log(this.id);
 }
 
 //Updates score after actions
@@ -630,7 +631,7 @@ export const handleSeason = function() {
             string=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img class="adult" src="public/assets/sproutPlaceholder.jpg" alt="" />
+            <img class="adult" src="${plantdefs[tileState[this.id].name].image}" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
@@ -641,7 +642,7 @@ export const handleSeason = function() {
             string=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img class="adult" src="public/assets/sproutPlaceholder.jpg" alt="" />
+            <img class="adult" src="${plantdefs[tileState[this.id].name].image}" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
@@ -652,7 +653,7 @@ export const handleSeason = function() {
             string=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img class="adult" src="public/assets/sproutPlaceholder.jpg" alt="" />
+            <img class="adult" src="${plantdefs[tileState[this.id].name].image}" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>

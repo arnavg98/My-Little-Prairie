@@ -30,7 +30,7 @@ let plants =
 		commonname: "Carolina Anemone",
 		latinname: "Anemone caroliniana",
 		cultural: "sacred space plant (like gravesites); very rare; treat with respect",
-
+		image: "http://www.kansasnativeplants.com/guide/plant_image.php?plnt_id=160&size=640&file_id=1",
 		pollinators: "bee fly",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "rhizome",
@@ -40,7 +40,7 @@ let plants =
 	{
 		commonname: "Swamp Milkweed",
 		latinname: "Asclepias incarnata",
-
+		image: "https://www.bowerandbranch.com/wp-content/uploads/bb_assets/files/images/bower/tree_photo/f43544161b4f593cc64fb13c82971c6c59761ea25ea5f_1260x1260.jpg",
 		pollinators: "monarch",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "rhizome",
@@ -51,7 +51,7 @@ let plants =
 		commonname: "Common Milkweed",
 		latinname: "Asclepias syriaca",
 		cultural: "rope making; eating the pods (can be poisonous if not prepared correctly); clothing insulation",
-
+		image: "https://cdn10.bigcommerce.com/s-rhhdh1d/products/86/images/362/common-milkweed-v1-628x628__50940.1570321159.1280.1280.jpg?c=2",
 		pollinators: "monarch",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "rhizome",
@@ -62,7 +62,7 @@ let plants =
 		commonname: "Wild Indigo",
 		latinname: "Baptisia alba",
 		cultural: "dyeing using leaves",
-
+		image: "https://cdn.shopify.com/s/files/1/1063/1186/products/Baptisia_australis_grande.jpg?v=1553774872",
 		pollinators: "bumblebee",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "fireseed",
@@ -73,7 +73,7 @@ let plants =
 		commonname: "Languid Coneflower",
 		latinname: "Echinacea pallida",
 		cultural: "tea for immune health",
-
+		image: "https://i.pinimg.com/280x280_RS/45/9f/e9/459fe9310d41c7f59b69412e791eaf31.jpg",
 		pollinators: "bumblebee goldfinch butterfly",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "seed",
@@ -84,7 +84,7 @@ let plants =
 		commonname: "Rattlesnake Master",
 		latinname: "Eryngium yuccifolium",
 		cultural: "Used by southeastern indigenous people for millennia to: - make shoes and bags -cure rattlesnake bites",
-
+		image: "https://st.hzcdn.com/simgs/72e1b5ad036d0f96_4-6347/home-design.jpg",
 		pollinators: "spiderwasp",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "baby",
@@ -94,7 +94,7 @@ let plants =
 	{
 		commonname: "Southern Sundrops",
 		latinname: "Oenothera frucitcosa",
-
+		image: "https://www.gardenia.net/storage/app/public/uploads/images/detail/nXW5TZUwF5nGDsg6u0U96b4GS9cqc1iZa5tFzBwV.jpeg",
 		pollinators: "sphinxmoth",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spreadrate: 2,
@@ -103,7 +103,7 @@ let plants =
 	{
 		commonname: "Piney woods Phlox",
 		latinname: "Phlox nivalis",
-
+		image: "https://foldedpetal.files.wordpress.com/2015/02/he-phlox.gif",
 		pollinators: "butterfly",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spreadrate: 3,
@@ -112,7 +112,7 @@ let plants =
 	{
 		commonname: "Grey-headed Coneflower",
 		latinname: "Ratibida pinnata",
-
+		image: "",
 		pollinators: "goldfinch",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spreadrate: 5,
@@ -121,7 +121,7 @@ let plants =
 	{
 		commonname: "Goldenrod",
 		latinname: "Ratibida pinnata",
-
+		image: "",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spreadrate: 5,
 		growthrate: 2,
@@ -129,7 +129,7 @@ let plants =
 	{
 		commonname: "Eastern silver aster",
 		latinname: "Symphyotrichum concolor",
-
+		image: "",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spreadrate: 0,
 		growthrate: 3,
@@ -137,7 +137,7 @@ let plants =
 	{
 		commonname: "Frost aster",
 		latinname: "Symphyotrichum pilosum",
-
+		image: "",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "seed rhizome",
 		spreadrate: 20,
@@ -148,7 +148,6 @@ let plants =
 		latinname: "Andropogon ternarius",
 		class: "plant",
 		image: "asdf.jpg",
-
 		pollinators: "sparrows",
 		bloom: {"oct": "white", "nov": "die", "dec": "die"},
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
@@ -163,7 +162,6 @@ let plants =
 		latinname: "Eragrostis spectablis",
 		class: "plant",
 		image: "asdf.jpg",
-
 		bloom: {"jun": "purple", "jul": "purple", "aug": "die"},
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
 		growthrateseason: [0,0.5,0.8,0.3],
@@ -177,7 +175,6 @@ let plants =
 		latinname: "Sporobolus heterolepsis",
 		class: "plant",
 		image: "asdf.jpg",
-
 		bloom: {"may": "yes", "jun": "yes", "jul": "die"},
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
 		growthrateseason: [0,0.5,0.8,0.3],
@@ -192,7 +189,6 @@ let plants =
 		cultural: "Essential part of Southeastern material culture; used for structural material for houses",
 		class: "plant",
 		image: "asdf.jpg",
-
 		bloom: {"aug": "brown", "sep": "brown", "oct": "brown", "nov": "die"},
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
 		growthrateseason: [0,0.5,0.8,0.3],
@@ -206,7 +202,6 @@ let plants =
 		latinname: "Carex brevior",
 		class: "plant",
 		image: "asdf.jpg",
-
 		bloom: {"apr": "green"},
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
 		growthrateseason: [0,0.5,0.8,0.3],
@@ -224,7 +219,6 @@ let weeds =
 		latinname: "Pueraria montana",
 		class: "weed",
 		image: "asdf.jpg",
-
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "seed",
@@ -237,7 +231,6 @@ let weeds =
 		latinname: "Sorghum halepense",
 		class: "weed",
 		image: "asdf.jpg",
-
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "seed",
@@ -250,7 +243,6 @@ let weeds =
 		latinname: "Humulus japonicus",
 		class: "weed",
 		image: "asdf.jpg",
-
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "seed",
@@ -263,7 +255,6 @@ let weeds =
 		latinname: "Cerastium vulgatum",
 		class: "weed",
 		image: "asdf.jpg",
-
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "seed",
@@ -276,7 +267,6 @@ let weeds =
 		latinname: "Oxalis stricta",
 		class: "weed",
 		image: "asdf.jpg",
-
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "seed",
@@ -289,7 +279,6 @@ let weeds =
 		latinname: "Stellaria meadia",
 		class: "weed",
 		image: "asdf.jpg",
-
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "seed",
@@ -302,7 +291,6 @@ let weeds =
 		latinname: "Cardamine hirsuta",
 		class: "weed",
 		image: "asdf.jpg",
-
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "seed",
@@ -315,7 +303,6 @@ let weeds =
 		latinname: "Vicia sativa",
 		class: "weed",
 		image: "asdf.jpg",
-
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "seed",

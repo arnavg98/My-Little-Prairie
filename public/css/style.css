@@ -40,7 +40,7 @@ header {
 
 #hexGrid {
   display: grid;
-  grid-gap: 5px;
+  grid-gap: 1px;
   grid-template-columns: repeat(10, 1fr);
   width: 90%;
   font-family: 'Raleway', sans-serif;
@@ -717,7 +717,7 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
 }
 
 .buttonplant1{
-  background:url("https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1557258847-chinese-evergreen-houseplant-1557258690.jpg") no-repeat;
+  background:url("http://www.kansasnativeplants.com/guide/plant_image.php?plnt_id=160&size=640&file_id=1") no-repeat;
   background-size: cover;
   background-color: gray;
   border-color: black;
@@ -731,7 +731,7 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
 }
 
 .buttonplant3{
-  background:url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/various-beautiful-green-plants-in-pots-on-white-royalty-free-image-931824676-1565950537.jpg?crop=0.544xw:0.816xh;0.255xw,0.0281xh&resize=480:*") no-repeat;
+  background:url("https://i.pinimg.com/280x280_RS/45/9f/e9/459fe9310d41c7f59b69412e791eaf31.jpg") no-repeat;
   background-color: gray;
   background-size: cover;
   border-color: black;
@@ -744,7 +744,7 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
   margin-right: 4%;
 }
 .buttonplant2{
-  background:url("https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1557178954-houseplant-young-schefflera-a-potted-plant-isolated-royalty-free-image-470248536-1557178881.jpg?crop=0.793xw:0.894xh;0.0673xw,0.0758xh&resize=480:*") no-repeat;
+  background:url("https://cdn10.bigcommerce.com/s-rhhdh1d/products/86/images/362/common-milkweed-v1-628x628__50940.1570321159.1280.1280.jpg?c=2") no-repeat;
   background-color: gray;
   background-size: cover;
   border-color: black;
@@ -757,7 +757,7 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
   margin-right: 4%;
 }
 .buttonplant4{
-  background:url("https://media2.s-nbcnews.com/i/newscms/2019_34/1473033/the-sill_potted-plant_fiddle-leaf-fig-6_hyde_black-7_1500x-progressive_c20b660400aa6a1b24268122b9b639af.jpg") no-repeat;
+  background:url("https://www.gardenia.net/storage/app/public/uploads/images/detail/nXW5TZUwF5nGDsg6u0U96b4GS9cqc1iZa5tFzBwV.jpeg") no-repeat;
   background-color: gray;
   background-size: cover;
   border-color: black;
