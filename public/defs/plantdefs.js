@@ -35,6 +35,7 @@ let plants =
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "rhizome",
 		spreadrate: 2,
+		growthrate: 3,
 	},
 	{
 		commonname: "Swamp Milkweed",
@@ -44,6 +45,7 @@ let plants =
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "rhizome",
 		spreadrate: 10,
+		growthrate: 1,
 	},
 	{
 		commonname: "Common Milkweed",
@@ -54,6 +56,7 @@ let plants =
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "rhizome",
 		spreadrate: 4,
+		growthrate: 2,
 	},
 	{
 		commonname: "Wild Indigo",
@@ -64,6 +67,7 @@ let plants =
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "fireseed",
 		spreadrate: 10,
+		growthrate: 1,
 	},
 	{
 		commonname: "Languid Coneflower",
@@ -74,6 +78,7 @@ let plants =
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "seed",
 		spreadrate: 2,
+		growthrate: 3,
 	},
 	{
 		commonname: "Rattlesnake Master",
@@ -84,6 +89,7 @@ let plants =
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "baby",
 		spreadrate: 8,
+		growthrate: 1,
 	},
 	{
 		commonname: "Southern Sundrops",
@@ -92,6 +98,7 @@ let plants =
 		pollinators: "sphinxmoth",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spreadrate: 2,
+		growthrate: 3,
 	},
 	{
 		commonname: "Piney woods Phlox",
@@ -100,6 +107,7 @@ let plants =
 		pollinators: "butterfly",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spreadrate: 3,
+		growthrate: 3,
 	},
 	{
 		commonname: "Grey-headed Coneflower",
@@ -108,6 +116,7 @@ let plants =
 		pollinators: "goldfinch",
 		growthrateseason: [0,0.5,0.8,0.3],
 		spreadrate: 5,
+		growthrate: 2,
 	},
 	{
 		commonname: "Goldenrod",
@@ -115,6 +124,7 @@ let plants =
 
 		growthrateseason: [0,0.5,0.8,0.3],
 		spreadrate: 5,
+		growthrate: 2,
 	},
 	{
 		commonname: "Eastern silver aster",
@@ -122,6 +132,7 @@ let plants =
 
 		growthrateseason: [0,0.5,0.8,0.3],
 		spreadrate: 0,
+		growthrate: 3,
 	},
 	{
 		commonname: "Frost aster",
@@ -130,6 +141,7 @@ let plants =
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "seed rhizome",
 		spreadrate: 20,
+		growthrate: 1,
 	},
 	{
 		commonname: "Splitbeard Broomsedge",
@@ -144,6 +156,7 @@ let plants =
 		spread: "seed",
 		spreadrate: 5,
 		removetool: "pull",
+		growthrate: 2,
 	},
 	{
 		commonname: "Purple Lovegrass",
@@ -157,6 +170,7 @@ let plants =
 		spread: "seed",
 		spreadrate: 5,
 		removetool: "pull",
+		growthrate: 2,
 	},
 	{
 		commonname: "Prairie Dropseed",
@@ -170,6 +184,7 @@ let plants =
 		spread: "seed",
 		spreadrate: 4,
 		removetool: "pull",
+		growthrate: 2,
 	},
 	{
 		commonname: "Indian Grass",
@@ -184,6 +199,7 @@ let plants =
 		spread: "seed",
 		spreadrate: 10,
 		removetool: "pull",
+		growthrate: 1,
 	},
 	{
 		commonname: "Durham Grass",
@@ -197,6 +213,7 @@ let plants =
 		spread: "seed",
 		spreadrate: 2,
 		removetool: "pull",
+		growthrate: 3,
 	},
 ];
 
@@ -213,6 +230,7 @@ let weeds =
 		spread: "seed",
 		spreadrate: 4,
 		removetool: "pickaxe",
+		growthrate: 2,
 	},
 	{
 		commonname: "Johnson Grass",
@@ -225,6 +243,7 @@ let weeds =
 		spread: "seed",
 		spreadrate: 2,
 		removetool: "pull",
+		growthrate: 3,
 	},
 	{
 		commonname: "Star Vine",
@@ -237,6 +256,7 @@ let weeds =
 		spread: "seed",
 		spreadrate: 2,
 		removetool: "gloves",
+		growthrate: 3,
 	},
 	{
 		commonname: "Mouse-ear Chickweed",
@@ -249,6 +269,7 @@ let weeds =
 		spread: "seed",
 		spreadrate: 2,
 		removetool: "burn",
+		growthrate: 3,
 	},
 	{
 		commonname: "Sorrel",
@@ -261,6 +282,7 @@ let weeds =
 		spread: "seed",
 		spreadrate: 2,
 		removetool: "burn",
+		growthrate: 3,
 	},
 	{
 		commonname: "Common Chickweed",
@@ -273,6 +295,7 @@ let weeds =
 		spread: "seed",
 		spreadrate: 2,
 		removetool: "burn",
+		growthrate: 3,
 	},
 	{
 		commonname: "Hairy Cress",
@@ -285,6 +308,7 @@ let weeds =
 		spread: "seed",
 		spreadrate: 2,
 		removetool: "burn",
+		growthrate: 3,
 	},
 	{
 		commonname: "Common Vetch",
@@ -297,6 +321,7 @@ let weeds =
 		spread: "seed",
 		spreadrate: 2,
 		removetool: "burn",
+		growthrate: 3,
 	},
 ]
 
