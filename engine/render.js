@@ -631,7 +631,7 @@ export const handleSeason = function() {
             string=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img class="adult" src="${plantdefs[tileState[this.id].name].image}" alt="" />
+            <img class="adult" src="public/assets/adultPlantPlaceholder.jpg" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
@@ -642,7 +642,7 @@ export const handleSeason = function() {
             string=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img class="adult" src="${plantdefs[tileState[this.id].name].image}" alt="" />
+            <img class="adult" src="public/assets/adultPlantPlaceholder.jpg" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
@@ -653,7 +653,7 @@ export const handleSeason = function() {
             string=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img class="adult" src="${plantdefs[tileState[this.id].name].image}" alt="" />
+            <img class="adult" src="public/assets/adultPlantPlaceholder.jpg" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
