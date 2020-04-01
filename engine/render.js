@@ -1,6 +1,6 @@
 import Game from "./game.js";
 import { plantdefs } from "../public/defs/plantdefs.js";
-
+import { renderCatalog } from "./rendercatalog.js";
 
 //for reference src="${plantdefs[tileState[i].name].image}" is how to refer to plant's image
 
@@ -674,23 +674,24 @@ export const handleSeason = function() {
             break;
     }
     return string;
-}
+};
 
 export const gameEnd = function() {
     if (year==4) {
         //end the game 
     }
-}
+};
 
 export const renderSite = function() {
     return `<header><img class="logo" src="public/assets/logo.png"></img><div class="score">Score: ${score}</div></header>`;
-}
+};
 
 export const main = function() {
     const $root = $('#root');
     $root.append(renderSite());
     $root.append(renderGame());
-}
+    renderCatalog();
+};
 
 $(function () {
   
