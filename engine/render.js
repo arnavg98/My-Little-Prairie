@@ -1,5 +1,7 @@
 import Game from "./game.js";
+
 import { plantdefs } from "../public/defs/plantdefs.js";
+import { addGameState } from "./actionslog.js";
 
 
 //for reference src="${plantdefs[tileState[i].name].image}" is how to refer to plant's image
@@ -400,6 +402,7 @@ export const handleWeedActionClick = function(event) {
         }
         //alert("Tile " + currentTile + " weeded!");
         actions = actions + 1;
+        logGameState();
         console.log(actions);
         if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
@@ -505,6 +508,7 @@ export const handlePlantActionClick = function(event) {
 
         //score+=50*plantdefs[currentplant].growthrate;
         actions = actions + 1;
+        logGameState();
         console.log(actions);
         if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
@@ -614,6 +618,21 @@ export const scoreUpdate = function() {
 
 
 }
+
+function logGameState() {
+    addGameState({
+        tileState: tileState,
+        actions: actions,
+        growthCounter: growthCounter,
+        weedCounter: weedCounter,
+        currenttool: currenttool,
+        currentplant: currentplant,
+        year: year,
+        season: season,
+        score: score,
+    })
+}
+
 export const handleSeason = function() {
     let string = ``;
     if (actions < 30*year) {
