@@ -8,9 +8,12 @@ let tileState = []; //array that will have a zero or a 1 depending on if it has 
 let actions = 0;
 let growthCounter = [];
 let weedCounter = [];
+let plantAge = [];
+
 for(let i = 0; i<59; i++) {
     growthCounter[i]=0;
     weedCounter[i]=0;
+    plantAge[i]=0;
 }
 let currenttool = 0;
 let currentplant = 0;
@@ -146,10 +149,10 @@ export const renderWeedingBoard = function() {
     
     //Using Placeholder plants for each value! They will be more extensive when we combine them with the seasons.
     let string = `<button class="large blue button" id="finish">Finish Weeding</button>
-    <br> <button class="button1" value="1" id="tool"></button>
-    <button class="button2" value="2" id="tool"></button>
-    <button class="button3" value="3" id="tool"></button>
-    <button class="button4" value="4" id="tool"></button>
+    <br> <button class="button1" value="pickaxe" id="tool"></button>
+    <button class="button2" value="burn" id="tool"></button>
+    <button class="button3" value="gloves" id="tool"></button>
+    <button class="button4" value="pull" id="tool"></button>
     <ul id="hexGrid">`;
     for (let i = 0; i < 59; i++){
         //identifier=i;
@@ -359,6 +362,7 @@ export const handleWeedActionClick = function(event) {
         alert("Please select a tool!");
     } else {
     let currentTile = event.currentTarget.getAttribute("id");
+    //if(currenttool==tileState[currentTile].weedName)
     console.log("Tile " + currentTile + " is in plant state " + tileState[currentTile].state);
     if(tileState[currentTile].state%2==1) {
         tileState[currentTile].state--;
@@ -395,32 +399,37 @@ export const handleWeedActionClick = function(event) {
                 score+=100*3;
             }
 
-            console.log("Score: " + score + " because its weed count was " + localWeedCount);
+            //console.log("Score: " + score + " because its weed count was " + localWeedCount);
 
         }
+        console.log("Weeded a " + tileState[currentTile].weedName);
         //alert("Tile " + currentTile + " weeded!");
         actions = actions + 1;
         console.log(actions);
         if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
             let random = Math.floor(Math.random() * 5);
-            if(random == 2 && i != currentTile) {
+            if(random <= 3 && i != currentTile) {
                 if (tileState[i].state == 2) {
                     tileState[i].state = 3;
-                    console.log(i + "added weeds!")
-                    handleFinishWeedingButtonPress();
+                    weedType(i);
+                    console.log(i + "added a " + tileState[i].weedName);
+                    //handleFinishWeedingButtonPress();
                 } else if (tileState[i].state == 4) {
                     tileState[i].state = 5;
-                    console.log(i + "added weeds!")
-                    handleFinishWeedingButtonPress();
+                    weedType(i);
+                    console.log(i + "added a " + tileState[i].weedName);
+                    //handleFinishWeedingButtonPress();
                 } else if (tileState[i].state == 6) {
                     tileState[i].state = 7
-                    console.log(i + "added weeds!")
-                    handleFinishWeedingButtonPress();
+                    weedType(i);
+                    console.log(i + "added a " + tileState[i].weedName);
+                    //handleFinishWeedingButtonPress();
                 } else if (tileState[i].state == 0){
                     tileState[i].state = 1;
-                    console.log(i + "added weeds!")
-                    handleFinishWeedingButtonPress();
+                    weedType(i);
+                    console.log(i + "added a " + tileState[i].weedName);
+                    //handleFinishWeedingButtonPress();
                 }
             } 
         }
@@ -429,11 +438,13 @@ export const handleWeedActionClick = function(event) {
         if(tileState[currentTile].state>0) {
             tileState[currentTile].state=0;
             growthCounter[currentTile]=0;
+            plantAge[i]=0;
             score=score-300;
         }
     }
 
     for(let i = 0; i<59; i++) {
+        //plantAge[i]++;
         //if it has a weed
         if(tileState[i].state%2==1) {
             //Countdown to plant death gets closer
@@ -445,6 +456,7 @@ export const handleWeedActionClick = function(event) {
                 tileState[i].state=1;
                 //weedCounter[i]=0;
                 score=score-200*plantdefs[tileState[i].name].growthrate;
+                plantAge[i]=0;
             }
         }
         //If it does not have a weed
@@ -467,6 +479,9 @@ export const handleWeedActionClick = function(event) {
 
                 if(actions%5==0) {
                     score+=50*(plantdefs[tileState[i].name].growthrate);
+                }
+                if(tileState[i].state>0) {
+                    plantAge[i]++;
                 }
 
             }
@@ -499,6 +514,7 @@ export const handlePlantActionClick = function(event) {
     else {
         tileState[currentTile].state=2;
         growthCounter[currentTile]=0;
+        plantAge[currentTile]=0;
         tileState[currentTile].name=currentplant;
         console.log("You just planted a " + tileState[currentTile].name);
         //alert("Planted on Tile " + currentTile +".");
@@ -509,23 +525,27 @@ export const handlePlantActionClick = function(event) {
         if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
             let random = Math.floor(Math.random() * 5);
-            if(random == 2 && i != currentTile) {
+            if(random <= 3 && i != currentTile) {
                 if (tileState[i].state == 2) {
                     tileState[i].state = 3;
-                    console.log(i + "added weeds!")
-                    handleFinishWeedingButtonPress();
+                    weedType(i);
+                    console.log(i + "added a " + tileState[i].weedName);
+                    //handleFinishWeedingButtonPress();
                 } else if (tileState[i].state == 4) {
                     tileState[i].state = 5;
-                    console.log(i + "added weeds!")
-                    handleFinishWeedingButtonPress();
+                    weedType(i);
+                    console.log(i + "added a " + tileState[i].weedName);
+                    //handleFinishWeedingButtonPress();
                 } else if (tileState[i].state == 6) {
                     tileState[i].state = 7
-                    console.log(i + "added weeds!")
-                    handleFinishWeedingButtonPress();
+                    weedType(i);
+                    console.log(i + "added a " + tileState[i].weedName);
+                    //handleFinishWeedingButtonPress();
                 } else if (tileState[i].state == 0){
                     tileState[i].state = 1;
-                    console.log(i + "added weeds!")
-                    handleFinishWeedingButtonPress();
+                    weedType(i);
+                    console.log(i + "added a " + tileState[i].weedName);
+                    //handleFinishWeedingButtonPress();
                 }
             } 
         }
@@ -545,6 +565,7 @@ export const handlePlantActionClick = function(event) {
                 tileState[i].state=1;
                 //weedCounter[i]=0;
                 score=score-200*plantdefs[tileState[i].name].growthrate;
+                plantAge[i]=0;
             }
         }
         //If it does not have a weed
@@ -566,6 +587,9 @@ export const handlePlantActionClick = function(event) {
                 }
                 if(actions%5==0) {
                     score+=50*(plantdefs[tileState[i].name].growthrate);
+                }
+                if(tileState[i].state>0) {
+                    plantAge[i]++;
                 }
 
             }
@@ -616,7 +640,7 @@ export const scoreUpdate = function() {
 export const handleSeason = function() {
     let string = ``;
     if (actions < 30*year) {
-        season = "Winter";
+        season = "Spring";
     } else if (actions < 60*year) {
         season = "Summer";
     } else if (actions < 90*year) {
@@ -679,6 +703,44 @@ export const renderSite = function() {
     return `<header><img class="logo" src="public/assets/logo.png"></img><div class="score">Score: ${score}</div></header>`;
 }
 
+export const weedType = function(i) {
+    console.log("Value of i is " + i);
+    let random = Math.floor(Math.random() * 9);
+        switch(random) {
+
+            case 0:
+                tileState[i].weedName = "Kudzu";
+                break;
+            case 1: 
+                tileState[i].weedName = "Johnson Grass"
+                break;
+            case 2:
+                tileState[i].weedName = "Star Vine"
+                break;
+            case 3:
+                tileState[i].weedName = "Mouse-ear Chickweed";
+                break;
+            case 4:
+                tileState[i].weedName = "Sorrel";
+                break;
+            case 5:
+                tileState[i].weedName = "Common Chickweed";
+                break;
+            case 6:
+                tileState[i].weedName = "Hairy Cress";
+                break;
+            case 7:
+                tileState[i].weedName = "Common Vetch";
+                break;
+            case 8:
+                tileState[i].weedName = "Kudzu";
+                break;
+            case 9:
+                tileState[i].weedName = "Kudzu";
+                break;
+        }
+}
+
 export const main = function() {
     const $root = $('#root');
     $root.append(renderSite());
@@ -688,20 +750,60 @@ export const main = function() {
 $(function () {
   
   for(let i =0; i<59; i++) {
-      if(i%3==0) {
+    //   if(i%3==0) {
           //IT IS NOW AN OBJECT
           tileState[i]= new Object();
           tileState[i].state = 1;
-          tileState[i].name = "Weed";
-          
-      }
-      else {
-          //CHANGED THESE FOR TESTING PURPOSES, MAKE SURE TO CHANGE THE SECOND STATEMENT SO IT EQUALS 0 AND THE THIRD
-          //SO THAT IT EQUALS "Empty"
-          tileState[i]=new Object();
-          tileState[i].state = 0;
           tileState[i].name = "Empty";
-      }
+          
+
+          //let i = Math.floor(Math.random() * 59);
+        let random = Math.floor(Math.random() * 9);
+        switch(random) {
+
+            case 0:
+                tileState[i].weedName = "Kudzu";
+                break;
+            case 1: 
+                tileState[i].weedName = "Johnson Grass"
+                break;
+            case 2:
+                tileState[i].weedName = "Star Vine"
+                break;
+            case 3:
+                tileState[i].weedName = "Mouse-ear Chickweed";
+                break;
+            case 4:
+                tileState[i].weedName = "Sorrel";
+                break;
+            case 5:
+                tileState[i].weedName = "Common Chickweed";
+                break;
+            case 6:
+                tileState[i].weedName = "Hairy Cress";
+                break;
+            case 7:
+                tileState[i].weedName = "Common Vetch";
+                break;
+            case 8:
+                tileState[i].weedName = "Kudzu";
+                break;
+            case 9:
+                tileState[i].weedName = "Kudzu";
+                break;
+        }
+          
+      //}
+
+      //MAKING IT SO ALL TILES HAVE WEEDS AT FIRST
+    //   else {
+    //       //CHANGED THESE FOR TESTING PURPOSES, MAKE SURE TO CHANGE THE SECOND STATEMENT SO IT EQUALS 0 AND THE THIRD
+    //       //SO THAT IT EQUALS "Empty"
+    //       tileState[i]=new Object();
+    //       tileState[i].state = 0;
+    //       tileState[i].name = "Empty";
+    //       tileState[i].weedName = "Empty"
+    //   }
   }
   
   main();
