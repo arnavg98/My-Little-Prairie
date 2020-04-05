@@ -769,7 +769,9 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
   height:50px;
 }
 
-/*=========================CATALOG============================*/
+/*=====================================================================*/
+/*============================= CATALOG ===============================*/
+/*=====================================================================*/
 
 .modal {
   display: block;
@@ -799,7 +801,6 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
 }
 
 .modal-body {
-  padding: 2px 16px;
 }
 
 .modal-close {
@@ -813,3 +814,47 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
   text-decoration: none;
   cursor: pointer;
 }
+
+.list-container {}
+
+.list-header {
+  padding: 2px 10px;
+  border-top: 1px solid #999;
+  cursor: pointer;
+}
+  .list-category {
+    background: lightgreen;
+
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+  }
+  .list-item {
+    background: #BEF;
+  }
+
+.label-category {}
+.label-item { 
+  font-weight: normal;
+}
+
+.list-body {
+  display: none;
+}
+
+.list-content{
+  padding: 2px 10px;
+  border-top: 1px solid #999;
+}
+
+.list-expand {
+  float: right;
+  color: #282828;
+}
+  .category-expand {
+    font-size: 1.5em;
+  }
+  .item-expand {
+    font-size: 1.17em;
+    padding-right: 0.16em;
+  }

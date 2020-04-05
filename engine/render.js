@@ -32,6 +32,7 @@ tileState UPDATE:
 export const renderGame = function() {
     let string = `<button id="weed" class="large blue button">Weed</button>
     <button class="large blue button" id="plant">Plant</button>
+    <button class="large blue button" id="catalogbutton">Catalog</button>
     <ul id="hexGrid">`;
     for (let i = 0; i < 59; i++){
         
@@ -113,6 +114,7 @@ export const renderGame = function() {
     const $root = $('#root');
     $root.on('click', '#weed', handleWeedButtonPress);
     $root.on('click', '#plant', handlePlantButtonPress);
+    $root.on('click', '#catalogbutton', handleCatalogButtonPress);
     return string;
 
 }
@@ -139,6 +141,10 @@ export const handlePlantButtonPress = function(event) {
     
 
 }
+
+export const handleCatalogButtonPress = function(e) {
+    $('#catalog').toggle();
+};
 
 export const renderWeedingBoard = function() {
 

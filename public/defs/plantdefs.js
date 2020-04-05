@@ -1,5 +1,9 @@
-// this file exports { plantdefs }
-// plantdefs - a dictionary with commonname as key and the plant data object as vlaue
+/**
+ * this file exports { plantdefs, plants, weeds }
+ *   plantdefs - a dictionary with commonname as key and the plant data object as value
+ *   plants - an array of objects with plant properties
+ *   weeds - an array of weeds with weed properties
+ */ 
 
 // missing properties in plants/weeds will be filled in correspondingly from this defaultplant
 let defaultplant =
@@ -333,4 +337,4 @@ function fillinmissing(arr, type) {
 fillinmissing(plants, "plant");
 fillinmissing(weeds, "weed");
 
-export { plantdefs };
+export { plantdefs, plants, weeds };
