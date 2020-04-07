@@ -2,6 +2,7 @@ import { eventsarr, eventdefs } from "../public/defs/eventdefs.js";
 
 
 // somehow export this so its part of gamestate variable
+// will have to export is as an object of some sort
 // an array of eventstates
 let activeEvents = [];
 
