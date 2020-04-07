@@ -1,5 +1,5 @@
 /**
- * exports eventdefs
+ * exports eventsarr, eventdefs
  *
  */
 
@@ -16,12 +16,12 @@
  *   calc - {object} with properties of {functions} that are called in events.js
  *     trigger - @param gamestate object (see render.js) with any property this function needs 
  *               @returns {boolean} if event should become active or not
- *     period - @param eventstate object (see events.js) with any property this function needs
+ *     period - @param starttime what time this active event started
  *              @returns {number} what time this active event should end
  *     objective - TBD
  */
 
- let eventdefs = [
+ let eventsarr = [
  	{
  		name: "Monarch Migration",
  		description: "butterflies migrate bro",
@@ -34,8 +34,8 @@
 	 		trigger: function(gamestate) {
 	 			return gamestate.actions == 30;
 	 		},
-	 		period: function(eventstate) {
-	 			return eventstate.start + 30;
+	 		period: function(starttime) {
+	 			return start + 30;
 	 		},
 	 		objective: function() {},
 	 	},
@@ -50,13 +50,13 @@
 	 	},
 	 	calc: {
 	 		triggerfunc: function(gamestate) {},
-	 		requirements: function(eventstate) {},
+	 		requirements: function(starttime) {},
 	 		objective: function() {},
 	 	},
  	},
  	{
  		name: "Random Chimp Event",
- 		description: "an organized attack by a group of chimpanzees",
+ 		description: "nowhere is safe",
  		text: {
 	 		trigger: "incoming",
 	 		period: "are you prepared",
@@ -64,12 +64,15 @@
 	 	},
 	 	calc: {
 	 		triggerfunc: function(gamestate) {},
-	 		requirements: function(eventstate) {},
+	 		requirements: function(starttime) {},
 	 		objective: function() {},
 	 	},
  	},
 
  ];
 
+let eventdefs = {};
+for(let ele of eventsarr)
+	eventdefs[ele.name] = ele;
 
-export { eventdefs };
+export { eventsarr, eventdefs };
