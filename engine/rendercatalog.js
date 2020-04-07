@@ -1,5 +1,5 @@
 import { plants, weeds } from "../public/defs/plantdefs.js";
-
+import { eventsarr } from "../public/defs/eventdefs.js";
 
 
 export const renderCatalog = function() {
@@ -8,9 +8,7 @@ export const renderCatalog = function() {
 
   insertList("catalog", "Plants", plants, "commonname", createItemLayoutPlant);
   insertList("catalog", "Weeds", weeds, "commonname", createItemLayoutPlant);
-
-  var events = [{name:"Monarch Migration",description:"Monarch butterfly migration is the phenomenon, mainly across North America, where the subspecies Danaus plexippus plexippus migrates each summer and autumn to and from overwintering sites on the West Coast of California or mountainous sites in Central Mexico."}];
-  insertList("catalog", "Events", events, "name", createItemLayoutEvent);
+  insertList("catalog", "Events", eventsarr, "name", createItemLayoutEvent);
 };
 
 function createItemLayoutPlant(plant) {
@@ -24,6 +22,9 @@ function createItemLayoutPlant(plant) {
 function createItemLayoutEvent(event) {
   return `
     <p><strong>Description:</strong> ${event.description}</p>
+    <p><strong>Trigger:</strong> ${event.text.trigger}</p>
+    <p><strong>Period:</strong> ${event.text.period}</p>
+    <p><strong>Objective:</strong> ${event.text.objective}</p>
   `;
 }
 

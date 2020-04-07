@@ -24,7 +24,7 @@
  let eventsarr = [
  	{
  		name: "Monarch Migration",
- 		description: "butterflies migrate bro",
+ 		description: "Monarch butterfly migration is the phenomenon, mainly across North America, where the subspecies Danaus plexippus plexippus migrates each summer and autumn to and from overwintering sites on the West Coast of California or mountainous sites in Central Mexico.",
  		text: {
 	 		trigger: "at beginning of the year",
 	 		period: "one season",
