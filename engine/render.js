@@ -106,10 +106,10 @@ export const renderGame = function() {
     </li>`;
         }
         else if(tileState[i].state==6){
-            string+=handleSeason();
+            string+=handleSeason(i);
         }
         else if(tileState[i].state==7){
-            string+=handleSeason();
+            string+=handleSeason(i);
         }
     }
     string+=`</ul>`
@@ -232,11 +232,11 @@ export const renderWeedingBoard = function() {
     $root.on('click', '#'+idString, handleWeedActionClick);
         }
         else if(tileState[i].state==6){
-            string+=handleSeason();
+            string+=handleSeason(i);
     $root.on('click', '#'+idString, handleWeedActionClick);
         }
         else if(tileState[i].state==7){
-            string+=handleSeason();
+            string+=handleSeason(i);
     $root.on('click', '#'+idString, handleWeedActionClick);
         }
     }
@@ -339,11 +339,11 @@ export const renderPlantingBoard = function() {
     $root.on('click', '#'+idString, handlePlantActionClick);
         }
         else if(tileState[i].state==6){
-            string+=handleSeason();
+            string+=handleSeason(i);
     $root.on('click', '#'+idString, handlePlantActionClick);
         }
         else if(tileState[i].state==7){
-            string+=handleSeason();
+            string+=handleSeason(i);
     $root.on('click', '#'+idString, handlePlantActionClick);
         }
     }
@@ -638,16 +638,20 @@ export const scoreUpdate = function() {
 
 
 }
-export const handleSeason = function() {
+export const handleSeason = function(i) {
     let string = ``;
-    if (actions < 30*year) {
+    if (actions%120 < 30) {
         season = "Spring";
-    } else if (actions < 60*year) {
+        console.log("Spring");
+    } else if (actions%120 < 60) {
         season = "Summer";
-    } else if (actions < 90*year) {
+        console.log("Summer");
+    } else if (actions%120 < 90) {
         season = "Fall";
-    } else if (action < 120*year){
+        console.log("Fall");
+    } else if (actions%120 < 120){
         season = "Winter";
+        console.log("Winter")
         year++;
     }
     switch(season) {
@@ -655,7 +659,7 @@ export const handleSeason = function() {
             string=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img class="adult" src="public/assets/adultPlantPlaceholder.jpg" alt="" />
+            <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
@@ -666,7 +670,7 @@ export const handleSeason = function() {
             string=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img class="adult" src="public/assets/adultPlantPlaceholder.jpg" alt="" />
+            <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
@@ -677,7 +681,7 @@ export const handleSeason = function() {
             string=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img class="adult" src="public/assets/adultPlantPlaceholder.jpg" alt="" />
+            <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
             <h1>Plant Name Here</h1>
             <p>Description of plant</p>
         </a>
