@@ -1,6 +1,7 @@
 .vscode/
 __MACOSX/
 .DS_STORE
+.jshintrc
 
 # Logs
 logs
