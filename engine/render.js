@@ -38,7 +38,9 @@ tileState UPDATE:
 export const renderGame = function() {
     let string = `<button id="weed" class="large blue button">Weed</button>
     <button class="large blue button" id="plant">Plant</button>
+    <button id="events" class="large blue button">Events</button>
     <button class="large blue button" id="catalogbutton">Catalog</button>
+    <div id="eventDIV"></div>
     <ul id="hexGrid">`;
     for (let i = 0; i < 59; i++){
         
@@ -121,6 +123,7 @@ export const renderGame = function() {
     $root.on('click', '#weed', handleWeedButtonPress);
     $root.on('click', '#plant', handlePlantButtonPress);
     $root.on('click', '#catalogbutton', handleCatalogButtonPress);
+    $root.on('click', '#events', handleEvents);
     return string;
 
 }
@@ -729,11 +732,27 @@ export const handleSeason = function(i) {
     return string;
 };
 
+export const handleEvents = function () {
+
+    let string = ``;
+    string += `<div id="overlay">
+    <h>Events</h><button stlye="color: blue" class="delete">X</button>`;
+
+    
+    string += `</div>`;
+    $('#eventDIV').append(string);
+    $('#root').on('click', '.delete', handleCloseEvent);
+}
+
+export const handleCloseEvent = function () {
+    $('#eventDIV').empty();
+}
+
 export const gameEnd = function() {
     if (year==4) {
         //end the game 
     }
-};
+}
 
 export const renderSite = function() {
     return `<header><img class="logo" src="public/assets/logo.png"></img><div class="score">Score: ${score}</div></header>`;
