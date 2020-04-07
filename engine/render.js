@@ -1,8 +1,9 @@
 import Game from "./game.js";
 
 import { plantdefs } from "../public/defs/plantdefs.js";
-import { addGameState } from "./actionslog.js";
 
+import { renderCatalog } from "./rendercatalog.js";
+import { addGameState } from "./actionslog.js";
 
 //for reference src="${plantdefs[tileState[i].name].image}" is how to refer to plant's image
 
@@ -37,6 +38,7 @@ tileState UPDATE:
 export const renderGame = function() {
     let string = `<button id="weed" class="large blue button">Weed</button>
     <button class="large blue button" id="plant">Plant</button>
+    <button class="large blue button" id="catalogbutton">Catalog</button>
     <ul id="hexGrid">`;
     for (let i = 0; i < 59; i++){
         
@@ -118,6 +120,7 @@ export const renderGame = function() {
     const $root = $('#root');
     $root.on('click', '#weed', handleWeedButtonPress);
     $root.on('click', '#plant', handlePlantButtonPress);
+    $root.on('click', '#catalogbutton', handleCatalogButtonPress);
     return string;
 
 }
@@ -144,6 +147,10 @@ export const handlePlantButtonPress = function(event) {
     
 
 }
+
+export const handleCatalogButtonPress = function(e) {
+    $('#catalog').toggle();
+};
 
 export const renderWeedingBoard = function() {
 
@@ -720,17 +727,17 @@ export const handleSeason = function(i) {
             break;
     }
     return string;
-}
+};
 
 export const gameEnd = function() {
     if (year==4) {
         //end the game 
     }
-}
+};
 
 export const renderSite = function() {
     return `<header><img class="logo" src="public/assets/logo.png"></img><div class="score">Score: ${score}</div></header>`;
-}
+};
 
 export const weedType = function(i) {
     console.log("Value of i is " + i);
@@ -774,7 +781,8 @@ export const main = function() {
     const $root = $('#root');
     $root.append(renderSite());
     $root.append(renderGame());
-}
+    renderCatalog();
+};
 
 $(function () {
   
