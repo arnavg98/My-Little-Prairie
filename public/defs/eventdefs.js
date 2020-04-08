@@ -18,7 +18,7 @@
  *               @returns {boolean} if event should become active or not
  *     period - @param starttime what time this active event started
  *              @returns {number} what time this active event should end
- *     objective - TBD
+ *     objective - will update the objective string based on completion of task.
  */
 
  let eventsarr = [
@@ -35,22 +35,22 @@
 	 			return gamestate.actions == 30;
 	 		},
 	 		period: function(starttime) {
-	 			return start + 30;
+	 			return starttime + 30;
 	 		},
 	 		objective: function() {},
 	 	},
  	},
  	{
  		name: "Kudzu-pocolypse",
- 		description: " Kudzu is growing wildly! Use the correct method of removal and keep your plants safe!",
+ 		description: "Kudzu is growing wildly! Use the correct method of removal and keep your plants safe!",
  		text: {
-	 		trigger: "Spring",
+	 		trigger: "Start of game",
 	 		period: "one season",
 	 		objective: "Remove 12 kudzu",
 	 	},
 	 	calc: {
-	 		triggerfunc: function(gamestate) {},
-	 		requirements: function(starttime) {},
+	 		trigger: 0,
+	 		period: function(starttime) { return starttime + 30; },
 	 		objective: function() {},
 	 	},
  	},
@@ -64,7 +64,7 @@
 	 	},
 	 	calc: {
 	 		triggerfunc: function(gamestate) {},
-	 		requirements: function(starttime) {},
+	 		period: function(starttime) {},
 	 		objective: function() {},
 	 	},
  	},
@@ -78,7 +78,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},
@@ -92,7 +92,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},
@@ -106,7 +106,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},
@@ -120,7 +120,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},
@@ -134,7 +134,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},
@@ -148,7 +148,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},
@@ -162,7 +162,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},
@@ -176,7 +176,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},
@@ -190,7 +190,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},
@@ -204,7 +204,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},
@@ -218,7 +218,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},
@@ -232,7 +232,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},
@@ -246,7 +246,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},
@@ -260,7 +260,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			requirements: function(starttime) {},
+			period: function(starttime) {},
 			objective: function() {},
 		},
 	},

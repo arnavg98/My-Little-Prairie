@@ -1,10 +1,11 @@
 import { eventsarr, eventdefs } from "../public/defs/eventdefs.js";
 
+export default class ActiveEvents {
+	constructor() {
+		this.arr = [];
+	}
+// this is how we will export the event engine, by turning it into an object
 
-// somehow export this so its part of gamestate variable
-// will have to export is as an object of some sort
-// an array of eventstates
-let activeEvents = [];
 
 /**
  * eventstate: an object with the following properties
@@ -14,57 +15,77 @@ let activeEvents = [];
  *   objective - {object} what requirements are fulfilled to what extent
  */
 
-function updateEvents(gamestate) {
-	for(let ev of activeEvents) {
-		// update objectives for each active event
-		updateObjective(gamestate, ev);
-
-		// check which active events should end and evaluate them
-		if(gamestate.actions >= eventstate.end) {
-			evaluateEvent(gamestate, eventstate);
-			// TODO: delete this event from activeEvents
-			// TODO: update html display of objectives
-		}
-	}
+ updateEvents(gamestate) {
 
 	// check which inactive events should trigger and become active
 	for(let ev of eventsarr) {
 		// maximum two events at a time; dont activate any new events
-		if(activeEvents.length >= 2) return;
+		if(this.arr.length >= 2) return;
 
 		// skip those that are already active
-		if(activeEvents.some((ele) => ele.name === ev.name)) continue;
+		if(this.arr.some((ele) => ele.name === ev.name)) continue;
 
-		if(ev.trigger(gamestate)) 
-			createActiveEvent(ev, gamestate);
+		if(ev.calc.trigger == gamestate.actions) 
+			this.createActiveEvent(ev, gamestate);
+			
 	}
+
+	if (this.arr.length != 0) {
+	for(let ev of this.arr) {
+		// update objectives for each active event
+		this.updateObjective(gamestate, ev);
+
+		// check which active events should end and evaluate them
+		if(gamestate.actions >= ev.end) {
+			this.evaluateEvent(gamestate, ev);
+			// delete this event from activeEvents
+
+			// TODO: update html display of objectives
+		}
+	}
+	}
+
+	
 
 	// update objectives for each newly active event
 }
 
-function updateObjective(gamestate, eventstate) {
-	eventstate.objective = eventdefs[eventstate.name].objective(gamestate);
+updateObjective(gamestate, eventstate) {
+	switch (eventdefs[eventstate.name]) {
+		case "Kudzu-pocolypse":
+		
+		break;
+	}
+	//eventstate.objective = ;
 	// TODO: update html display of this somewhere
+	// Kay- done in render.js
 }
 
-function evaluateEvent(gamestate, eventstate) {
+evaluateEvent(gamestate, eventstate) {
+	if (eventstate.objective == "Complete!") {
+		gameState.score += 500;
+	}
+	for(let ev of this.arr) {
+
+	}
 }
 
-function createActiveEvent(event, gamestate) {
-	addActiveEvent(event, gamestate);
-	// TODO: update html display of objectives somewhere
+createActiveEvent(event, gamestate) {
+	this.addActiveEvent(event, gamestate);
 
 }
 
-function addActiveEvent(event, gamestate) {
-	activeEvents.push({
+addActiveEvent(event, gamestate) {
+	alert("event added");
+	this.arr.push({
 		name: event.name,
+		description: event.description,
 		start: gamestate.actions,
-		end: event.period(gamestate.actions),
-		objective: event.object
+		end: event.calc.period(gamestate.actions),
+		objective: event.text.objective,
+		startState: gamestate
 	});
 }
 
-function renderObjectives() {}
 
-function renderNotice() {}
+}
