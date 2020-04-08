@@ -377,7 +377,9 @@ export const handleWeedActionClick = function(event) {
     let currentTile = event.currentTarget.getAttribute("id");
     //if(currenttool==tileState[currentTile].weedName)
     console.log("Tile " + currentTile + " is in plant state " + tileState[currentTile].state);
+    
     if(tileState[currentTile].state%2==1) {
+        if(currenttool==plantdefs[tileState[currentTile].weedName].removetool) {
         tileState[currentTile].state--;
         let localWeedCount=weedCounter[currentTile];
         weedCounter[currentTile]=0;
@@ -399,6 +401,7 @@ export const handleWeedActionClick = function(event) {
             }
 
         }
+    
         else {
 
             //THERE IS NO PLANT HERE, SO SCORE IS ONLY INCREASED BY WEEDING MULTIPLIER
@@ -416,6 +419,14 @@ export const handleWeedActionClick = function(event) {
 
         }
         console.log("Weeded a " + tileState[currentTile].weedName);
+    }
+    else {
+        //this happens if you use the wrong tool
+        alert("Wrong tool!");
+        tileState.currentTile=1;
+        score=score-300;
+    }
+    
         //alert("Tile " + currentTile + " weeded!");
         actions = actions + 1;
         logGameState();
@@ -447,13 +458,15 @@ export const handleWeedActionClick = function(event) {
                 }
             } 
         }
+    
+    
     }   else {
         alert("Tile " + currentTile +" did not have weeds!");
         if(tileState[currentTile].state>0) {
             tileState[currentTile].state=0;
             growthCounter[currentTile]=0;
             plantAge[i]=0;
-            score=score-300;
+            score=score-500;
         }
     }
 
