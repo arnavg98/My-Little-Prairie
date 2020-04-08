@@ -29,7 +29,7 @@ export default class ActiveEvents {
 			this.createActiveEvent(ev, gamestate);
 			
 	}
-
+	// did this because it was throwing null pointers without it
 	if (this.arr.length != 0) {
 	for(let ev of this.arr) {
 		// update objectives for each active event
@@ -39,7 +39,7 @@ export default class ActiveEvents {
 		if(gamestate.actions >= ev.end) {
 			this.evaluateEvent(gamestate, ev);
 			// delete this event from activeEvents
-
+			this.arr.remove((ele) => ele.name === ev.name);
 			// TODO: update html display of objectives
 		}
 	}
@@ -51,19 +51,83 @@ export default class ActiveEvents {
 }
 
 updateObjective(gamestate, eventstate) {
-	switch (eventdefs[eventstate.name]) {
+	switch (eventstate.name) {
 		case "Kudzu-pocolypse":
-		
+			let newCount = 0;
+			let oldCount = 0;
+			for (let i = 0; i < 59; i++){
+				
+				if(eventstate.startState.tileState[i].weedName=="Kudzu") {
+					newCount++;
+				}
+
+				if(gamestate.tileState[i].weedName=="Kudzu") {
+					oldCount++;
+				}
+			}
+			
+
+		eventstate.objective = "you have removed " + (oldCount - newCount) + " of 12 Kudzu!";
+		if (oldCount-newCount==12) {
+			eventstate.text.objective = "Complete!";
+		}
 		break;
+		case "Monarch Migration":
+		eventstate.text.objective = "";
+		break;
+		case "Pollinator Picks":
+		eventstate.text.objective = "";
+		break;
+		case "Cool Spring":
+		eventstate.text.objective = "";
+		break;
+		case "Garden Snakes":
+		eventstate.text.objective = "";
+		break;
+		case "Cultural Arts Festivals":
+		eventstate.text.objective = "";
+		break;
+		case "Buffalo Blitz":
+		eventstate.text.objective = "";
+		break;
+		case "Hibernation":
+		eventstate.text.objective = "";
+		break;
+		case "Harvest Festivals":
+		eventstate.text.objective = "";
+		break;
+		case "Warm Winter":
+		eventstate.text.objective = "";
+		break;
+		case "Snow-pocolypse":
+		eventstate.text.objective = "";
+		break;
+		case "The Burning":
+		eventstate.text.objective = "";
+		break;
+		case "Heavy Rain":
+		eventstate.text.objective = "";
+		break;
+		case "Windy day":
+		eventstate.text.objective = "";
+		break;
+		case "Deer":
+		eventstate.text.objective = "";
+		break;
+		case "Rabbits":
+		eventstate.text.objective = "";
+		break;
+		case "Wildfire":
+		eventstate.text.objective = "";
+		break;
+
 	}
-	//eventstate.objective = ;
-	// TODO: update html display of this somewhere
-	// Kay- done in render.js
 }
 
 evaluateEvent(gamestate, eventstate) {
 	if (eventstate.objective == "Complete!") {
-		gameState.score += 500;
+		gameState.score += 500; // should we give points? if so we'd have to return this gamestate...
+
 	}
 	for(let ev of this.arr) {
 

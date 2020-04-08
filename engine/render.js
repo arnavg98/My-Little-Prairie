@@ -22,7 +22,7 @@ let year = 1;
 let season = "";
 let score = 0;
 let activeEvents = new ActiveEvents();
-activeEvents.updateEvents(logGameState());
+
 /*
 tileState UPDATE:
 0: Empty
@@ -807,6 +807,7 @@ export const main = function() {
     $root.append(renderSite());
     $root.append(renderGame());
     renderCatalog();
+    activeEvents.updateEvents(logGameState());
 };
 
 $(function () {
@@ -855,6 +856,7 @@ $(function () {
                 break;
         }
           
+        
       //}
 
       //MAKING IT SO ALL TILES HAVE WEEDS AT FIRST
