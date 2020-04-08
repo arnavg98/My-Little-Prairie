@@ -42,6 +42,7 @@ export const renderGame = function() {
     <button class="large blue button" id="catalogbutton">Catalog</button>
     <div id="eventDIV"></div>
     <ul id="hexGrid">`;
+    handleEvents();
     for (let i = 0; i < 59; i++){
         
         if(tileState[i].state==1) {
@@ -671,15 +672,19 @@ export const handleSeason = function(i) {
     if (actions%120 < 30) {
         season = "Spring";
         console.log("Spring");
+        handleEvents();
     } else if (actions%120 < 60) {
         season = "Summer";
         console.log("Summer");
+        handleEvents();
     } else if (actions%120 < 90) {
         season = "Fall";
         console.log("Fall");
+        handleEvents();
     } else if (actions%120 < 120){
         season = "Winter";
-        console.log("Winter")
+        console.log("Winter");
+        handleEvents();
         year++;
     }
     switch(season) {
@@ -808,6 +813,7 @@ export const main = function() {
     $root.append(renderGame());
     renderCatalog();
     activeEvents.updateEvents(logGameState());
+    
 };
 
 $(function () {

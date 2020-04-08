@@ -39,7 +39,7 @@ export default class ActiveEvents {
 		if(gamestate.actions >= ev.end) {
 			this.evaluateEvent(gamestate, ev);
 			// delete this event from activeEvents
-			this.arr.remove((ele) => ele.name === ev.name);
+			
 			// TODO: update html display of objectives
 		}
 	}
@@ -53,24 +53,28 @@ export default class ActiveEvents {
 updateObjective(gamestate, eventstate) {
 	switch (eventstate.name) {
 		case "Kudzu-pocolypse":
-			let newCount = 0;
-			let oldCount = 0;
+			let count = 0;
 			for (let i = 0; i < 59; i++){
-				
-				if(eventstate.startState.tileState[i].weedName=="Kudzu") {
-					newCount++;
-				}
+				// this is a disaster but it works for now
+				if(gamestate.tileState[i].state != 1 && gamestate.tileState[i].weedName == "Kudzu") {
+					count++;
 
-				if(gamestate.tileState[i].weedName=="Kudzu") {
-					oldCount++;
 				}
 			}
+		if (count < 8 && count > 0 && eventstate.objective != "Complete!") {
+			eventstate.objective = "you have removed " + count + " of 8 Kudzu!";
 			
-
-		eventstate.objective = "you have removed " + (oldCount - newCount) + " of 12 Kudzu!";
-		if (oldCount-newCount==12) {
-			eventstate.text.objective = "Complete!";
 		}
+		if (count >= 8) {
+			eventstate.objective = "Complete!";
+		}
+
+		for(let ev of this.arr){
+			if (ev.name == eventstate.name) {
+				ev = eventstate; // updates arr
+			}
+		}	
+
 		break;
 		case "Monarch Migration":
 		eventstate.text.objective = "";
@@ -126,7 +130,7 @@ updateObjective(gamestate, eventstate) {
 
 evaluateEvent(gamestate, eventstate) {
 	if (eventstate.objective == "Complete!") {
-		gameState.score += 500; // should we give points? if so we'd have to return this gamestate...
+		gamestate.score += 500; // should we give points? if so we'd have to return this gamestate...
 
 	}
 	for(let ev of this.arr) {
@@ -140,14 +144,14 @@ createActiveEvent(event, gamestate) {
 }
 
 addActiveEvent(event, gamestate) {
-	alert("event added");
+	alert("event add run");
 	this.arr.push({
 		name: event.name,
 		description: event.description,
 		start: gamestate.actions,
 		end: event.calc.period(gamestate.actions),
 		objective: event.text.objective,
-		startState: gamestate
+		startState: gamestate.tileState
 	});
 }
 

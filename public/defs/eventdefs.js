@@ -31,9 +31,7 @@
 	 		objective: "Plants 6 Swamp Milkweed and 6 andropogon tennarius",
 	 	},
 	 	calc: {
-	 		trigger: function(gamestate) {
-	 			return gamestate.actions == 30;
-	 		},
+	 		trigger: 30,
 	 		period: function(starttime) {
 	 			return starttime + 30;
 	 		},
