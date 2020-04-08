@@ -1,9 +1,7 @@
-import Game from "./game.js";
-
 import { plantdefs } from "../public/defs/plantdefs.js";
-
 import { renderCatalog } from "./rendercatalog.js";
 import { addGameState } from "./actionslog.js";
+import ActiveEvents from "./events.js";
 
 //for reference src="${plantdefs[tileState[i].name].image}" is how to refer to plant's image
 
@@ -23,6 +21,8 @@ let currentplant = 0;
 let year = 1;
 let season = "";
 let score = 0;
+let activeEvents = new ActiveEvents();
+
 /*
 tileState UPDATE:
 0: Empty
@@ -42,6 +42,7 @@ export const renderGame = function() {
     <button class="large blue button" id="catalogbutton">Catalog</button>
     <div id="eventDIV"></div>
     <ul id="hexGrid">`;
+    handleEvents();
     for (let i = 0; i < 59; i++){
         
         if(tileState[i].state==1) {
@@ -653,8 +654,8 @@ export const scoreUpdate = function() {
 
 }
 
-function logGameState() {
-    addGameState({
+export function logGameState() {
+    return {
         tileState: tileState,
         actions: actions,
         growthCounter: growthCounter,
@@ -664,22 +665,26 @@ function logGameState() {
         year: year,
         season: season,
         score: score,
-    })
+    };
 }
 export const handleSeason = function(i) {
     let string = ``;
     if (actions%120 < 30) {
         season = "Spring";
         console.log("Spring");
+        handleEvents();
     } else if (actions%120 < 60) {
         season = "Summer";
         console.log("Summer");
+        handleEvents();
     } else if (actions%120 < 90) {
         season = "Fall";
         console.log("Fall");
+        handleEvents();
     } else if (actions%120 < 120){
         season = "Winter";
-        console.log("Winter")
+        console.log("Winter");
+        handleEvents();
         year++;
     }
     switch(season) {
@@ -733,12 +738,16 @@ export const handleSeason = function(i) {
 };
 
 export const handleEvents = function () {
-
     let string = ``;
     string += `<div id="overlay">
     <h>Events</h><button stlye="color: blue" class="delete">X</button>`;
-
-    
+    for (let i = 0; i < activeEvents.arr.length; i++) {
+        string+= `<div class=eventBox>
+        <h>${activeEvents.arr[i].name}</h>
+        <p>${activeEvents.arr[i].description}</p>
+        <p>${activeEvents.arr[i].objective}</p>
+        </div>`;
+    }
     string += `</div>`;
     $('#eventDIV').append(string);
     $('#root').on('click', '.delete', handleCloseEvent);
@@ -750,7 +759,9 @@ export const handleCloseEvent = function () {
 
 export const gameEnd = function() {
     if (year==4) {
-        //end the game 
+        // TO DO: end the game 
+        // TO DO: add score to leaderboard
+        // TO DO: switch to end screen
     }
 }
 
@@ -801,6 +812,8 @@ export const main = function() {
     $root.append(renderSite());
     $root.append(renderGame());
     renderCatalog();
+    activeEvents.updateEvents(logGameState());
+    
 };
 
 $(function () {
@@ -849,6 +862,7 @@ $(function () {
                 break;
         }
           
+        
       //}
 
       //MAKING IT SO ALL TILES HAVE WEEDS AT FIRST
