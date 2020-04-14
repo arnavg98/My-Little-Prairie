@@ -29,20 +29,21 @@ export default class ActiveEvents {
 			this.createActiveEvent(ev, gamestate);
 			
 	}
-	// did this because it was throwing null pointers without it
-	if (this.arr.length != 0) {
+
+	let index = 0;
 	for(let ev of this.arr) {
 		// update objectives for each active event
 		this.updateObjective(gamestate, ev);
 
 		// check which active events should end and evaluate them
 		if(gamestate.actions >= ev.end) {
-			this.evaluateEvent(gamestate, ev);
+			this.arr.splice(index,1);
 			// deletes this event from activeEvents
 			
 		}
 	}
-	}
+
+	
 
 	
 
