@@ -38,9 +38,8 @@ export default class ActiveEvents {
 		// check which active events should end and evaluate them
 		if(gamestate.actions >= ev.end) {
 			this.evaluateEvent(gamestate, ev);
-			// delete this event from activeEvents
+			// deletes this event from activeEvents
 			
-			// TODO: update html display of objectives
 		}
 	}
 	}
@@ -55,8 +54,8 @@ updateObjective(gamestate, eventstate) {
 		case "Kudzu-pocolypse":
 			let count = 0;
 			for (let i = 0; i < 59; i++){
-				// this is a disaster but it works for now
-				if(gamestate.tileState[i].state != 1 && gamestate.tileState[i].weedName == "Kudzu") {
+				// checks past event start state
+				if(gamestate.tileState[i].state != 1 && eventstate.startState[i].weedName == "Kudzu") {
 					count++;
 
 				}
@@ -129,12 +128,10 @@ updateObjective(gamestate, eventstate) {
 }
 
 evaluateEvent(gamestate, eventstate) {
-	if (eventstate.objective == "Complete!") {
-		gamestate.score += 500; // should we give points? if so we'd have to return this gamestate...
-
-	}
-	for(let ev of this.arr) {
-
+	for(let i = 0; i < this.arr.length; i++) {
+			if (gamestate.actions >= eventstate.end) {
+				this.arr.splice(i,1);
+			} 
 	}
 }
 
@@ -144,7 +141,6 @@ createActiveEvent(event, gamestate) {
 }
 
 addActiveEvent(event, gamestate) {
-	alert("event add run");
 	this.arr.push({
 		name: event.name,
 		description: event.description,

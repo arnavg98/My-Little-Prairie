@@ -48,7 +48,9 @@
 	 	},
 	 	calc: {
 	 		trigger: 0,
-	 		period: function(starttime) { return starttime + 30; },
+	 		period: function(starttime) {
+				return starttime + 30;
+			},
 	 		objective: function() {},
 	 	},
  	},
