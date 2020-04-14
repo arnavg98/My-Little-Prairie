@@ -20,7 +20,7 @@ export default class ActiveEvents {
 	// check which inactive events should trigger and become active
 	for(let ev of eventsarr) {
 		// maximum two events at a time; dont activate any new events
-		if(this.arr.length >= 2) break;
+		if(this.arr.length >= 2) break; // dont return or it screws a lot of things up
 
 		// skip those that are already active
 		if(this.arr.some((ele) => ele.name === ev.name)) continue;
