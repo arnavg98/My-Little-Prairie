@@ -166,6 +166,7 @@ export const renderWeedingBoard = function() {
     <button class="button2" value="burn" id="tool"></button>
     <button class="button3" value="gloves" id="tool"></button>
     <button class="button4" value="pull" id="tool"></button>
+    <div id="eventDIV"></div>
     <ul id="hexGrid">`;
     for (let i = 0; i < 59; i++){
         //identifier=i;
@@ -272,6 +273,7 @@ export const renderPlantingBoard = function() {
     <button class="buttonplant2" value="Common Milkweed" id="tool"></button>
     <button class="buttonplant3" value="Languid Coneflower" id="tool"></button>
     <button class="buttonplant4" value="Southern Sundrops" id="tool"></button>
+    <div id="eventDIV"></div>
     <ul id="hexGrid">`;
 
     for (let i = 0; i < 59; i++){
