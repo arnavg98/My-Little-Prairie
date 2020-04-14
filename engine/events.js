@@ -76,6 +76,28 @@ updateObjective(gamestate, eventstate) {
 
 		break;
 		case "Monarch Migration":
+			let count1 = 0;
+			let count2 = 0;
+			for (let i = 0; i < 59; i++){
+				// checks past event start state
+				if(gamestate.tileState[i].state != 1 && eventstate.startState[i].weedName == "Kudzu") {
+					count++;
+
+				}
+			}
+		if (count < 8 && count > 0 && eventstate.objective != "Complete!") {
+			eventstate.objective = "you have removed " + count + " of 8 Kudzu!";
+			
+		}
+		if (count >= 8) {
+			eventstate.objective = "Complete!";
+		}
+
+		for(let ev of this.arr){
+			if (ev.name == eventstate.name) {
+				ev = eventstate; // updates arr
+			}
+		}	
 		eventstate.text.objective = "";
 		break;
 		case "Pollinator Picks":
@@ -131,6 +153,7 @@ evaluateEvent(gamestate, eventstate) {
 	for(let i = 0; i < this.arr.length; i++) {
 			if (gamestate.actions >= eventstate.end) {
 				this.arr.splice(i,1);
+				console.log("event removed");
 			} 
 	}
 }
@@ -141,6 +164,7 @@ createActiveEvent(event, gamestate) {
 }
 
 addActiveEvent(event, gamestate) {
+	console.log("Event added");
 	this.arr.push({
 		name: event.name,
 		description: event.description,

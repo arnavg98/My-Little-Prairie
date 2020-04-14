@@ -432,6 +432,7 @@ export const handleWeedActionClick = function(event) {
     
         //alert("Tile " + currentTile + " weeded!");
         actions = actions + 1;
+        activeEvents.updateEvents(clone(logGameState()));
         logGameState();
         console.log(actions);
         if (actions % 2 == 0) {
@@ -551,6 +552,7 @@ export const handlePlantActionClick = function(event) {
 
         //score+=50*plantdefs[currentplant].growthrate;
         actions = actions + 1;
+        activeEvents.updateEvents(clone(logGameState()));
         logGameState();
         console.log(actions);
         if (actions % 2 == 0) {

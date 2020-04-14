@@ -64,7 +64,7 @@
 	 	},
 	 	calc: {
 	 		triggerfunc: function(gamestate) {},
-	 		period: function(starttime) {},
+	 		period: function(starttime) {return starttime + 30;},
 	 		objective: function() {},
 	 	},
  	},
@@ -78,7 +78,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
 	},
@@ -92,7 +92,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
 	},
@@ -106,7 +106,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
 	},
@@ -120,7 +120,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
 	},
@@ -134,7 +134,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
 	},
@@ -148,7 +148,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
 	},
@@ -162,7 +162,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
 	},
@@ -176,7 +176,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
 	},
@@ -190,7 +190,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
 	},
@@ -204,7 +204,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 10;},
 			objective: function() {},
 		},
 	},
@@ -218,7 +218,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 10;},
 			objective: function() {},
 		},
 	},
@@ -232,7 +232,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 10;},
 			objective: function() {},
 		},
 	},
@@ -246,7 +246,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 10;},
 			objective: function() {},
 		},
 	},
@@ -260,7 +260,7 @@
 		},
 		calc: {
 			triggerfunc: function(gamestate) {},
-			period: function(starttime) {},
+			period: function(starttime) {return starttime + 10;},
 			objective: function() {},
 		},
 	},
