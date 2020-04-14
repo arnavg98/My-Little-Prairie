@@ -73,38 +73,131 @@ updateObjective(gamestate, eventstate) {
 
 		break;
 		case "Monarch Migration":
+			let count1 = 0;
+			let count2 = 0;
+
+			for (let i = 0; i < 59; i++){
+				// checks past event start state
+				if(gamestate.tileState[i].name != eventstate.startState[i].name && gamestate.tileState[i].name == "Swamp Milkweed") {
+					count1++;
+
+				}
+
+				if(gamestate.tileState[i].name != eventstate.startState[i].name && gamestate.tileState[i].name == "Splitbeard Broomsedge") {
+					count2++;
+				}
+			}
+
+			if (count1 < 6 && count1 > 0 && count2 < 6 && count2 > 0 && eventstate.objective != "Complete!") {
+				eventstate.objective = "You planted "+ count1 +" Swamp Milkweed and " + count2 +" Splitbeard Broomsedge!";
+				
+			}
+
+			if (count1 >= 6 && count2 >= 6) {
+				eventstate.objective = "Complete!";
+			}
+
+			for(let ev of this.arr) {
+				if (ev.name == eventstate.name) {
+					ev = eventstate;
+				}
+			}
 			
-		eventstate.objective = "";
 		break;
 		case "Pollinator Picks":
+			let count = 0;
+			for (let i = 0; i < 59; i++){
+				// TO DO: need to input the correct flowering grasses
+				if(gamestate.tileState[i].state >= 2 && gamestate.tileState[i] != eventstate.startState[i]) {
+					count++;
+
+				}
+				if (count < 10 && count > 0 && eventstate.objective != "Complete!") {
+					eventstate.objective = "You have planted " +count+ " flowering grasses.";
+					
+				}
+				if (count >= 10) {
+					eventstate.objective = "Complete!";
+				}
+			}
 		eventstate.objective = "";
+		for(let ev of this.arr) {
+			if (ev.name == eventstate.name) {
+				ev = eventstate;
+			}
+		}
 		break;
 		case "Cool Spring":
 		eventstate.objective = "";
+		for(let ev of this.arr) {
+			if (ev.name == eventstate.name) {
+				ev = eventstate;
+			}
+		}
 		break;
 		case "Garden Snakes":
 		eventstate.objective = "";
+		for(let ev of this.arr) {
+			if (ev.name == eventstate.name) {
+				ev = eventstate;
+			}
+		}
 		break;
 		case "Cultural Arts Festivals":
 		eventstate.objective = "";
+		for(let ev of this.arr) {
+			if (ev.name == eventstate.name) {
+				ev = eventstate;
+			}
+		}
 		break;
 		case "Buffalo Blitz":
 		eventstate.objective = "";
+		for(let ev of this.arr) {
+			if (ev.name == eventstate.name) {
+				ev = eventstate;
+			}
+		}
 		break;
 		case "Hibernation":
 		eventstate.objective = "";
+		for(let ev of this.arr) {
+			if (ev.name == eventstate.name) {
+				ev = eventstate;
+			}
+		}
 		break;
 		case "Harvest Festivals":
 		eventstate.objective = "";
+		for(let ev of this.arr) {
+			if (ev.name == eventstate.name) {
+				ev = eventstate;
+			}
+		}
 		break;
 		case "Warm Winter":
 		eventstate.objective = "";
+		for(let ev of this.arr) {
+			if (ev.name == eventstate.name) {
+				ev = eventstate;
+			}
+		}
 		break;
 		case "Snow-pocolypse":
 		eventstate.objective = "";
+		for(let ev of this.arr) {
+			if (ev.name == eventstate.name) {
+				ev = eventstate;
+			}
+		}
 		break;
 		case "The Burning":
 		eventstate.objective = "";
+		for(let ev of this.arr) {
+			if (ev.name == eventstate.name) {
+				ev = eventstate;
+			}
+		}
 		break;
 	}
 }

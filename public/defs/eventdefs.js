@@ -28,7 +28,7 @@
  		text: {
 	 		trigger: "Summer",
 	 		period: "one season",
-	 		objective: "Plants 6 Swamp Milkweed and 6 andropogon tennarius",
+	 		objective: "Plants 6 Swamp Milkweed and 6 Splitbeard Broomsedge",
 	 	},
 	 	calc: {
 	 		trigger: 30,
