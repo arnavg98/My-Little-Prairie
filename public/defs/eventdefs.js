@@ -63,7 +63,7 @@
 	 		objective: "Plant 10 “flowering grasses”",
 	 	},
 	 	calc: {
-	 		triggerfunc: function(gamestate) {},
+	 		trigger: 120,
 	 		period: function(starttime) {return starttime + 30;},
 	 		objective: function() {},
 	 	},
@@ -77,7 +77,7 @@
 			objective: "Keep 10 dormant plants",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 240,
 			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
@@ -91,7 +91,7 @@
 			objective: "Plant 10 grasses",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 150,
 			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
@@ -105,7 +105,7 @@
 			objective: "Plant 4 flowering grasses",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 270,
 			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
@@ -119,7 +119,7 @@
 			objective: "Plant 4 grasses",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 60,
 			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
@@ -133,7 +133,7 @@
 			objective: "Plant 8 grasses",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 180,
 			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
@@ -147,7 +147,7 @@
 			objective: "Plant 4 grasses",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 300,
 			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
@@ -161,7 +161,7 @@
 			objective: "Plant 2 dormant plants",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 90,
 			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
@@ -175,7 +175,7 @@
 			objective: "Plant 6 grasses that will do well in cooler weather",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 210,
 			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
@@ -189,7 +189,7 @@
 			objective: "Plant as much as you can! You will recieve double points for planting this season!",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 330,
 			period: function(starttime) {return starttime + 30;},
 			objective: function() {},
 		},
@@ -203,7 +203,7 @@
 			objective: "Plant slower growing plants",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 15,
 			period: function(starttime) {return starttime + 10;},
 			objective: function() {},
 		},
@@ -217,7 +217,7 @@
 			objective: "Remove 6 weeds",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 300,
 			period: function(starttime) {return starttime + 10;},
 			objective: function() {},
 		},
@@ -231,7 +231,7 @@
 			objective: "Some of your plants have disappeared",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 65,
 			period: function(starttime) {return starttime + 10;},
 			objective: function() {},
 		},
@@ -245,7 +245,7 @@
 			objective: "Plants have been moved around!",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 3,
 			period: function(starttime) {return starttime + 10;},
 			objective: function() {},
 		},
@@ -259,7 +259,7 @@
 			objective: "Plants will be planted randomly!",
 		},
 		calc: {
-			triggerfunc: function(gamestate) {},
+			trigger: 36,
 			period: function(starttime) {return starttime + 10;},
 			objective: function() {},
 		},

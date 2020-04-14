@@ -20,7 +20,7 @@ export default class ActiveEvents {
 	// check which inactive events should trigger and become active
 	for(let ev of eventsarr) {
 		// maximum two events at a time; dont activate any new events
-		if(this.arr.length >= 2) return;
+		if(this.arr.length >= 2) break;
 
 		// skip those that are already active
 		if(this.arr.some((ele) => ele.name === ev.name)) continue;
@@ -30,23 +30,19 @@ export default class ActiveEvents {
 			
 	}
 
-	let index = 0;
+	let index = 0; // needed an index for splice
 	for(let ev of this.arr) {
 		// update objectives for each active event
 		this.updateObjective(gamestate, ev);
-
-		// check which active events should end and evaluate them
+		console.log(this.arr);
+		// check which active events should end 
 		if(gamestate.actions >= ev.end) {
 			this.arr.splice(index,1);
 			// deletes this event from activeEvents
 			
 		}
+		index++;
 	}
-
-	
-
-	
-
 	// update objectives for each newly active event
 }
 
@@ -69,95 +65,58 @@ updateObjective(gamestate, eventstate) {
 			eventstate.objective = "Complete!";
 		}
 
-		for(let ev of this.arr){
+		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
-				ev = eventstate; // updates arr
+				ev = eventstate;
 			}
-		}	
+		}
 
 		break;
 		case "Monarch Migration":
-			let count1 = 0;
-			let count2 = 0;
-			for (let i = 0; i < 59; i++){
-				// checks past event start state
-				if(gamestate.tileState[i].state != 1 && eventstate.startState[i].weedName == "Kudzu") {
-					count++;
-
-				}
-			}
-		if (count < 8 && count > 0 && eventstate.objective != "Complete!") {
-			eventstate.objective = "you have removed " + count + " of 8 Kudzu!";
 			
-		}
-		if (count >= 8) {
-			eventstate.objective = "Complete!";
-		}
-
-		for(let ev of this.arr){
-			if (ev.name == eventstate.name) {
-				ev = eventstate; // updates arr
-			}
-		}	
-		eventstate.text.objective = "";
+		eventstate.objective = "";
 		break;
 		case "Pollinator Picks":
-		eventstate.text.objective = "";
+		eventstate.objective = "";
 		break;
 		case "Cool Spring":
-		eventstate.text.objective = "";
+		eventstate.objective = "";
 		break;
 		case "Garden Snakes":
-		eventstate.text.objective = "";
+		eventstate.objective = "";
 		break;
 		case "Cultural Arts Festivals":
-		eventstate.text.objective = "";
+		eventstate.objective = "";
 		break;
 		case "Buffalo Blitz":
-		eventstate.text.objective = "";
+		eventstate.objective = "";
 		break;
 		case "Hibernation":
-		eventstate.text.objective = "";
+		eventstate.objective = "";
 		break;
 		case "Harvest Festivals":
-		eventstate.text.objective = "";
+		eventstate.objective = "";
 		break;
 		case "Warm Winter":
-		eventstate.text.objective = "";
+		eventstate.objective = "";
 		break;
 		case "Snow-pocolypse":
-		eventstate.text.objective = "";
+		eventstate.objective = "";
 		break;
 		case "The Burning":
-		eventstate.text.objective = "";
+		eventstate.objective = "";
 		break;
-		case "Heavy Rain":
-		eventstate.text.objective = "";
-		break;
-		case "Windy day":
-		eventstate.text.objective = "";
-		break;
-		case "Deer":
-		eventstate.text.objective = "";
-		break;
-		case "Rabbits":
-		eventstate.text.objective = "";
-		break;
-		case "Wildfire":
-		eventstate.text.objective = "";
-		break;
-
 	}
 }
 
-evaluateEvent(gamestate, eventstate) {
-	for(let i = 0; i < this.arr.length; i++) {
-			if (gamestate.actions >= eventstate.end) {
-				this.arr.splice(i,1);
-				console.log("event removed");
-			} 
-	}
-}
+// evaluateEvent(gamestate, eventstate) {
+// 	for(let i = 0; i < this.arr.length; i++) {
+// 			if (gamestate.actions >= eventstate.end) {
+// 				this.arr.splice(i,1);
+// 				console.log("event removed");
+// 			} 
+// 	}
+// }
 
 createActiveEvent(event, gamestate) {
 	this.addActiveEvent(event, gamestate);
