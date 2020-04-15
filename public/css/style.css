@@ -878,3 +878,9 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
     font-size: 1.17em;
     padding-right: 0.16em;
   }
+
+  .selected-tool {
+    border-color: red;
+    border-width: 100px;
+    border-radius: 100px;
+  }
