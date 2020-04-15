@@ -16,14 +16,17 @@ function createItemLayoutPlant(plant) {
     <p><strong>Common name:</strong> ${plant.commonname}</p>
     <p><strong>Latin name:</strong> ${plant.latinname}</p>
     <p><strong>Description:</strong> ${plant.description}</p>
+    <p><strong>Removal Tool:</strong> ${plant.removetool}</p>
+    <p><strong>Growth rate:</strong> Winter: Fall: Summer: Spring:</p>
+    <img src="${plant.image}" alt="Image of plant" width="100%">
   `;
 }
 
 function createItemLayoutEvent(event) {
   return `
     <p><strong>Description:</strong> ${event.description}</p>
-    <p><strong>Trigger:</strong> ${event.text.trigger}</p>
-    <p><strong>Period:</strong> ${event.text.period}</p>
+    <p><strong>Start:</strong> ${event.text.trigger}</p>
+    <p><strong>Length:</strong> ${event.text.period}</p>
     <p><strong>Objective:</strong> ${event.text.objective}</p>
   `;
 }
