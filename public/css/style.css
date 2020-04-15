@@ -752,19 +752,6 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
 }
 
 .buttonplant3{
-  background:url("https://i.pinimg.com/280x280_RS/45/9f/e9/459fe9310d41c7f59b69412e791eaf31.jpg") no-repeat;
-  background-color: gray;
-  background-size: cover;
-  border-color: black;
-  border-style: solid;
-  border-radius: 5px;
-  cursor:pointer;
-  border:none;
-  width:50px;
-  height:50px;
-  margin-right: 4%;
-}
-.buttonplant2{
   background:url("https://cdn10.bigcommerce.com/s-rhhdh1d/products/86/images/362/common-milkweed-v1-628x628__50940.1570321159.1280.1280.jpg?c=2") no-repeat;
   background-color: gray;
   background-size: cover;
@@ -777,7 +764,56 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
   height:50px;
   margin-right: 4%;
 }
+.buttonplant2{
+  background:url("https://www.bowerandbranch.com/wp-content/uploads/bb_assets/files/images/bower/tree_photo/f43544161b4f593cc64fb13c82971c6c59761ea25ea5f_1260x1260.jpg") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+  margin-right: 4%;
+}
 .buttonplant4{
+  background:url("https://cdn.shopify.com/s/files/1/1063/1186/products/Baptisia_australis_grande.jpg?v=1553774872") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+.buttonplant5{
+  background:url("https://i.pinimg.com/280x280_RS/45/9f/e9/459fe9310d41c7f59b69412e791eaf31.jpg") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+.buttonplant6{
+  background:url("https://st.hzcdn.com/simgs/72e1b5ad036d0f96_4-6347/home-design.jpg") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+.buttonplant7{
   background:url("https://www.gardenia.net/storage/app/public/uploads/images/detail/nXW5TZUwF5nGDsg6u0U96b4GS9cqc1iZa5tFzBwV.jpeg") no-repeat;
   background-color: gray;
   background-size: cover;
@@ -789,7 +825,126 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
   width:50px;
   height:50px;
 }
-
+.buttonplant8{
+  background:url("https://foldedpetal.files.wordpress.com/2015/02/he-phlox.gif") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+.buttonplant9{
+  background:url("https://mmwildflowerseeds.com/wp-content/uploads/2017/04/RPIN-1201.jpg") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+.buttonplant10{
+  background:url("https://www.highcountrygardens.com/media/catalog/product/s/o/solidago_mike_davy_little_lemon_goldenrod_cropped.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=560&width=560&canvas=560:560") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+.buttonplant11{
+  background:url("https://mtcubacenter.org/wp-content/uploads/2016/06/Symphyotrichum_concolor_2.jpg") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+.buttonplant12{
+  background:url("https://www.prairiemoon.com/mm5/graphics/00000001/symphyotrichum-pilosus-frost-Aster_main.jpg") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+.buttonplant13{
+  background:url("https://i.pinimg.com/originals/8a/be/62/8abe62db7fe764fdc94f088fc6678074.jpg") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+.buttonplant14{
+  background:url("https://www.whiteflowerfarm.com/mas_assets/cache/image/4/e/a/4/20132.Jpg") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+.buttonplant15{
+  background:url("https://lathamsnursery.com/wp-content/uploads/2020/01/Sporobolus_heterolepis_03.jpg") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+.buttonplant16{
+  background:url("https://www.iuaplantsale.com/uploads/1/0/3/3/103312434/s154529436183515830_p713_i1_w1280.jpeg") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+.buttonplant17{
+  background:url("https://dtekc.com/wp-content/uploads/2018/04/Carex-vulpinoidea.jpg") no-repeat;
+  background-color: gray;
+  background-size: cover;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
 /*=====================================================================*/
 /*============================= CATALOG ===============================*/
 /*=====================================================================*/

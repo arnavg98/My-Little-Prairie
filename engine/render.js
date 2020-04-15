@@ -10,6 +10,7 @@ let actions = 0;
 let growthCounter = [];
 let weedCounter = [];
 let plantAge = [];
+let tester = "buttonplant1";
 
 for(let i = 0; i<59; i++) {
     growthCounter[i]=0;
@@ -20,6 +21,7 @@ let currenttool = 0;
 let currentplant = 0;
 let year = 1;
 let season = "";
+let seasonid = 1;
 let score = 0;
 let activeEvents = new ActiveEvents();
 
@@ -267,15 +269,44 @@ export const renderPlantingBoard = function() {
 
     const $root = $('#root');
  
-    
-
-    let string = `<button class="large blue button" id="finish">Finish Planting</button>
-    <br> <button class="buttonplant1" value="Carolina Anemone" id="tool"></button>
-    <button class="buttonplant2" value="Common Milkweed" id="tool"></button>
-    <button class="buttonplant3" value="Languid Coneflower" id="tool"></button>
-    <button class="buttonplant4" value="Southern Sundrops" id="tool"></button>
-    <div id="eventDIV"></div>
-    <ul id="hexGrid">`;
+    let string;
+    if (seasonid == 0) {
+        string = `<button class="large blue button" id="finish">Finish Planting</button>
+        <br>  <button class="buttonplant15" value="Prairie Dropseed" id="tool"></button>
+        <button class="buttonplant16" value="Indian Grass" id="tool"></button>
+        <button class="buttonplant17" value="Durham Grass" id="tool"></button>
+        <div id="eventDIV"></div>
+        <ul id="hexGrid">`;
+    } 
+    if (seasonid == 1) {
+        string = `<button class="large blue button" id="finish">Finish Planting</button>
+        <br> <button class="buttonplant1" value="Carolina Anemone" id="tool"></button>
+        <button class="buttonplant2" value="Swamp Milkweed" id="tool"></button>
+        <button class="buttonplant3" value="Common Milkweed" id="tool"></button>
+        <button class="buttonplant4" value="Wild Indigo" id="tool"></button>
+        <button class="buttonplant5" value="Languid Coneflower" id="tool"></button>
+        <div id="eventDIV"></div>
+        <ul id="hexGrid">`;
+    }
+    if (seasonid == 2) {
+        string = `<button class="large blue button" id="finish">Finish Planting</button>
+        <br> <button class="buttonplant6" value="Rattlesnake Master" id="tool"></button>
+        <button class="buttonplant7" value="Southern Sundrops" id="tool"></button>
+        <button class="buttonplant8" value="Piney woods Phlox" id="tool"></button>
+        <button class="buttonplant9" value="Grey-headed Coneflower" id="tool"></button>
+        <div id="eventDIV"></div>
+        <ul id="hexGrid">`;
+    }
+    if (seasonid == 3) {
+        string = `<button class="large blue button" id="finish">Finish Planting</button>
+        <br> <button class="buttonplant10" value="Goldenrod" id="tool"></button>
+        <button class="buttonplant11" value="Eastern silver aster" id="tool"></button>
+        <button class="buttonplant12" value="Frost aster" id="tool"></button>
+        <button class="buttonplant13" value="Splitbeard Broomsedge" id="tool"></button>
+        <button class="buttonplant14" value="Purple Lovegrass" id="tool"></button>
+        <div id="eventDIV"></div>
+        <ul id="hexGrid">`;
+    }
 
     for (let i = 0; i < 59; i++){
         //identifier=i;
@@ -698,18 +729,22 @@ export const handleSeason = function(i) {
     let string = ``;
     if (actions%120 < 30) {
         season = "Spring";
+        seasonid = 1;
         console.log("Spring");
         handleEvents();
     } else if (actions%120 < 60) {
         season = "Summer";
+        seasonid = 2;
         console.log("Summer");
         handleEvents();
     } else if (actions%120 < 90) {
         season = "Fall";
+        seasonid = 3;
         console.log("Fall");
         handleEvents();
     } else if (actions%120 < 120){
         season = "Winter";
+        seasonid = 0;
         console.log("Winter");
         handleEvents();
         year++;
