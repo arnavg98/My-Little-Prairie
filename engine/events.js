@@ -105,18 +105,18 @@ updateObjective(gamestate, eventstate) {
 			
 		break;
 		case "Pollinator Picks":
-			let count = 0;
+			let count3 = 0;
 			for (let i = 0; i < 59; i++){
 				// TO DO: need to input the correct flowering grasses
 				if(gamestate.tileState[i].state >= 2 && gamestate.tileState[i] != eventstate.startState[i]) {
-					count++;
+					count3++;
 
 				}
-				if (count < 10 && count > 0 && eventstate.objective != "Complete!") {
-					eventstate.objective = "You have planted " +count+ " flowering grasses.";
+				if (count3 < 10 && count3 > 0 && eventstate.objective != "Complete!") {
+					eventstate.objective = "You have planted " +count3+ " flowering grasses.";
 					
 				}
-				if (count >= 10) {
+				if (count3 >= 10) {
 					eventstate.objective = "Complete!";
 				}
 			}
@@ -128,7 +128,17 @@ updateObjective(gamestate, eventstate) {
 		}
 		break;
 		case "Cool Spring":
-		eventstate.objective = "";
+			let count4 = 0;
+			for(let i = 0; i < 59; i++){
+				if (gamestate.tileState[i].name == "Something"){
+					count4++;
+
+				}
+			}
+		eventstate.objective = "You have "+ count4 +"dormant plants!";
+		if(count4 >= 10) {
+			eventstate.objective = "Complete! Make sure to take care of them to keep this status!";
+		}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
 				ev = eventstate;
@@ -136,7 +146,17 @@ updateObjective(gamestate, eventstate) {
 		}
 		break;
 		case "Garden Snakes":
-		eventstate.objective = "";
+			let count5 = 0;
+			for(let i = 0; i < 59; i++){
+				if (gamestate.tileState[i].name != eventstate.tileState[i].name && gamestate.tileState[i].state >= 2){
+					count5++;
+
+				}
+			}
+		eventstate.objective = "You have planted "+ count5 +"grasses!";
+		if(count5 >= 10) {
+			eventstate.objective = "Complete!";
+		}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
 				ev = eventstate;
@@ -144,7 +164,17 @@ updateObjective(gamestate, eventstate) {
 		}
 		break;
 		case "Cultural Arts Festivals":
-		eventstate.objective = "";
+			let count6 = 0;
+			for(let i = 0; i < 59; i++){
+				if (gamestate.tileState[i].name == "Something"){
+					count6++;
+
+				}
+			}
+		eventstate.objective = "You have "+ count6 +" plants!";
+		if(count6 >= 4) {
+			eventstate.objective = "Complete!";
+		}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
 				ev = eventstate;
@@ -152,7 +182,17 @@ updateObjective(gamestate, eventstate) {
 		}
 		break;
 		case "Buffalo Blitz":
-		eventstate.objective = "";
+			let count7 = 0;
+			for(let i = 0; i < 59; i++){
+				if (gamestate.tileState[i].name == "Something"){
+					count7++;
+
+				}
+			}
+		eventstate.objective = "You have "+ count7 +" dormant plants!";
+		if(count7 >= 10) {
+			eventstate.objective = "Complete! Make sure to take care of them to keep this status!";
+		}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
 				ev = eventstate;
@@ -160,7 +200,17 @@ updateObjective(gamestate, eventstate) {
 		}
 		break;
 		case "Hibernation":
-		eventstate.objective = "";
+			let count8 = 0;
+			for(let i = 0; i < 59; i++){
+				if (gamestate.tileState[i].name == "Something"){
+					count8++;
+
+				}
+			}
+		eventstate.objective = "You have "+ count8 +"dormant plants!";
+		if(count8 >= 10) {
+			eventstate.objective = "Complete! Make sure to take care of them to keep this status!";
+		}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
 				ev = eventstate;
