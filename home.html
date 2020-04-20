@@ -10,18 +10,18 @@
     </head>
 
     <body>
-        <div class="box">
-            <img class="homepage" src="public/assets/logo.png"></img>
-            <form>
-                
-                <input type="text" id="username" name="username" placeholder="Email Address"><br><br>
-                <input type="password" id="password" name="password" placeholder="Password"><br><br>
-                <button id="login" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 8%; margin-top: 0%;">Login</button>
-                <br>
-                <button id="register" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 8%;">Register</button>
-            </form>
-                <button onclick="location.href = '/index.html'" id="playnow" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 10%;">Play Now!</button>
-          </div>
+        <div id="root"></div>
+        <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    </head>
+        <script src="engine/render.js" type="module"></script>       
+        <script type='text/javascript'>
+            function popup(el){
+                if (window.confirm("You selected the cell containing " + el.innerText + ", is that correct?")) {
+                   // do nothing rn
 
+                }
+            }
+            </script> 
     </body>
 </html>
