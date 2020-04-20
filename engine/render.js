@@ -964,9 +964,13 @@ export const gameEnd = function() {
     }
 }
 
-export const renderSite = function() {
+/*export const renderSite = function() {
     return `<header><img class="logo" src="public/assets/logo.png"></img><div class="score">Score: ${score}</div></header>`;
-};
+};   REMOVED THE LOGO FROM THIS PAGE TO SAVE SPACE? THOUGHTS?*/ 
+
+export const renderSite = function() {
+    return `<header><div style="padding:5%" class="score">Score: ${score}</div></header>`;
+};  
 
 export const weedType = function(i) {
     console.log("Value of i is " + i);

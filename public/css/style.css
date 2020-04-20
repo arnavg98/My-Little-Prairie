@@ -12,6 +12,45 @@ body {
   height: 2fr;
 }
 
+.homepage {
+  width: 90%;
+  margin-left: 5%; 
+  margin-right: 5%;
+}
+
+h1 {
+  color: white;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+
+div.box {
+  margin-top: 30%;
+  margin-bottom: 30%;
+  margin-left: 10%;
+  margin-right: 10%;
+  max-width: 80%;
+  border-radius: 5%;
+  background-color: rgb(17, 126, 111);
+  border: 1px solid black;
+  opacity: 0.9;
+}
+
+input {
+	background-color: #eee;
+	padding: 12px 15px;
+  width: 50%;
+  margin-left: 20%;
+  margin-right: 25%;
+  margin-bottom: 5%;
+  border-radius: 10px;
+  border: 2px solid gray;
+}
+
 
 #root {
   text-align: center;
@@ -40,6 +79,8 @@ h{
 .logo {
   max-width: 50%;
 }
+
+
 
 .score {
   font-size: medium;
