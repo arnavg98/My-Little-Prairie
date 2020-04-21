@@ -10,6 +10,7 @@
   "dependencies": {
     "browser-sync": "^2.26.7",
     "esm": "^3.2.25",
+    "firebase": "^7.14.1",
     "jquery": "^3.4.1",
     "keypress": "^0.2.1"
   },

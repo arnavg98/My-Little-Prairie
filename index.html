@@ -12,16 +12,75 @@
     <body>
         <div class="box">
             <img class="homepage" src="public/assets/logo.png"></img>
-            <form>
-                
-                <input type="text" id="username" name="username" placeholder="Email Address"><br><br>
-                <input type="password" id="password" name="password" placeholder="Password"><br><br>
-                <button id="login" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 8%; margin-top: 0%;">Login</button>
+            <form id="form1">
+                <input type="text" id="username" placeholder="Email Address"><br><br>
+                <input type="password" id="password" placeholder="Password"><br><br>
+                <button onclick="login()" id="login" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 8%; margin-top: 0%;">Login</button>
                 <br>
-                <button id="register" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 8%;">Register</button>
+                <button onclick="register()" id="register" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 8%;">Register</button>
             </form>
                 <button onclick="location.href = 'http://arnavg98.github.io/My-Little-Prairie/home.html'" id="playnow" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 10%;">Play Now!</button>
           </div>
 
+                <!-- The core Firebase JS SDK is always required and must be listed first -->
+                <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+                <!-- TODO: Add SDKs for Firebase products that you want to use
+                    https://firebase.google.com/docs/web/setup#available-libraries -->
+                <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+                <script src="/__/firebase/7.14.1/firebase-auth.js"></script>
+                <script src="/__/firebase/7.14.1/firebase-firestore.js"></script>
+                <script>
+                // Your web app's Firebase configuration
+                var firebaseConfig = {
+                    apiKey: "AIzaSyC1-bX1z7bzd8LwWE0_CB7Mhub1ZoHLLWQ",
+                    authDomain: "my-little-prairie.firebaseapp.com",
+                    databaseURL: "https://my-little-prairie.firebaseio.com",
+                    projectId: "my-little-prairie",
+                    storageBucket: "my-little-prairie.appspot.com",
+                    messagingSenderId: "143808746635",
+                    appId: "1:143808746635:web:9569a5a53d8c401b4ff08e",
+                    measurementId: "G-R0ZSF3QWEK"
+                };
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+                firebase.analytics();
+                </script>
+
+                <script>
+                    function reg() {
+                        var here = document.getElementById("form1");
+                        var username = here.elements[0].value;
+                        var password = here.elements[1].value;
+                        console.log(username);
+                        console.log(password);
+                        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+                            console.log("error");
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log(errorcode + ' ' + errormessage);
+                        // ...
+                        });
+                        console.log("success");
+                    }
+                </script>
+                <script>
+                    function login() {
+                        console.log("working");
+                        var here = document.getElementById("form1");
+                        var username = here.elements[0].value;
+                        var password = here.elements[1].value;
+                        console.log(username);
+                        console.log(password);
+                        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log(errorcode + ' ' + errormessage);
+                        // ...
+                        });
+                        console.log("success");
+                    }
+                </script>
     </body>
 </html>
