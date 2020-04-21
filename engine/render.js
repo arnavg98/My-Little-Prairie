@@ -868,22 +868,18 @@ export const handleSeason = function(i) {
         season = "Spring";
         seasonid = 1;
         console.log("Spring");
-        handleEvents();
     } else if (actions%120 < 60) {
         season = "Summer";
         seasonid = 2;
         console.log("Summer");
-        handleEvents();
     } else if (actions%120 < 90) {
         season = "Fall";
         seasonid = 3;
         console.log("Fall");
-        handleEvents();
     } else if (actions%120 < 120){
         season = "Winter";
         seasonid = 0;
         console.log("Winter");
-        handleEvents();
         year++;
     }
     switch(season) {
