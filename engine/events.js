@@ -1,8 +1,9 @@
 import { eventsarr, eventdefs } from "../public/defs/eventdefs.js";
 
 export default class ActiveEvents {
-	constructor() {
+	constructor(gamestate) {
 		this.arr = [];
+		this.currentGamestate = gamestate;
 	}
 // this is how we will export the event engine, by turning it into an object
 
@@ -30,7 +31,7 @@ export default class ActiveEvents {
 			
 	}
 
-	let index = 0; // needed an index for splice
+	let index = 0; // needed an index for splice array
 	for(let ev of this.arr) {
 		// update objectives for each active event
 		this.updateObjective(gamestate, ev);
@@ -75,20 +76,19 @@ updateObjective(gamestate, eventstate) {
 		case "Monarch Migration":
 			let count1 = 0;
 			let count2 = 0;
-
 			for (let i = 0; i < 59; i++){
 				// checks past event start state
-				if(gamestate.tileState[i].name != eventstate.startState[i].name && gamestate.tileState[i].name == "Swamp Milkweed") {
+				if(gamestate.tileState[i].name == "Swamp Milkweed") {
 					count1++;
-
+					
 				}
 
-				if(gamestate.tileState[i].name != eventstate.startState[i].name && gamestate.tileState[i].name == "Splitbeard Broomsedge") {
+				if(gamestate.tileState[i].name == "Splitbeard Broomsedge") {
 					count2++;
 				}
 			}
 
-			if (count1 < 6 && count1 > 0 && count2 < 6 && count2 > 0 && eventstate.objective != "Complete!") {
+			if (count1 > 0 || count2 > 0 && eventstate.objective != "Complete!") {
 				eventstate.objective = "You planted "+ count1 +" Swamp Milkweed and " + count2 +" Splitbeard Broomsedge!";
 				
 			}
@@ -108,19 +108,19 @@ updateObjective(gamestate, eventstate) {
 			let count3 = 0;
 			for (let i = 0; i < 59; i++){
 				// TO DO: need to input the correct flowering grasses
-				if(gamestate.tileState[i].state >= 2 && gamestate.tileState[i] != eventstate.startState[i]) {
+				if(gamestate.tileState[i].state >= 2 && (gamestate.tileState[i].name == "Wild indigo" ||  gamestate.tileState[i].name ==  "Languid coneflower" || gamestate.tileState[i].name == "Piney woods phlox")) {
 					count3++;
 
 				}
-				if (count3 < 10 && count3 > 0 && eventstate.objective != "Complete!") {
-					eventstate.objective = "You have planted " +count3+ " flowering grasses.";
-					
-				}
-				if (count3 >= 10) {
-					eventstate.objective = "Complete!";
-				}
+				
 			}
-		eventstate.objective = "";
+			if (count3 < 10 && count3 > 0 && eventstate.objective != "Complete! Keep your plants healthy to keep this status!") {
+				eventstate.objective = "You have planted " +count3+ " polinator favorites!";
+				
+			}
+			if (count3 >= 10) {
+				eventstate.objective = "Complete! Keep your plants healthy to keep this status!";
+			}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
 				ev = eventstate;
@@ -130,12 +130,12 @@ updateObjective(gamestate, eventstate) {
 		case "Cool Spring":
 			let count4 = 0;
 			for(let i = 0; i < 59; i++){
-				if (gamestate.tileState[i].name == "Something"){
+				if (gamestate.tileState[i].state >= 2 && (gamestate.tileState[i].name == "Prairie Dropseed" || gamestate.tileState[i].name =="Indian Grass" || gamestate.tileState[i].name =="Durham Grass")){
 					count4++;
 
 				}
 			}
-		eventstate.objective = "You have "+ count4 +"dormant plants!";
+		eventstate.objective = "You have "+ count4 +"of 10 winter grasses!";
 		if(count4 >= 10) {
 			eventstate.objective = "Complete! Make sure to take care of them to keep this status!";
 		}
@@ -148,12 +148,12 @@ updateObjective(gamestate, eventstate) {
 		case "Garden Snakes":
 			let count5 = 0;
 			for(let i = 0; i < 59; i++){
-				if (gamestate.tileState[i].name != eventstate.tileState[i].name && gamestate.tileState[i].state >= 2){
+				if (gamestate.tileState[i].name == "Rattlesnake Master" && gamestate.tileState[i].state >= 2){
 					count5++;
 
 				}
 			}
-		eventstate.objective = "You have planted "+ count5 +"grasses!";
+		eventstate.objective = "You have planted "+ count5 +" Rattlesnake Master!";
 		if(count5 >= 10) {
 			eventstate.objective = "Complete!";
 		}
@@ -164,17 +164,28 @@ updateObjective(gamestate, eventstate) {
 		}
 		break;
 		case "Cultural Arts Festivals":
-			let count6 = 0;
-			for(let i = 0; i < 59; i++){
-				if (gamestate.tileState[i].name == "Something"){
-					count6++;
+			let indigo;
+			let languid;
+			let rattle;
+			let swamp;
 
+			for(let i = 0; i < 59; i++){
+				if (gamestate.tileState[i].name == "Wild Indigo" && gamestate.tileState[i].state >= 2) {
+					indigo = true;
+				} 
+				if (gamestate.tileState[i].name ==  "Languid Coneflower" && gamestate.tileState[i].state >= 2){
+					languid = true;
+				}
+				if (gamestate.tileState[i].name == "Rattlesnake Master" && gamestate.tileState[i].state >= 2){
+					rattle = true;
+				}
+				if (gamestate.tileState[i].name == "Swamp Milkweed" && gamestate.tileState[i].state >= 2) {
+					swamp = true;
 				}
 			}
-		eventstate.objective = "You have "+ count6 +" plants!";
-		if(count6 >= 4) {
+		if(indigo && languid && rattle && swamp) {
 			eventstate.objective = "Complete!";
-		}
+		} 
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
 				ev = eventstate;
@@ -189,7 +200,7 @@ updateObjective(gamestate, eventstate) {
 
 				}
 			}
-		eventstate.objective = "You have "+ count7 +" dormant plants!";
+		eventstate.objective = "You have "+ count7 +" grasses!";
 		if(count7 >= 10) {
 			eventstate.objective = "Complete! Make sure to take care of them to keep this status!";
 		}
