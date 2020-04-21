@@ -15,9 +15,9 @@
             <form id="form1">
                 <input type="text" id="username" placeholder="Email Address"><br><br>
                 <input type="password" id="password" placeholder="Password"><br><br>
-                <button onclick="login()" id="login" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 8%; margin-top: 0%;">Login</button>
+                <button onclick="log()" id="login" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 8%; margin-top: 0%;">Login</button>
                 <br>
-                <button onclick="register()" id="register" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 8%;">Register</button>
+                <button onclick="reg()" id="register" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 8%;">Register</button>
             </form>
                 <button onclick="location.href = 'http://arnavg98.github.io/My-Little-Prairie/home.html'" id="playnow" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 10%;">Play Now!</button>
           </div>
@@ -26,12 +26,13 @@
                 <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
                 <!-- TODO: Add SDKs for Firebase products that you want to use
                     https://firebase.google.com/docs/web/setup#available-libraries -->
-                <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+
+           <!-- THIS IS THE STUFF THAT IS BROKEN <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
                 <script src="/__/firebase/7.14.1/firebase-auth.js"></script>
-                <script src="/__/firebase/7.14.1/firebase-firestore.js"></script>
-                <script>
+                <script src="/__/firebase/7.14.1/firebase-firestore.js"></script> */ --->   
+            <!--   <script>
                 // Your web app's Firebase configuration
-                var firebaseConfig = {
+              var firebaseConfig = {
                     apiKey: "AIzaSyC1-bX1z7bzd8LwWE0_CB7Mhub1ZoHLLWQ",
                     authDomain: "my-little-prairie.firebaseapp.com",
                     databaseURL: "https://my-little-prairie.firebaseio.com",
@@ -44,8 +45,14 @@
                 // Initialize Firebase
                 firebase.initializeApp(firebaseConfig);
                 firebase.analytics();
+                </script> --> 
+                <script>
+                    function navigateTo(url) {
+                        console.log(url);
+                        window.location=url;
+                        console.log(window.location);
+                    }
                 </script>
-
                 <script>
                     function reg() {
                         var here = document.getElementById("form1");
@@ -53,7 +60,8 @@
                         var password = here.elements[1].value;
                         console.log(username);
                         console.log(password);
-                        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+                        navigateTo("https://arnavg98.github.io/My-Little-Prairie/register.html");
+                      /*  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
                             console.log("error");
                         // Handle Errors here.
                         var errorCode = error.code;
@@ -61,24 +69,25 @@
                         console.log(errorcode + ' ' + errormessage);
                         // ...
                         });
-                        console.log("success");
+                        console.log("success"); */
                     }
                 </script>
                 <script>
-                    function login() {
+                    function log() {
                         console.log("working");
                         var here = document.getElementById("form1");
                         var username = here.elements[0].value;
                         var password = here.elements[1].value;
                         console.log(username);
                         console.log(password);
-                        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+                        navigateTo("https://arnavg98.github.io/My-Little-Prairie/login.html");
+                      /*  firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
                         // Handle Errors here.
                         var errorCode = error.code;
                         var errorMessage = error.message;
                         console.log(errorcode + ' ' + errormessage);
                         // ...
-                        });
+                        }); */
                         console.log("success");
                     }
                 </script>
