@@ -200,7 +200,7 @@
 		text: {
 			trigger: "Random",
 			period: "ten days",
-			objective: "Random plants have appeared!",
+			objective: "Plants have washed away due to erosion!",
 		},
 		calc: {
 			trigger: Math.floor(360*Math.random()),

@@ -1,5 +1,5 @@
 import { eventsarr, eventdefs } from "../public/defs/eventdefs.js";
-import { handleEvents, addPoints } from "./render.js";
+import { handleEvents, addPoints, shuffle } from "./render.js";
 import { plantdefs } from "../public/defs/plantdefs.js";
 
 export default class ActiveEvents {
@@ -320,6 +320,77 @@ updateObjective(gamestate, eventstate) {
 			addPoints(50*count12);
 		}
 		break;
+		case "Heavy Rain":
+			for (let i = 0; i < 59; i++) {
+				if(Math.floor(10*Math.random()) > 7) {
+					gamestate.tileState[i].state = 0;
+					gamestate.tileState[i].name = "Empty";
+					gamestate.tileState[i].weedName = "Empty";
+				}
+			}
+		break;
+		case "windy Day":
+			let random = Math.floor(10*Math.random());
+			for (let i = 0; i < 59; i++) {
+				if(random > 7) {
+					gamestate.tileState[i].state = 1;
+					gamestate.tileState[i].name = "Empty";
+			switch (random) {
+			case 0:
+                gamestate.tileState[i].weedName = "Kudzu";
+                break;
+            case 1: 
+			gamestate.tileState[i].weedName = "Johnson Grass"
+                break;
+            case 2:
+                gamestate.tileState[i].weedName = "Star Vine"
+                break;
+            case 3:
+                gamestate.tileState[i].weedName = "Mouse-ear Chickweed";
+                break;
+            case 4:
+                gamestate.tileState[i].weedName = "Sorrel";
+                break;
+            case 5:
+                gamestate.tileState[i].weedName = "Common Chickweed";
+                break;
+            case 6:
+                gamestate.tileState[i].weedName = "Hairy Cress";
+                break;
+            case 7:
+                gamestate.tileState[i].weedName = "Common Vetch";
+                break;
+            case 8:
+                gamestate.tileState[i].weedName = "Kudzu";
+                break;
+            case 9:
+                gamestate.tileState[i].weedName = "Kudzu";
+                break;
+				}
+			}
+		}
+		break;
+		case "Deer":
+			for (let i = 0; i < 59; i++) {
+				if (Math.Random*10 > 8) {
+					gamestate.tileState[i].name="Empty";
+					gamestate.tileState[i].weedName="Empty";
+					gamestate.tileState[i].state=0;
+				}
+			}
+			break;
+		case "Rabbits":
+				shuffle(gamestate.tileState);
+		break;
+		case "Wildfire":
+			for (let i = 0; i < 59; i++) {
+				if (Math.Random*10 > 8 && gamestate.tileState[i].state == 1) {
+					gamestate.tileState[i].name="Empty";
+					gamestate.tileState[i].weedName="Empty";
+					gamestate.tileState[i].state=0;
+				}
+			}
+		break;
 	}
 }
 
@@ -338,7 +409,6 @@ createActiveEvent(event, gamestate) {
 }
 
 addActiveEvent(event, gamestate) {
-	console.log("Event added");
 	this.arr.push({
 		name: event.name,
 		description: event.description,
@@ -347,7 +417,6 @@ addActiveEvent(event, gamestate) {
 		objective: event.text.objective,
 		startState: gamestate.tileState
 	});
-	console.log("called");
 	handleEvents(); //to display after each event is added! I'm dumb and didn't think of it for 48 hours
 }
 
