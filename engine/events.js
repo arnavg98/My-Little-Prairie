@@ -1,5 +1,6 @@
 import { eventsarr, eventdefs } from "../public/defs/eventdefs.js";
-import { handleEvents } from "./render.js";
+import { handleEvents, addPoints } from "./render.js";
+import { plantdefs } from "../public/defs/plantdefs.js";
 
 export default class ActiveEvents {
 	constructor(gamestate) {
@@ -19,19 +20,6 @@ export default class ActiveEvents {
 
  updateEvents(gamestate) {
 
-	// check which inactive events should trigger and become active
-	for(let ev of eventsarr) {
-		// maximum two events at a time; dont activate any new events
-		if(this.arr.length >= 2) break; // dont return or it screws a lot of things up
-
-		// skip those that are already active
-		if(this.arr.some((ele) => ele.name === ev.name)) continue;
-
-		if(ev.calc.trigger == gamestate.actions) 
-			this.createActiveEvent(ev, gamestate);
-			
-	}
-
 	let index = 0; // needed an index for splice array
 	for(let ev of this.arr) {
 		// update objectives for each active event
@@ -45,6 +33,20 @@ export default class ActiveEvents {
 		}
 		index++;
 	}
+	// check which inactive events should trigger and become active
+	for(let ev of eventsarr) {
+		// maximum two events at a time; dont activate any new events
+		if(this.arr.length >= 2) break; // dont return or it screws a lot of things up
+
+		// skip those that are already active
+		if(this.arr.some((ele) => ele.name === ev.name)) continue;
+
+		if(ev.calc.trigger == gamestate.actions) 
+			this.createActiveEvent(ev, gamestate);
+			
+	}
+
+
 	// update objectives for each newly active event
 }
 
@@ -65,7 +67,7 @@ updateObjective(gamestate, eventstate) {
 		}
 		if (count >= 8 && eventstate.objective != "Complete!") {
 			eventstate.objective = "Complete!";
-			
+			addPoints(1500);
 		}
 
 		for(let ev of this.arr) {
@@ -97,6 +99,7 @@ updateObjective(gamestate, eventstate) {
 
 			if (count1 >= 6 && count2 >= 6 && eventstate.objective != "Complete!") {
 				eventstate.objective = "Complete!";
+				addPoints(1500);
 			}
 
 			for(let ev of this.arr) {
@@ -120,8 +123,9 @@ updateObjective(gamestate, eventstate) {
 				eventstate.objective = "You have planted " +count3+ " polinator favorites!";
 				
 			}
-			if (count3 >= 10) {
+			if (count3 >= 10 && eventstate.objective != "Complete! Keep your plants healthy to keep this status!") {
 				eventstate.objective = "Complete! Keep your plants healthy to keep this status!";
+				addPoints(1500);
 			}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
@@ -138,8 +142,9 @@ updateObjective(gamestate, eventstate) {
 				}
 			}
 		eventstate.objective = "You have "+ count4 +"of 10 winter grasses!";
-		if(count4 >= 10) {
+		if(count4 >= 10 && eventstate.objective !="Complete! Make sure to take care of them to keep this status!") {
 			eventstate.objective = "Complete! Make sure to take care of them to keep this status!";
+			addPoints(1500);
 		}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
@@ -156,8 +161,9 @@ updateObjective(gamestate, eventstate) {
 				}
 			}
 		eventstate.objective = "You have planted "+ count5 +" Rattlesnake Master!";
-		if(count5 >= 10) {
+		if(count5 >= 10 && eventstate.objective != "Complete!") {
 			eventstate.objective = "Complete!";
+			addPoints(1500);
 		}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
@@ -166,10 +172,10 @@ updateObjective(gamestate, eventstate) {
 		}
 		break;
 		case "Cultural Arts Festivals":
-			let indigo;
-			let languid;
-			let rattle;
-			let swamp;
+			let indigo = false;
+			let languid = false;
+			let rattle = false;
+			let swamp = false;
 
 			for(let i = 0; i < 59; i++){
 				if (gamestate.tileState[i].name == "Wild Indigo" && gamestate.tileState[i].state >= 2) {
@@ -185,12 +191,14 @@ updateObjective(gamestate, eventstate) {
 					swamp = true;
 				}
 			}
-		if(indigo && languid && rattle && swamp) {
+		if(indigo && languid && rattle && swamp && eventstate.objective != "Complete!") {
 			eventstate.objective = "Complete!";
+			addPoints(1500);
 		} 
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
 				ev = eventstate;
+				
 			}
 		}
 		break;
@@ -203,8 +211,9 @@ updateObjective(gamestate, eventstate) {
 				}
 			}
 		eventstate.objective = "You have "+ count7 +" Purple Lovegrass!";
-		if(count7 >= 6) {
+		if(count7 >= 6 && eventstate.objective != "Complete! Make sure to take care of them to keep this status!") {
 			eventstate.objective = "Complete! Make sure to take care of them to keep this status!";
+			addPoints(1500);
 		}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
@@ -225,8 +234,9 @@ updateObjective(gamestate, eventstate) {
 				}
 			}
 		eventstate.objective = "You have "+ count8 +"plants!";
-		if(count8 >= 8) {
+		if(count8 >= 8 && eventstate.objective != "Complete! Make sure to take care of them to keep this status!") {
 			eventstate.objective = "Complete! Make sure to take care of them to keep this status!";
+			addPoints(1500);
 		}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
@@ -244,8 +254,9 @@ updateObjective(gamestate, eventstate) {
 		if (golden > 0 && eventstate.objective != "Complete!") {
 			eventstate.objective = "You have planted " + golden + " Goldenrods!";
 		}
-		if (golden >= 4) {
+		if (golden >= 4 && eventstate.objective != "Complete!") {
 			eventstate.objective = "Complete!";
+			addPoints(1500);
 		}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
@@ -254,14 +265,24 @@ updateObjective(gamestate, eventstate) {
 		}
 		break;
 		case "Warm Winter":
-			let grass;
+			let drop = false;
+			let indian = false;
+			let durham = false;
 			for (let i = 0; i < 59; i++) {
-				if ((gamestate.tileState[i].name == "Goldenrod" || gamestate.tileState[i].name == "Goldenrod" 
-				|| gamestate.tileState[i].name == "Goldenrod") && gamestate.tileState[i].state >= 2) {
-					grass++;
+				if (gamestate.tileState[i].name == "Prairie Dropseed" && gamestate.tileState[i].state >= 2) {
+					drop = true;
+				} 
+				if(gamestate.tileState[i].name == "Indian Grass" && gamestate.tileState[i].state >= 2) {
+					indian = true;
+				}
+				if(gamestate.tileState[i].name == "Durham Grass" && gamestate.tileState[i].state >= 2) {
+					durham = true;
 				}
 			}
-		eventstate.objective = "";
+		if (drop && indian && durham && eventstate.objective != "Complete!") {
+			eventstate.objective = "Complete!";
+			addPoints(1500);
+		}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
 				ev = eventstate;
@@ -269,7 +290,19 @@ updateObjective(gamestate, eventstate) {
 		}
 		break;
 		case "Snow-pocolypse":
-		eventstate.objective = "";
+		let count11 =0;
+		for (let i = 0; i < 59; i++) {
+			if ((gamestate.tileState[i].name == "Durham Grass" || gamestate.tileState[i].name == "Prairie Dropseed") && gamestate.tileState[i].state >= 2){
+				count11++;
+			}
+		}
+		if (count11 > 0 && eventstate.objective != "Complete!") {
+			
+		}
+		if (count11 >= 6 && eventstate.objective != "Complete!") {
+			eventstate.objective = "Complete!";
+			addPoints(1500);
+		}
 		for(let ev of this.arr) {
 			if (ev.name == eventstate.name) {
 				ev = eventstate;
@@ -277,11 +310,14 @@ updateObjective(gamestate, eventstate) {
 		}
 		break;
 		case "The Burning":
-		eventstate.objective = "";
-		for(let ev of this.arr) {
-			if (ev.name == eventstate.name) {
-				ev = eventstate;
+			let count12;
+		for (let i = 0; i < 59; i++) {
+			if (gamestate.tileState[i].state >= 6) {
+				count12++;
 			}
+		}
+		if (gamestate.actions >= 359) {
+			addPoints(50*count12);
 		}
 		break;
 	}
@@ -312,7 +348,7 @@ addActiveEvent(event, gamestate) {
 		startState: gamestate.tileState
 	});
 	console.log("called");
-	handleEvents(); //to display call after each event is added
+	handleEvents(); //to display after each event is added! I'm dumb and didn't think of it for 48 hours
 }
 
 

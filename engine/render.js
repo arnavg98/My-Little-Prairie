@@ -844,6 +844,9 @@ export function logGameState() {
         score: score,
     };
 }
+export function addPoints(amount) {
+    score+= amount;
+}
 export function clone(obj) {
     if (null == obj || "object" != typeof obj) return obj;
     var copy = obj.constructor();

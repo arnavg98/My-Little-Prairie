@@ -158,7 +158,7 @@
 		text: {
 			trigger: "Winter",
 			period: "one season",
-			objective: "Keep 4 winter grasses!",
+			objective: "Plant all 3 winter grasses!",
 		},
 		calc: {
 			trigger: 90,
@@ -186,7 +186,7 @@
 		text: {
 			trigger: "winter year 3",
 			period: "one season",
-			objective: "Plant as much as you can! You will recieve double points for planting this season!",
+			objective: "Plant as many grasses as you can! 100 Points for each adult plant!",
 		},
 		calc: {
 			trigger: 330,
@@ -200,7 +200,7 @@
 		text: {
 			trigger: "Random",
 			period: "ten days",
-			objective: "Plant slower growing plants",
+			objective: "Random plants have appeared!",
 		},
 		calc: {
 			trigger: Math.floor(360*Math.random()),
@@ -214,7 +214,7 @@
 		text: {
 			trigger: "Random",
 			period: "ten days",
-			objective: "Weeds Appear!",
+			objective: "Weeds have appeared!",
 		},
 		calc: {
 			trigger: Math.floor(360*Math.random()),
@@ -256,7 +256,7 @@
 		text: {
 			trigger: "Random",
 			period: "ten days",
-			objective: "Some plants have been planted randomly!",
+			objective: "Weeds have disappeared, plants are spread!",
 		},
 		calc: {
 			trigger: Math.floor(360*Math.random()),
