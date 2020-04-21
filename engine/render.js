@@ -38,13 +38,12 @@ tileState UPDATE:
 */
 
 export const renderGame = function() {
-    let string = `<button id="weed" class="large blue button">Weed</button>
+    let string = `</div><button id="weed" class="large blue button">Weed</button>
     <button class="large blue button" id="plant">Plant</button>
     <button id="events" class="large blue button">Events</button>
     <button class="large blue button" id="catalogbutton">Catalog</button>
-    <div id="eventDIV"></div>
     <ul id="hexGrid">`;
-    handleEvents();
+    
     for (let i = 0; i < 59; i++){
         
         if(tileState[i].state==1) {
@@ -172,7 +171,8 @@ export const renderWeedingBoard = function() {
 
     const $root = $('#root');
     
-    let string= `<button class="large blue button" id="finish">Finish Weeding</button>
+    let string= `</div><button class="large blue button" id="finish">Finish Weeding</button>
+    <div id="eventDIV"></div>
     <br>`;
     let thisButton;
     let toolIncrement;
@@ -317,7 +317,6 @@ export const renderPlantingBoard = function() {
         <br>  <button class="buttonplant15" value="Prairie Dropseed" id="tool"></button>
         <button class="buttonplant16" value="Indian Grass" id="tool"></button>
         <button class="buttonplant17" value="Durham Grass" id="tool"></button>
-        <div id="eventDIV"></div>
         <ul id="hexGrid">`;
     } 
     if (seasonid == 1) {
@@ -327,7 +326,6 @@ export const renderPlantingBoard = function() {
         <button class="buttonplant3" value="Common Milkweed" id="tool"></button>
         <button class="buttonplant4" value="Wild Indigo" id="tool"></button>
         <button class="buttonplant5" value="Languid Coneflower" id="tool"></button>
-        <div id="eventDIV"></div>
         <ul id="hexGrid">`;
     }
     if (seasonid == 2) {
@@ -336,7 +334,6 @@ export const renderPlantingBoard = function() {
         <button class="buttonplant13" value="Splitbeard Broomsedge" id="tool"></button>
         <button class="buttonplant8" value="Piney woods Phlox" id="tool"></button>
         <button class="buttonplant2" value="Swamp Milkweed" id="tool"></button>
-        <div id="eventDIV"></div>
         <ul id="hexGrid">`;
     }
     if (seasonid == 3) {
@@ -346,7 +343,6 @@ export const renderPlantingBoard = function() {
         <button class="buttonplant12" value="Frost aster" id="tool"></button>
         <button class="buttonplant7" value="Southern Sundrops" id="tool"></button>
         <button class="buttonplant14" value="Purple Lovegrass" id="tool"></button>
-        <div id="eventDIV"></div>
         <ul id="hexGrid">`;
     }
 
@@ -863,22 +859,18 @@ export const handleSeason = function(i) {
         season = "Spring";
         seasonid = 1;
         console.log("Spring");
-        handleEvents();
     } else if (actions%120 < 60) {
         season = "Summer";
         seasonid = 2;
         console.log("Summer");
-        handleEvents();
     } else if (actions%120 < 90) {
         season = "Fall";
         seasonid = 3;
         console.log("Fall");
-        handleEvents();
     } else if (actions%120 < 120){
         season = "Winter";
         seasonid = 0;
         console.log("Winter");
-        handleEvents();
         year++;
     }
     if (i != null) {
@@ -945,12 +937,12 @@ export const handleEvents = function () {
         </div>`;
     }
     string += `</div>`;
-    $('#eventDIV').append(string);
-    $('#root').on('click', '.delete', handleCloseEvent);
+    $('.eventDIV').append(string);
+    $('.eventDIV').on('click', '.delete', handleCloseEvent);
 }
 
 export const handleCloseEvent = function () {
-    $('#eventDIV').empty();
+    $('.eventDIV').empty();
 }
 
 export const gameEnd = function() {

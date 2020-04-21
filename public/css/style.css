@@ -57,6 +57,7 @@ input {
 }
 
 #overlay {
+  text-align: center;
   display: block;
   position: fixed;
   z-index: 1;

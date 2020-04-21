@@ -44,7 +44,7 @@
  		text: {
 	 		trigger: "Start of game",
 	 		period: "one season",
-	 		objective: "Remove 12 kudzu",
+	 		objective: "Remove 8 kudzu",
 	 	},
 	 	calc: {
 	 		trigger: 0,
@@ -116,7 +116,7 @@
 		text: {
 			trigger: "Fall",
 			period: "one season",
-			objective: "Plant 4 grasses",
+			objective: "Plant 6 Purple Lovegrass",
 		},
 		calc: {
 			trigger: 60,
@@ -130,7 +130,7 @@
 		text: {
 			trigger: "Fall",
 			period: "one season",
-			objective: "Plant 8 grasses",
+			objective: "Plant 8 plants",
 		},
 		calc: {
 			trigger: 180,
@@ -144,7 +144,7 @@
 		text: {
 			trigger: "Fall",
 			period: "one season",
-			objective: "Plant 4 grasses",
+			objective: "Plant 4 Goldenrods",
 		},
 		calc: {
 			trigger: 300,
@@ -154,11 +154,11 @@
 	},
 	{
 		name: "Warm Winter",
-		description: " Some of the plants that are normally dormant are not.",
+		description: "Some of the plants that are normally dormant are not.",
 		text: {
 			trigger: "Winter",
 			period: "one season",
-			objective: "Plant 2 dormant plants",
+			objective: "Keep 4 winter grasses!",
 		},
 		calc: {
 			trigger: 90,
@@ -172,7 +172,7 @@
 		text: {
 			trigger: "winter",
 			period: "one season",
-			objective: "Plant 6 grasses that will do well in cooler weather",
+			objective: "Plant 6 grasses that do well in cooler weather",
 		},
 		calc: {
 			trigger: 210,
@@ -204,7 +204,7 @@
 		},
 		calc: {
 			trigger: Math.floor(360*Math.random()),
-			period: function(starttime) {return starttime + 10;},
+			period: function(starttime) {return starttime + 1;},
 			objective: function() {},
 		},
 	},
@@ -214,11 +214,11 @@
 		text: {
 			trigger: "Random",
 			period: "ten days",
-			objective: "Remove 6 weeds",
+			objective: "Weeds Appear!",
 		},
 		calc: {
 			trigger: Math.floor(360*Math.random()),
-			period: function(starttime) {return starttime + 10;},
+			period: function(starttime) {return starttime + 1;},
 			objective: function() {},
 		},
 	},
@@ -228,11 +228,11 @@
 		text: {
 			trigger: "Random",
 			period: "one day",
-			objective: "Some of your plants have disappeared",
+			objective: "Some of your plants have disappeared!",
 		},
 		calc: {
 			trigger: Math.floor(360*Math.random()),
-			period: function(starttime) {return starttime + 10;},
+			period: function(starttime) {return starttime + 1;},
 			objective: function() {},
 		},
 	},
@@ -246,7 +246,7 @@
 		},
 		calc: {
 			trigger: Math.floor(360*Math.random()),
-			period: function(starttime) {return starttime + 10;},
+			period: function(starttime) {return starttime + 1;},
 			objective: function() {},
 		},
 	},
@@ -256,11 +256,11 @@
 		text: {
 			trigger: "Random",
 			period: "ten days",
-			objective: "Plants will be planted randomly!",
+			objective: "Some plants have been planted randomly!",
 		},
 		calc: {
 			trigger: Math.floor(360*Math.random()),
-			period: function(starttime) {return starttime + 10;},
+			period: function(starttime) {return starttime + 1;},
 			objective: function() {},
 		},
 	},
