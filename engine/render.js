@@ -507,7 +507,7 @@ export const handleWeedActionClick = function(event) {
         //this happens if you use the wrong tool
         alert("Wrong tool!");
         tileState.currentTile=1;
-        score=score-300;
+        score=score-(300*(Math.floor(score/1000)));
     }
     
         //alert("Tile " + currentTile + " weeded!");
@@ -516,7 +516,7 @@ export const handleWeedActionClick = function(event) {
         handleSeason();
         logGameState();
         console.log(actions);
-        if (actions % 2 == 0) {
+        //if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
             let random = Math.floor(Math.random() * 5);
             if(random <= 3 && i != currentTile) {
@@ -542,7 +542,7 @@ export const handleWeedActionClick = function(event) {
                     //handleFinishWeedingButtonPress();
                 }
             } 
-        }
+        //}
     
     
     }   else {
@@ -551,7 +551,7 @@ export const handleWeedActionClick = function(event) {
             tileState[currentTile].state=0;
             growthCounter[currentTile]=0;
             plantAge[currentTile]=0;
-            score=score-500;
+            score=score-500*(Math.floor(score/1000));
         }
     }
 
@@ -676,7 +676,7 @@ export const agePlants = function() {
                 //It dies and becomes an Empty with Weed space
                 tileState[i].state=1;
                 //weedCounter[i]=0;
-                score=score-200*plantdefs[tileState[i].name].growthrate;
+                score=score-200*plantdefs[tileState[i].name].growthrate*(Math.floor(score/1000));
                 plantAge[i]=0;
             }
         }
@@ -738,10 +738,10 @@ export const handlePlantActionClick = function(event) {
         logGameState();
         handleSeason();
         console.log(actions);
-        if (actions % 2 == 0) {
+        //if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
             let random = Math.floor(Math.random() * 5);
-            if(random <= 3 && i != currentTile) {
+            if(random <= 4 && i != currentTile) {
                 if (tileState[i].state == 2) {
                     tileState[i].state = 3;
                     weedType(i);
@@ -764,7 +764,7 @@ export const handlePlantActionClick = function(event) {
                     //handleFinishWeedingButtonPress();
                 }
             } 
-        }
+        //}
     }
 
         //This next section has will be in the plant method and the weed method.
@@ -858,24 +858,30 @@ export function clone(obj) {
 }
 
 export const handleSeason = function(i) {
+    const $root = $('#root');
+    let changed = false;
     let string = ``;
     if (actions%120 < 30) {
         season = "Spring";
         seasonid = 1;
         console.log("Spring");
+        changed=true;
     } else if (actions%120 < 60) {
         season = "Summer";
         seasonid = 2;
         console.log("Summer");
+        changed=true;
     } else if (actions%120 < 90) {
         season = "Fall";
         seasonid = 3;
         console.log("Fall");
+        changed=true;
     } else if (actions%120 < 120){
         season = "Winter";
         seasonid = 0;
         console.log("Winter");
         year++;
+        changed=true;
     }
     if (i != null) {
     switch(season) {
@@ -925,6 +931,12 @@ export const handleSeason = function(i) {
     </li>`;
             break;
     }
+    /*
+    if(changed==true) {
+        main();
+    }
+    */
+   $root.off();
     return string;
 }
 };
@@ -958,7 +970,22 @@ export const gameEnd = function() {
     }
 }
 export const renderSite = function() {
-    return `<header><div style="padding:5%" class="score">Score: ${score}</div></header>`;
+    let string= `<header>`;
+    switch(season) {
+        case "Spring":
+            string+=`<div class="season-space"><img src="public/assets/spring.png" class="button-spring" style="float:left"><span class="score">Score: ${score}</span><img src="public/assets/spring.png" class="button-spring" style="float:right"></div></header>`;
+            break;
+        case "Summer":
+            string+=`<div class="season-space"><img src="public/assets/summer.png" class="button-spring" style="float:left"><span class="score">Score: ${score}</span><img src="public/assets/summer.png" class="button-spring" style="float:right"></div></header>`;
+            break;
+        case "Fall":
+            string+=`<div class="season-space"><img src="public/assets/fall.png" class="button-spring" style="float:left"><span class="score">Score: ${score}</span><img src="public/assets/fall.png" class="button-spring" style="float:right"></div></header>`;
+            break;
+        case "Winter":
+            string+=`<div class="season-space"><img src="public/assets/winter.png" class="button-spring" style="float:left"><span class="score">Score: ${score}</span><img src="public/assets/winter.png" class="button-spring" style="float:right"></div></header>`;
+            break;
+    }
+    return string;
 };  
 
 export const weedType = function(i) {
