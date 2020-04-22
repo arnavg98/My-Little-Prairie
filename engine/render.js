@@ -20,10 +20,10 @@ for(let i = 0; i<59; i++) {
 let currenttool = 0;
 let currentplant = 0;
 let year = 1;
-let season = "";
+let season = "Spring";
 let seasonid = 1;
 let score = 0;
-let activeEvents = new ActiveEvents();
+let activeEvents = new ActiveEvents(logGameState());
 
 /*
 tileState UPDATE:
@@ -38,13 +38,12 @@ tileState UPDATE:
 */
 
 export const renderGame = function() {
-    let string = `<button id="weed" class="large blue button">Weed</button>
+    let string = `</div><button id="weed" class="large blue button">Weed</button>
     <button class="large blue button" id="plant">Plant</button>
     <button id="events" class="large blue button">Events</button>
     <button class="large blue button" id="catalogbutton">Catalog</button>
-    <div id="eventDIV"></div>
     <ul id="hexGrid">`;
-    handleEvents();
+    
     for (let i = 0; i < 59; i++){
         
         if(tileState[i].state==1) {
@@ -172,7 +171,8 @@ export const renderWeedingBoard = function() {
 
     const $root = $('#root');
     
-    let string= `<button class="large blue button" id="finish">Finish Weeding</button>
+    let string= `</div><button class="large blue button" id="finish">Finish Weeding</button>
+    <div id="eventDIV"></div>
     <br>`;
     let thisButton;
     let toolIncrement;
@@ -317,26 +317,23 @@ export const renderPlantingBoard = function() {
         <br>  <button class="buttonplant15" value="Prairie Dropseed" id="tool"></button>
         <button class="buttonplant16" value="Indian Grass" id="tool"></button>
         <button class="buttonplant17" value="Durham Grass" id="tool"></button>
-        <div id="eventDIV"></div>
         <ul id="hexGrid">`;
     } 
     if (seasonid == 1) {
         string = `<button class="large blue button" id="finish">Finish Planting</button>
         <br> <button class="buttonplant1" value="Carolina Anemone" id="tool"></button>
-        <button class="buttonplant2" value="Swamp Milkweed" id="tool"></button>
+        <button class="buttonplant9" value="Grey-headed Coneflower" id="tool"></button>
         <button class="buttonplant3" value="Common Milkweed" id="tool"></button>
         <button class="buttonplant4" value="Wild Indigo" id="tool"></button>
         <button class="buttonplant5" value="Languid Coneflower" id="tool"></button>
-        <div id="eventDIV"></div>
         <ul id="hexGrid">`;
     }
     if (seasonid == 2) {
         string = `<button class="large blue button" id="finish">Finish Planting</button>
         <br> <button class="buttonplant6" value="Rattlesnake Master" id="tool"></button>
-        <button class="buttonplant7" value="Southern Sundrops" id="tool"></button>
+        <button class="buttonplant13" value="Splitbeard Broomsedge" id="tool"></button>
         <button class="buttonplant8" value="Piney woods Phlox" id="tool"></button>
-        <button class="buttonplant9" value="Grey-headed Coneflower" id="tool"></button>
-        <div id="eventDIV"></div>
+        <button class="buttonplant2" value="Swamp Milkweed" id="tool"></button>
         <ul id="hexGrid">`;
     }
     if (seasonid == 3) {
@@ -344,9 +341,8 @@ export const renderPlantingBoard = function() {
         <br> <button class="buttonplant10" value="Goldenrod" id="tool"></button>
         <button class="buttonplant11" value="Eastern silver aster" id="tool"></button>
         <button class="buttonplant12" value="Frost aster" id="tool"></button>
-        <button class="buttonplant13" value="Splitbeard Broomsedge" id="tool"></button>
+        <button class="buttonplant7" value="Southern Sundrops" id="tool"></button>
         <button class="buttonplant14" value="Purple Lovegrass" id="tool"></button>
-        <div id="eventDIV"></div>
         <ul id="hexGrid">`;
     }
 
@@ -517,6 +513,7 @@ export const handleWeedActionClick = function(event) {
         //alert("Tile " + currentTile + " weeded!");
         actions = actions + 1;
         activeEvents.updateEvents(clone(logGameState()));
+        handleSeason();
         logGameState();
         console.log(actions);
         if (actions % 2 == 0) {
@@ -739,6 +736,7 @@ export const handlePlantActionClick = function(event) {
         actions = actions + 1;
         activeEvents.updateEvents(clone(logGameState()));
         logGameState();
+        handleSeason();
         console.log(actions);
         if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
@@ -833,13 +831,6 @@ export const handlePlantPress = function(event) {
     console.log(this.id);
 }
 
-//Updates score after actions
-export const scoreUpdate = function() {
-
-
-
-}
-
 export function logGameState() {
     return {
         tileState: tileState,
@@ -852,6 +843,9 @@ export function logGameState() {
         season: season,
         score: score,
     };
+}
+export function addPoints(amount) {
+    score+= amount;
 }
 export function clone(obj) {
     if (null == obj || "object" != typeof obj) return obj;
@@ -868,24 +862,21 @@ export const handleSeason = function(i) {
         season = "Spring";
         seasonid = 1;
         console.log("Spring");
-        handleEvents();
     } else if (actions%120 < 60) {
         season = "Summer";
         seasonid = 2;
         console.log("Summer");
-        handleEvents();
     } else if (actions%120 < 90) {
         season = "Fall";
         seasonid = 3;
         console.log("Fall");
-        handleEvents();
     } else if (actions%120 < 120){
         season = "Winter";
         seasonid = 0;
         console.log("Winter");
-        handleEvents();
         year++;
     }
+    if (i != null) {
     switch(season) {
         case "Spring":
             string=`<li class="hex">
@@ -934,26 +925,27 @@ export const handleSeason = function(i) {
             break;
     }
     return string;
+}
 };
 
 export const handleEvents = function () {
     let string = ``;
     string += `<div id="overlay">
-    <h>Events</h><button stlye="color: blue" class="delete">X</button>`;
+    <h>Events</h><button class="delete">X</button>`;
     for (let i = 0; i < activeEvents.arr.length; i++) {
-        string+= `<div class=eventBox>
+        string+= `<div class="eventBox">
         <h>${activeEvents.arr[i].name}</h>
         <p>${activeEvents.arr[i].description}</p>
         <p>${activeEvents.arr[i].objective}</p>
         </div>`;
     }
     string += `</div>`;
-    $('#eventDIV').append(string);
-    $('#root').on('click', '.delete', handleCloseEvent);
+    $('.eventDIV').append(string);
+    $('.eventDIV').on('click', '.delete', handleCloseEvent);
 }
 
 export const handleCloseEvent = function () {
-    $('#eventDIV').empty();
+    $('.eventDIV').empty();
 }
 
 export const gameEnd = function() {
@@ -963,10 +955,6 @@ export const gameEnd = function() {
         // TO DO: switch to end screen
     }
 }
-
-/*export const renderSite = function() {
-    return `<header><img class="logo" src="public/assets/logo.png"></img><div class="score">Score: ${score}</div></header>`;
-};   REMOVED THE LOGO FROM THIS PAGE TO SAVE SPACE? THOUGHTS?*/ 
 
 export const renderSite = function() {
     return `<header><div style="padding:5%" class="score">Score: ${score}</div></header>`;
@@ -1009,6 +997,25 @@ export const weedType = function(i) {
                 break;
         }
 }
+
+export function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
 
 export const main = function() {
     const $root = $('#root');

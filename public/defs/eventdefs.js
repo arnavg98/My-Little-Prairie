@@ -44,7 +44,7 @@
  		text: {
 	 		trigger: "Start of game",
 	 		period: "one season",
-	 		objective: "Remove 12 kudzu",
+	 		objective: "Remove 8 kudzu",
 	 	},
 	 	calc: {
 	 		trigger: 0,
@@ -60,7 +60,7 @@
  		text: {
 	 		trigger: "Spring",
 	 		period: "one season",
-	 		objective: "Plant 10 “flowering grasses”",
+	 		objective: "Plant 10 polinator favorites",
 	 	},
 	 	calc: {
 	 		trigger: 120,
@@ -74,7 +74,7 @@
 		text: {
 			trigger: "Spring",
 			period: "one season",
-			objective: "Keep 10 dormant plants",
+			objective: "Keep 10 winter grasses!",
 		},
 		calc: {
 			trigger: 240,
@@ -88,7 +88,7 @@
 		text: {
 			trigger: "Summer",
 			period: "one season",
-			objective: "Plant 10 grasses",
+			objective: "Plant 10 Rattlesnake Master",
 		},
 		calc: {
 			trigger: 150,
@@ -102,7 +102,7 @@
 		text: {
 			trigger: "Summer",
 			period: "one season",
-			objective: "Plant 4 flowering grasses",
+			objective: "Plant all 4 seasonal grasses/flowers",
 		},
 		calc: {
 			trigger: 270,
@@ -116,7 +116,7 @@
 		text: {
 			trigger: "Fall",
 			period: "one season",
-			objective: "Plant 4 grasses",
+			objective: "Plant 6 Purple Lovegrass",
 		},
 		calc: {
 			trigger: 60,
@@ -130,7 +130,7 @@
 		text: {
 			trigger: "Fall",
 			period: "one season",
-			objective: "Plant 8 grasses",
+			objective: "Plant 8 plants",
 		},
 		calc: {
 			trigger: 180,
@@ -144,7 +144,7 @@
 		text: {
 			trigger: "Fall",
 			period: "one season",
-			objective: "Plant 4 grasses",
+			objective: "Plant 4 Goldenrods",
 		},
 		calc: {
 			trigger: 300,
@@ -154,11 +154,11 @@
 	},
 	{
 		name: "Warm Winter",
-		description: " Some of the plants that are normally dormant are not.",
+		description: "Some of the plants that are normally dormant are not.",
 		text: {
 			trigger: "Winter",
 			period: "one season",
-			objective: "Plant 2 dormant plants",
+			objective: "Plant all 3 winter grasses!",
 		},
 		calc: {
 			trigger: 90,
@@ -172,7 +172,7 @@
 		text: {
 			trigger: "winter",
 			period: "one season",
-			objective: "Plant 6 grasses that will do well in cooler weather",
+			objective: "Plant 6 grasses that do well in cooler weather",
 		},
 		calc: {
 			trigger: 210,
@@ -186,7 +186,7 @@
 		text: {
 			trigger: "winter year 3",
 			period: "one season",
-			objective: "Plant as much as you can! You will recieve double points for planting this season!",
+			objective: "Plant as many grasses as you can! 100 Points for each adult plant!",
 		},
 		calc: {
 			trigger: 330,
@@ -198,13 +198,13 @@
 		name: "Heavy Rain",
 		description: "Increased growth rate of plants this month!",
 		text: {
-			trigger: "Spring",
+			trigger: "Random",
 			period: "ten days",
-			objective: "Plant slower growing plants",
+			objective: "Plants have washed away due to erosion!",
 		},
 		calc: {
-			trigger: 15,
-			period: function(starttime) {return starttime + 10;},
+			trigger: Math.floor(360*Math.random()),
+			period: function(starttime) {return starttime + 1;},
 			objective: function() {},
 		},
 	},
@@ -212,13 +212,13 @@
 		name: "Windy day",
 		description: "Increased spawn rate of weeds this month!",
 		text: {
-			trigger: "Summer, Fall",
+			trigger: "Random",
 			period: "ten days",
-			objective: "Remove 6 weeds",
+			objective: "Weeds have appeared!",
 		},
 		calc: {
-			trigger: 300,
-			period: function(starttime) {return starttime + 10;},
+			trigger: Math.floor(360*Math.random()),
+			period: function(starttime) {return starttime + 1;},
 			objective: function() {},
 		},
 	},
@@ -226,13 +226,13 @@
 		name: "Deer",
 		description: "Deer have eaten some of your plants!",
 		text: {
-			trigger: "Fall",
+			trigger: "Random",
 			period: "one day",
-			objective: "Some of your plants have disappeared",
+			objective: "Some of your plants have disappeared!",
 		},
 		calc: {
-			trigger: 65,
-			period: function(starttime) {return starttime + 10;},
+			trigger: Math.floor(360*Math.random()),
+			period: function(starttime) {return starttime + 1;},
 			objective: function() {},
 		},
 	},
@@ -240,13 +240,13 @@
 		name: "Rabbits",
 		description: "Rabbits have burrowed in the garden, some plants may be moved around.",
 		text: {
-			trigger: "Spring",
+			trigger: "Random",
 			period: "ten days",
 			objective: "Plants have been moved around!",
 		},
 		calc: {
-			trigger: 3,
-			period: function(starttime) {return starttime + 10;},
+			trigger: Math.floor(360*Math.random()),
+			period: function(starttime) {return starttime + 1;},
 			objective: function() {},
 		},
 	},
@@ -254,13 +254,13 @@
 		name: "Wildfire",
 		description: "A fire broke out! Some plants have been destroyed but the ash promotes the growth of the plants that are left!",
 		text: {
-			trigger: "Summer",
+			trigger: "Random",
 			period: "ten days",
-			objective: "Plants will be planted randomly!",
+			objective: "Weeds have disappeared, plants are spread!",
 		},
 		calc: {
-			trigger: 36,
-			period: function(starttime) {return starttime + 10;},
+			trigger: Math.floor(360*Math.random()),
+			period: function(starttime) {return starttime + 1;},
 			objective: function() {},
 		},
 	},
