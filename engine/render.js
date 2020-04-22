@@ -130,7 +130,7 @@ export const renderGame = function() {
         }
     }
     string+=`</ul>`
-   
+    const $root = $('#root');
     $root.on('click', '#weed', handleWeedButtonPress);
     $root.on('click', '#plant', handlePlantButtonPress);
     $root.on('click', '#catalogbutton', handleCatalogButtonPress);
@@ -516,7 +516,7 @@ export const handleWeedActionClick = function(event) {
         handleSeason();
         logGameState();
         console.log(actions);
-       // if (actions % 2 == 0) {
+        if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
             let random = Math.floor(Math.random() * 5);
             if(random <= 3 && i != currentTile) {
@@ -542,7 +542,7 @@ export const handleWeedActionClick = function(event) {
                     //handleFinishWeedingButtonPress();
                 }
             } 
-        //}
+        }
     
     
     }   else {
@@ -556,7 +556,6 @@ export const handleWeedActionClick = function(event) {
     }
 
     agePlants();
-    //console.log("updating is working");
 
     if(score<0) {
         score=0;
@@ -960,8 +959,8 @@ export const gameEnd = function() {
 }
 
 export const renderSite = function() {
-    return `<header><img class="logo" src="public/assets/logo.png"></img><div class="score">Score: ${score}</div></header>`;
-};
+    return `<header><div style="padding:5%" class="score">Score: ${score}</div></header>`;
+};  
 
 export const weedType = function(i) {
     console.log("Value of i is " + i);
