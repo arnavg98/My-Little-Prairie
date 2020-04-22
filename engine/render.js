@@ -844,7 +844,6 @@ export function logGameState() {
         score: score,
     };
 }
-//addpoints is for events to be able to add to the score, dont touch it or you break events!
 export function addPoints(amount) {
     score+= amount;
 }
@@ -917,7 +916,7 @@ export const handleSeason = function(i) {
             string=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img src="${plantdefs[tileState[i].name].dormant}" alt="" />
+            <img src="public/assets/dormant-grass-1.jpg" alt="" />
             <h1>${plantdefs[tileState[i].name].commonname}</h1>
             <p>${plantdefs[tileState[i].name].description}</p>
         </a>
