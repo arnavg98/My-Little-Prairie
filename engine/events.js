@@ -1,8 +1,10 @@
 import { eventsarr, eventdefs } from "../public/defs/eventdefs.js";
 
 export default class ActiveEvents {
-	constructor() {
-		this.arr = [];
+	constructor(ae) {
+		if (ae === undefined)
+			ae = [];
+		this.arr = ae;
 	}
 // this is how we will export the event engine, by turning it into an object
 

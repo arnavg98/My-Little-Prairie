@@ -5,48 +5,113 @@ import ActiveEvents from "./events.js";
 
 //for reference src="${plantdefs[tileState[i].name].image}" is how to refer to plant's image
 
-let tileState = []; //array that will have a zero or a 1 depending on if it has weed or not
-let actions = 0;
-let growthCounter = [];
-let weedCounter = [];
-let plantAge = [];
-let tester = "buttonplant1";
+// GAME STATE VARIABLES
 
-for(let i = 0; i<59; i++) {
-    growthCounter[i]=0;
-    weedCounter[i]=0;
-    plantAge[i]=0;
+let tileState; /* An array of objects corresponding to each tile on the board.
+each object has the following properties:
+  state: a number that corresponds to the following
+    0: Empty
+    1: Empty with weed
+    2: Baby Plant
+    3: Baby plant with weed
+    4: Medium plant
+    5: Medium Plant with weed
+    6: Adult Plant
+    7: Adult Plant with weed
+  name: string. corresponds to the common name of a plant inside plantdefs
+  weedName: string. corresponds to the common name of a weed inside plantdefs
+  growthCounter: number. keeps track of plant's growth in between stages
+  weedCounter: number. how long a weed has been around a plant
+  plantAge: number. how many actions a plant has been alive
+*/
+let actions; // number.
+let score; // number.
+let activeEvents; // class
+
+let tester; // string. idk what this is for
+let currenttool; // number. current tool selected
+let currentplant; // number. current plant selected
+let year; // number.
+let season; // string.
+let seasonid; // number.
+
+resetGameState();
+
+// resets all game state variables back to default
+function resetGameState() {
+    tileState = [];
+    for(let i = 0; i < 59; i++) {
+        tileState[i] = {
+            state: 0,
+            name: "Empty",
+            weedName: "Empty",
+            growthCounter: 0,
+            weedCounter: 0,
+            plantAge: 0,
+        }
+    }
+    actions = 0;
+    score = 0;
+    activeEvents = new ActiveEvents();
+
+    tester = "buttonplant1";
+    currenttool = 0;
+    currentplant = 0;
+    year = 1;
+    season = "";
+    seasonid = 1;
 }
-let currenttool = 0;
-let currentplant = 0;
-let year = 1;
-let season = "";
-let seasonid = 1;
-let score = 0;
-let activeEvents = new ActiveEvents();
 
-for(let i = 0; i < 59; i++) {
-    tileState[i] = {
-        state: 0,
-        name: "Empty",
-        weedName: "Empty",
-        growthCounter: 0,
-        weedCounter: 0,
-        plantAge: 0,
+function initializeGameState(save) {
+    resetGameState();
+    if(save === undefined) return;
+    if(Array.isArray(save.tileState)) {
+        const tsprops = [ // map of properties inside a tileState object to their types
+            ["state", "number"],
+            ["name", "string"],
+            ["weedName", "string"],
+            ["growthCounter", "number"],
+            ["weedCounter", "number"],
+            ["plantAge", "number"],
+        ]
+        for(let i = 0; i < 59; i++) {
+            for(const [key, value] of tsprops) {
+                if(typeof save.tileState[i][key] == value)
+                    tileState[i][key] = save.tileState[i][key];
+                else
+                    console.error("incorrect type");
+            }
+        }
+    } else {
+        console.error("incorrect type");
+    }
+    if(typeof save.actions === "number") {
+        actions = save.actions;
+        year = calculateYear();
+        season = calculateSeason();
+        // TODO: add seasonid
+    } else {
+        console.error("incorrect type");
+    }
+    if(typeof save.score === "number") {
+        score = save.score;
+    } else {
+        console.error("incorrect type");
     }
 }
 
-/*
-tileState UPDATE:
-0: Empty
-1: Empty with weed
-2: Baby Plant
-3: Baby plant with weed
-4: Medium plant
-5: Medium Plant with weed
-6: Adult Plant
-7: Adult Plant with weed
-*/
+// calculates the game year from the provided number
+// if no number is provided as parameter, then it uses "actions" from game state
+function calculateYear(a = actions) {
+    return Math.floor(a/120) + 1;
+}
+// calculates the gmame season from the provided number
+// if no number is provided as parameter, then it uses "actions" from game state
+function calculateSeason(a = actions) {
+    const seasons = ["Spring", "Summer", "Fall", "Winter"];
+    const span = 30;
+    return seasons[Math.floor(a%120 / span)];
+}
 
 export const renderGame = function() {
     let string = `<button id="weed" class="large blue button">Weed</button>
@@ -691,7 +756,7 @@ export const agePlants = function() {
                 tileState[i].state=1;
                 //tileState[i].weedCounter=0;
                 score=score-200*plantdefs[tileState[i].name].growthrate;
-                plantAge[i]=0;
+                tileState[i].plantAge=0;
             }
         }
         //If it does not have a weed
@@ -860,6 +925,7 @@ export function assembleGameState() {
         year: year,
         season: season,
         score: score,
+        activeEvents: activeEvents.arr,
     };
 }
 export function clone(obj) {
@@ -1028,20 +1094,14 @@ export const main = function() {
     
 };
 
-$(function () {
-  
-  for(let i =0; i<59; i++) {
-    //   if(i%3==0) {
-          //IT IS NOW AN OBJECT
-          tileState[i]= new Object();
-          tileState[i].state = 1;
-          tileState[i].name = "Empty";
-          
+// temporarily named...
+function infestation() {
+    resetGameState();
+    for(let i = 0; i < 59; i++) {
+        tileState[i].state = 1;          
 
-          //let i = Math.floor(Math.random() * 59);
         let random = Math.floor(Math.random() * 9);
         switch(random) {
-
             case 0:
                 tileState[i].weedName = "Kudzu";
                 break;
@@ -1073,21 +1133,17 @@ $(function () {
                 tileState[i].weedName = "Kudzu";
                 break;
         }
-          
-        
-      //}
+    }
+}
 
-      //MAKING IT SO ALL TILES HAVE WEEDS AT FIRST
-    //   else {
-    //       //CHANGED THESE FOR TESTING PURPOSES, MAKE SURE TO CHANGE THE SECOND STATEMENT SO IT EQUALS 0 AND THE THIRD
-    //       //SO THAT IT EQUALS "Empty"
-    //       tileState[i]=new Object();
-    //       tileState[i].state = 0;
-    //       tileState[i].name = "Empty";
-    //       tileState[i].weedName = "Empty"
-    //   }
-  }
+$(function () {
+    // if logged in
+    //   if retrieved saved data from firestore
+    //     initializeGameState();
+    //   else
+    //     infestation();
+    // else
+        infestation();
   
-  main();
-
-  });
+    main();
+});
