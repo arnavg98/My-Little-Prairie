@@ -1,6 +1,7 @@
 import { plantdefs } from "../public/defs/plantdefs.js";
 import { renderCatalog } from "./rendercatalog.js";
 import { logGameState } from "./actionslog.js";
+import { addauthlistener, isloggedin, getsavedgame, setsavedgame } from "./myfirebase.js";
 import ActiveEvents from "./events.js";
 
 //for reference src="${plantdefs[tileState[i].name].image}" is how to refer to plant's image
@@ -98,6 +99,8 @@ function initializeGameState(save) {
     } else {
         console.error("incorrect type");
     }
+    // screw typechecking this
+    activeEvents = new ActiveEvents(save.activeEvents)
 }
 
 // calculates the game year from the provided number
@@ -591,10 +594,7 @@ export const handleWeedActionClick = function(event) {
     }
     
         //alert("Tile " + currentTile + " weeded!");
-        actions = actions + 1;
-        activeEvents.updateEvents(clone(assembleGameState()));
-        logGameState(assembleGameState());
-        console.log(actions);
+        nextturn();
         if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
             let random = Math.floor(Math.random() * 5);
@@ -812,10 +812,7 @@ export const handlePlantActionClick = function(event) {
         //alert("Planted on Tile " + currentTile +".");
 
         //score+=50*plantdefs[currentplant].growthrate;
-        actions = actions + 1;
-        activeEvents.updateEvents(clone(assembleGameState()));
-        logGameState(assembleGameState());
-        console.log(actions);
+        nextturn();
         if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
             let random = Math.floor(Math.random() * 5);
@@ -1031,6 +1028,20 @@ export const handleCloseEvent = function () {
     $('#eventDIV').empty();
 }
 
+// increments actions and takes care of updating relevant stuff
+function nextturn() {
+    actions = actions + 1;
+    activeEvents.updateEvents(clone(assembleGameState()));
+    logGameState(assembleGameState());
+    setsavedgame({
+        tileState: tileState,
+        actions: actions,
+        score: score,
+        activeEvents: activeEvents.arr,
+    })
+    console.log(actions);
+}
+
 export const gameEnd = function() {
     if (year==4) {
         // TO DO: end the game 
@@ -1137,13 +1148,21 @@ function infestation() {
 }
 
 $(function () {
-    // if logged in
-    //   if retrieved saved data from firestore
-    //     initializeGameState();
-    //   else
-    //     infestation();
-    // else
-        infestation();
-  
-    main();
+
+    // waits to hear back from firebase auth before loading the game
+    addauthlistener(function() {
+        if(isloggedin()) {
+            getsavedgame().then((doc) => {
+                if(doc.exists) {
+                    initializeGameState(doc.data());
+                } else {
+                    infestation();
+                }
+                main();
+            })
+        } else {
+            infestation();
+            main();
+        }
+    });
 });

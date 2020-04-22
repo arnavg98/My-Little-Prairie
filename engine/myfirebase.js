@@ -26,6 +26,11 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
+// adds a new callback function to be called when authstatechanged
+export const addauthlistener = function(f) {
+    firebase.auth().onAuthStateChanged(f);
+}
+
 export const signout = function() {
     firebase.auth().signOut().then(function() {
         console.log("signout successful");
@@ -34,28 +39,15 @@ export const signout = function() {
     });
 }
 
-// to be removed
-window.signout1 = function() {
-    firebase.auth().signOut().then(function() {
-        console.log("signout successful");
-    }).catch(function(error) {
-        console.log("error signing out")
-    });
-}
-// to be removed
-window.signin1 = function() {
-    firebase.auth().signInWithEmailAndPassword("ericxin@gmail.com", "password").catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode + ' ' + errorMessage);
-    });
-}
-
 export const isloggedin = function() {
     return myuser !== undefined;
 }
 
+/** 
+ * returns a promise with parameter doc
+ *   doc.exists - true/false depending on if it exists
+ *   doc.data() - gives the data for that doc
+ */
 export const getsavedgame = function() {
     return user_saved_game.doc(myuser.uid).get();
     //.then((doc) => {
@@ -68,5 +60,6 @@ export const getsavedgame = function() {
 }
 
 export const setsavedgame = function(data) {
+    if(!isloggedin()) return false;
     user_saved_game.doc(myuser.uid).set(data);
 }
