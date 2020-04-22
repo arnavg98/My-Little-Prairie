@@ -931,12 +931,13 @@ export const handleSeason = function(i) {
 export const handleEvents = function () {
     let string = ``;
     string += `<div id="overlay">
-    <h>Events</h><button class="delete">X</button>`;
+    <button class="delete blue button" style="margin-bottom:5%; margin-left:3%;">X</button>`;
     for (let i = 0; i < activeEvents.arr.length; i++) {
         string+= `<div class="eventBox">
+        <h>Current Event: </h>
         <h>${activeEvents.arr[i].name}</h>
-        <p>${activeEvents.arr[i].description}</p>
-        <p>${activeEvents.arr[i].objective}</p>
+        <p style="color:white; padding:5%; ">${activeEvents.arr[i].description}</p>
+        <p style="color:white; padding:3%;">Task: ${activeEvents.arr[i].objective}!</p>
         </div>`;
     }
     string += `</div>`;
@@ -1023,6 +1024,7 @@ export const main = function() {
     $root.append(renderGame());
     renderCatalog();
     activeEvents.updateEvents(clone(logGameState()));
+
     
 };
 
