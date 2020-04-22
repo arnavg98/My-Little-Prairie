@@ -14,7 +14,7 @@ let defaultplant =
 	cultural: "Nothing has been said yet about this plant's cultural connections",
 	class: "",
 	image: "default.jpg",
-	dormant: `<img src="assets/dormant-grass-1.jpg">`,
+	dormant: "public/assets/dormant-grass-1.jpg",
 	pollinators: "",
 	bloom: {},
 	growthratemonth: [0,0,0,0,0,0,0,0,0,0,0,0],
