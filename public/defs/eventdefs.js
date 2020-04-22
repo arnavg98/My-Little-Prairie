@@ -259,7 +259,7 @@
 			objective: "Weeds have disappeared, plants are spread!",
 		},
 		calc: {
-			trigger: Math.floor(360*Math.random()),
+			trigger: 3,
 			period: function(starttime) {return starttime + 1;},
 			objective: function() {},
 		},

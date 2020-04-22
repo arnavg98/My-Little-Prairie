@@ -1,6 +1,6 @@
 import { eventsarr, eventdefs } from "../public/defs/eventdefs.js";
 import { handleEvents, addPoints, shuffle } from "./render.js";
-import { plantdefs } from "../public/defs/plantdefs.js";
+import { plants } from "../public/defs/plantdefs.js";
 
 export default class ActiveEvents {
 	constructor(gamestate) {
@@ -329,7 +329,7 @@ updateObjective(gamestate, eventstate) {
 				}
 			}
 		break;
-		case "windy Day":
+		case "Windy Day":
 			let random = Math.floor(10*Math.random());
 			for (let i = 0; i < 59; i++) {
 				if(random > 7) {
@@ -372,7 +372,7 @@ updateObjective(gamestate, eventstate) {
 		break;
 		case "Deer":
 			for (let i = 0; i < 59; i++) {
-				if (Math.Random*10 > 8) {
+				if (Math.random()*10 > 7) {
 					gamestate.tileState[i].name="Empty";
 					gamestate.tileState[i].weedName="Empty";
 					gamestate.tileState[i].state=0;
@@ -384,25 +384,19 @@ updateObjective(gamestate, eventstate) {
 		break;
 		case "Wildfire":
 			for (let i = 0; i < 59; i++) {
-				if (Math.Random*10 > 8 && gamestate.tileState[i].state == 1) {
+				if (Math.random()*10 > 7 && gamestate.tileState[i].state == 1) {
 					gamestate.tileState[i].name="Empty";
 					gamestate.tileState[i].weedName="Empty";
 					gamestate.tileState[i].state=0;
+				} else if (Math.random()*10 > 7) {
+					gamestate.tileState[i].name=plants[Math.floor(Math.random()*17)].commonname;
+					gamestate.tileState[i].weedName="Empty";
+					gamestate.tileState[i].state=2;
 				}
 			}
 		break;
 	}
 }
-
-// evaluateEvent(gamestate, eventstate) {
-// 	for(let i = 0; i < this.arr.length; i++) {
-// 			if (gamestate.actions >= eventstate.end) {
-// 				this.arr.splice(i,1);
-// 				console.log("event removed");
-// 			} 
-// 	}
-// }
-
 createActiveEvent(event, gamestate) {
 	this.addActiveEvent(event, gamestate);
 
