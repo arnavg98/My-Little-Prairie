@@ -957,14 +957,6 @@ export const gameEnd = function() {
         // TO DO: switch to end screen
     }
 }
-
-<<<<<<< HEAD
-=======
-/*export const renderSite = function() {
-    return `<header><img class="logo" src="public/assets/logo.png"></img><div class="score">Score: ${score}</div></header>`;
-};   REMOVED THE LOGO FROM THIS PAGE TO SAVE SPACE? THOUGHTS?*/ 
-
->>>>>>> parent of 6fd04ef... weeds spring up faster
 export const renderSite = function() {
     return `<header><div style="padding:5%" class="score">Score: ${score}</div></header>`;
 };  
