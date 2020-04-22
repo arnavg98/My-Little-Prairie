@@ -115,15 +115,19 @@ function calculateSeason(a = actions) {
     const span = 30;
     return seasons[Math.floor(a%120 / span)];
 }
+// this useless function
+function calculateSeasonId(a = actions) {
+    const span = 30;
+    return Math.floor((a+span)%120 / span);
+}
 
 export const renderGame = function() {
-    let string = `<button id="weed" class="large blue button">Weed</button>
+    let string = `</div><button id="weed" class="large blue button">Weed</button>
     <button class="large blue button" id="plant">Plant</button>
     <button id="events" class="large blue button">Events</button>
     <button class="large blue button" id="catalogbutton">Catalog</button>
-    <div id="eventDIV"></div>
     <ul id="hexGrid">`;
-    handleEvents();
+    
     for (let i = 0; i < 59; i++){
         
         if(tileState[i].state==1) {
@@ -131,8 +135,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>This tile has a ${plantdefs[tileState[i].weedName].commonname}!</h1>
-            <p>${plantdefs[tileState[i].weedName].description}</p>
         </a>
         </div>
     </li>`
@@ -143,8 +145,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img src="public/assets/dirt.jpg" alt="" />
-            <h1>No Plants Here!</h1>
-            <p>Plant here or wait for weeds to grow!</p>
         </a>
         </div>
     </li>`;
@@ -154,8 +154,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img class="baby" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -165,8 +163,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -176,8 +172,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img class="med" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -187,8 +181,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Plant Name Here</h1>
-            <p>Description of plant</p>
 
         </a>
         </div>
@@ -202,8 +194,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Plant Name Here</h1>
-            <p>Description of plant</p>
         </a>
         </div>
     </li>`;
@@ -251,7 +241,8 @@ export const renderWeedingBoard = function() {
 
     const $root = $('#root');
     
-    let string= `<button class="large blue button" id="finish">Finish Weeding</button>
+    let string= `</div><button class="large blue button" id="finish">Finish Weeding</button>
+    <div id="eventDIV"></div>
     <br>`;
     let thisButton;
     let toolIncrement;
@@ -291,8 +282,6 @@ export const renderWeedingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Remove Weed!</h1>
-            <p></p>
         </a>
         </div>
     </li>`
@@ -303,8 +292,6 @@ export const renderWeedingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="public/assets/dirt.jpg" alt="" />
-            <h1>Nothing to Remove</h1>
-            <p></p>
         </a>
         </div>
     </li>`;
@@ -316,8 +303,6 @@ export const renderWeedingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img class="baby" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -328,8 +313,6 @@ export const renderWeedingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -340,8 +323,6 @@ export const renderWeedingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img class="med" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -353,8 +334,6 @@ export const renderWeedingBoard = function() {
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
 
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Remove Weed</h1>
-            <p></p>
 
         </a>
         </div>
@@ -370,8 +349,6 @@ export const renderWeedingBoard = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Plant Name Here</h1>
-            <p>Description of plant</p>
         </a>
         </div>
     </li>`;
@@ -396,26 +373,23 @@ export const renderPlantingBoard = function() {
         <br>  <button class="buttonplant15" value="Prairie Dropseed" id="tool"></button>
         <button class="buttonplant16" value="Indian Grass" id="tool"></button>
         <button class="buttonplant17" value="Durham Grass" id="tool"></button>
-        <div id="eventDIV"></div>
         <ul id="hexGrid">`;
     } 
     if (seasonid == 1) {
         string = `<button class="large blue button" id="finish">Finish Planting</button>
         <br> <button class="buttonplant1" value="Carolina Anemone" id="tool"></button>
-        <button class="buttonplant2" value="Swamp Milkweed" id="tool"></button>
+        <button class="buttonplant9" value="Grey-headed Coneflower" id="tool"></button>
         <button class="buttonplant3" value="Common Milkweed" id="tool"></button>
         <button class="buttonplant4" value="Wild Indigo" id="tool"></button>
         <button class="buttonplant5" value="Languid Coneflower" id="tool"></button>
-        <div id="eventDIV"></div>
         <ul id="hexGrid">`;
     }
     if (seasonid == 2) {
         string = `<button class="large blue button" id="finish">Finish Planting</button>
         <br> <button class="buttonplant6" value="Rattlesnake Master" id="tool"></button>
-        <button class="buttonplant7" value="Southern Sundrops" id="tool"></button>
+        <button class="buttonplant13" value="Splitbeard Broomsedge" id="tool"></button>
         <button class="buttonplant8" value="Piney woods Phlox" id="tool"></button>
-        <button class="buttonplant9" value="Grey-headed Coneflower" id="tool"></button>
-        <div id="eventDIV"></div>
+        <button class="buttonplant2" value="Swamp Milkweed" id="tool"></button>
         <ul id="hexGrid">`;
     }
     if (seasonid == 3) {
@@ -423,9 +397,8 @@ export const renderPlantingBoard = function() {
         <br> <button class="buttonplant10" value="Goldenrod" id="tool"></button>
         <button class="buttonplant11" value="Eastern silver aster" id="tool"></button>
         <button class="buttonplant12" value="Frost aster" id="tool"></button>
-        <button class="buttonplant13" value="Splitbeard Broomsedge" id="tool"></button>
+        <button class="buttonplant7" value="Southern Sundrops" id="tool"></button>
         <button class="buttonplant14" value="Purple Lovegrass" id="tool"></button>
-        <div id="eventDIV"></div>
         <ul id="hexGrid">`;
     }
 
@@ -438,8 +411,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Remove Weed first!</h1>
-            <p></p>
         </a>
         </div>
     </li>`
@@ -450,8 +421,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="public/assets/dirt.jpg" alt="" />
-            <h1>Plant Here!</h1>
-            <p></p>
         </a>
         </div>
     </li>`;
@@ -463,8 +432,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img class="baby" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -475,8 +442,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -487,8 +452,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img class="med" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -499,8 +462,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Remove Weed</h1>
-            <p></p>
         </a>
         </div>
     </li>`;
@@ -515,8 +476,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Plant Name Here</h1>
-            <p>Description of plant</p>
         </a>
         </div>
     </li>`;
@@ -590,12 +549,12 @@ export const handleWeedActionClick = function(event) {
         //this happens if you use the wrong tool
         alert("Wrong tool!");
         tileState.currentTile=1;
-        score=score-300;
+        score=score-(300*(Math.floor(score/1000)));
     }
     
         //alert("Tile " + currentTile + " weeded!");
         nextturn();
-        if (actions % 2 == 0) {
+        //if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
             let random = Math.floor(Math.random() * 5);
             if(random <= 3 && i != currentTile) {
@@ -621,7 +580,7 @@ export const handleWeedActionClick = function(event) {
                     //handleFinishWeedingButtonPress();
                 }
             } 
-        }
+        //}
     
     
     }   else {
@@ -630,7 +589,7 @@ export const handleWeedActionClick = function(event) {
             tileState[currentTile].state=0;
             tileState[currentTile].growthCounter=0;
             tileState[currentTile].plantAge=0;
-            score=score-500;
+            score=score-500*(Math.floor(score/1000));
         }
     }
 
@@ -665,8 +624,6 @@ export const updateCurrentTile = function (tile, scroll) {
         string+=`
     <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
         <img src="${plantdefs[tileState[tile].weedName].image}" alt="" />
-        <h1>Remove Weed</h1>
-        <p></p>
     </a>
     `
 $root.on('click', '#'+idString, handleWeedActionClick);
@@ -675,8 +632,6 @@ $root.on('click', '#'+idString, handleWeedActionClick);
     string+=`
     <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
         <img src="public/assets/dirt.jpg" alt="" />
-        <h1>Remove Weed</h1>
-        <p></p>
     </a>`;
 $root.on('click', '#'+idString, handleWeedActionClick);
 //weedCount++;
@@ -685,8 +640,6 @@ $root.on('click', '#'+idString, handleWeedActionClick);
         string+=`
     <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
         <img class="baby" src="${plantdefs[tileState[tile].name].image}" alt="" />
-        <h1>Remove Weed</h1>
-        <p></p>
     </a>
     `;
 $root.on('click', '#'+idString, handleWeedActionClick);
@@ -695,8 +648,6 @@ $root.on('click', '#'+idString, handleWeedActionClick);
         string+=`
     <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
         <img src="${plantdefs[tileState[tile].weedName].image}" alt="" />
-        <h1>Remove Weed</h1>
-        <p></p>
     </a>
     `;
 $root.on('click', '#'+idString, handleWeedActionClick);
@@ -705,8 +656,6 @@ $root.on('click', '#'+idString, handleWeedActionClick);
         string+=`
     <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
         <img class="med" src="${plantdefs[tileState[tile].name].image}" alt="" />
-        <h1>Remove Weed</h1>
-        <p></p>
     </a>
     `;
 $root.on('click', '#'+idString, handleWeedActionClick);
@@ -715,8 +664,6 @@ $root.on('click', '#'+idString, handleWeedActionClick);
         string+=`
     <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
         <img src="${plantdefs[tileState[tile].weedName].image}" alt="" />
-        <h1>Remove Weed</h1>
-        <p></p>
     </a>
     `;
 $root.on('click', '#'+idString, handleWeedActionClick);
@@ -729,8 +676,6 @@ $root.on('click', '#'+idString, handleWeedActionClick);
         string+=`
     <a class="hexLink weedTile" href="#" onclick="popup(this)">
         <img src="${plantdefs[tileState[tile].weedName].image}" alt="" />
-        <h1>Plant Name Here</h1>
-        <p>Description of plant</p>
     </a>
     `;
 $root.on('click', '#'+idString, handleWeedActionClick);
@@ -755,7 +700,7 @@ export const agePlants = function() {
                 //It dies and becomes an Empty with Weed space
                 tileState[i].state=1;
                 //tileState[i].weedCounter=0;
-                score=score-200*plantdefs[tileState[i].name].growthrate;
+                score=score-200*plantdefs[tileState[i].name].growthrate*(Math.floor(score/1000));
                 tileState[i].plantAge=0;
             }
         }
@@ -813,10 +758,10 @@ export const handlePlantActionClick = function(event) {
 
         //score+=50*plantdefs[currentplant].growthrate;
         nextturn();
-        if (actions % 2 == 0) {
+        //if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
             let random = Math.floor(Math.random() * 5);
-            if(random <= 3 && i != currentTile) {
+            if(random <= 4 && i != currentTile) {
                 if (tileState[i].state == 2) {
                     tileState[i].state = 3;
                     weedType(i);
@@ -839,7 +784,7 @@ export const handlePlantActionClick = function(event) {
                     //handleFinishWeedingButtonPress();
                 }
             } 
-        }
+        //}
     }
 
         //This next section has will be in the plant method and the weed method.
@@ -906,13 +851,6 @@ export const handlePlantPress = function(event) {
     console.log(this.id);
 }
 
-//Updates score after actions
-export const scoreUpdate = function() {
-
-
-
-}
-
 export function assembleGameState() {
     return {
         tileState: tileState,
@@ -925,6 +863,10 @@ export function assembleGameState() {
         activeEvents: activeEvents.arr,
     };
 }
+//addpoints is for events to be able to add to the score, dont touch it or you break events!
+export function addPoints(amount) {
+    score+= amount;
+}
 export function clone(obj) {
     if (null == obj || "object" != typeof obj) return obj;
     var copy = obj.constructor();
@@ -935,37 +877,37 @@ export function clone(obj) {
 }
 
 export const handleSeason = function(i) {
+    const $root = $('#root');
+    let changed = false;
     let string = ``;
     if (actions%120 < 30) {
         season = "Spring";
         seasonid = 1;
         console.log("Spring");
-        handleEvents();
+        changed=true;
     } else if (actions%120 < 60) {
         season = "Summer";
         seasonid = 2;
         console.log("Summer");
-        handleEvents();
+        changed=true;
     } else if (actions%120 < 90) {
         season = "Fall";
         seasonid = 3;
         console.log("Fall");
-        handleEvents();
+        changed=true;
     } else if (actions%120 < 120){
         season = "Winter";
         seasonid = 0;
         console.log("Winter");
-        handleEvents();
-        year++;
+        changed=true;
     }
+    if (i != null) {
     switch(season) {
         case "Spring":
             string=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -975,8 +917,6 @@ export const handleSeason = function(i) {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -986,8 +926,6 @@ export const handleSeason = function(i) {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -997,40 +935,49 @@ export const handleSeason = function(i) {
             string=`<li class="hex">
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img src="public/assets/dormant-grass-1.jpg" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
+            <img src="${plantdefs[tileState[i].name].dormant}" alt="" />
         </a>
         </div>
     </li>`;
             break;
     }
+    /*
+    if(changed==true) {
+        main();
+    }
+    */
+   $root.off();
     return string;
+}
 };
 
 export const handleEvents = function () {
     let string = ``;
     string += `<div id="overlay">
-    <h>Events</h><button stlye="color: blue" class="delete">X</button>`;
+    <button class="delete blue button" style="margin-bottom:5%; margin-left:3%;">X</button>`;
     for (let i = 0; i < activeEvents.arr.length; i++) {
-        string+= `<div class=eventBox>
+        string+= `<div class="eventBox">
+        <h>Current Event: </h>
         <h>${activeEvents.arr[i].name}</h>
-        <p>${activeEvents.arr[i].description}</p>
-        <p>${activeEvents.arr[i].objective}</p>
+        <p style="color:white; padding:5%; ">${activeEvents.arr[i].description}</p>
+        <p style="color:white; padding:3%;">Task: ${activeEvents.arr[i].objective}!</p>
         </div>`;
     }
     string += `</div>`;
-    $('#eventDIV').append(string);
-    $('#root').on('click', '.delete', handleCloseEvent);
+    $('.eventDIV').append(string);
+    $('.eventDIV').on('click', '.delete', handleCloseEvent);
 }
 
 export const handleCloseEvent = function () {
-    $('#eventDIV').empty();
+    $('.eventDIV').empty();
 }
 
 // increments actions and takes care of updating relevant stuff
 function nextturn() {
     actions = actions + 1;
+    year = calculateYear();
+    season = calculateSeason();
+    seasonid = calculateSeasonId();
     activeEvents.updateEvents(clone(assembleGameState()));
     logGameState(assembleGameState());
     setsavedgame({
@@ -1049,13 +996,23 @@ export const gameEnd = function() {
         // TO DO: switch to end screen
     }
 }
-
-/*export const renderSite = function() {
-    return `<header><img class="logo" src="public/assets/logo.png"></img><div class="score">Score: ${score}</div></header>`;
-};   REMOVED THE LOGO FROM THIS PAGE TO SAVE SPACE? THOUGHTS?*/ 
-
 export const renderSite = function() {
-    return `<header><div style="padding:5%" class="score">Score: ${score}</div></header>`;
+    let string= `<header>`;
+    switch(season) {
+        case "Spring":
+            string+=`<div class="season-space"><img src="public/assets/spring.png" class="button-spring" style="float:left"><span class="score">Score: ${score}</span><img src="public/assets/spring.png" class="button-spring" style="float:right"></div></header>`;
+            break;
+        case "Summer":
+            string+=`<div class="season-space"><img src="public/assets/summer.png" class="button-spring" style="float:left"><span class="score">Score: ${score}</span><img src="public/assets/summer.png" class="button-spring" style="float:right"></div></header>`;
+            break;
+        case "Fall":
+            string+=`<div class="season-space"><img src="public/assets/fall.png" class="button-spring" style="float:left"><span class="score">Score: ${score}</span><img src="public/assets/fall.png" class="button-spring" style="float:right"></div></header>`;
+            break;
+        case "Winter":
+            string+=`<div class="season-space"><img src="public/assets/winter.png" class="button-spring" style="float:left"><span class="score">Score: ${score}</span><img src="public/assets/winter.png" class="button-spring" style="float:right"></div></header>`;
+            break;
+    }
+    return string;
 };  
 
 export const weedType = function(i) {
@@ -1096,13 +1053,31 @@ export const weedType = function(i) {
         }
 }
 
+export function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+
 export const main = function() {
     const $root = $('#root');
     $root.append(renderSite());
     $root.append(renderGame());
     renderCatalog();
     activeEvents.updateEvents(clone(assembleGameState()));
-    
 };
 
 // temporarily named...

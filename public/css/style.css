@@ -57,17 +57,18 @@ input {
 }
 
 #overlay {
+  text-align: center;
   display: block;
   position: fixed;
   z-index: 1;
-  left: 25%;
-  top: 350px;
-  width: 50%;
-  height: 50%;
-  overflow: auto;
-  border-style: outset;
-  border-color: white;
-  background-color:rgba(0, 128, 128, 0.4);
+  margin-top: 30%;
+  margin-bottom: 30%;
+  margin-left: 10%;
+  margin-right: 10%;
+  max-width: 80%;
+  border-radius: 5%;
+  background-color: rgb(17, 126, 111);
+  border: 3px solid white;
 }
 
 h{
@@ -183,7 +184,8 @@ header {
   display: block;
   margin: auto;
   padding: 40%;
-  width: 50%; 
+  width: 50%;
+  background-image: url("dirt.jpg");
   
 }
 
@@ -193,6 +195,7 @@ header {
   display: block;
   padding: 30%;
   width: 50%;
+  background-image: url("dirt.jpg");
 }
 
 .adult {
@@ -740,7 +743,7 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
   margin-right: 4%;
 }
 .button3{
-  background:url("https://cdn.iconscout.com/icon/premium/png-512-thumb/trowel-1452297-1227258.png") no-repeat;
+  background:url("https://i.imgur.com/HP3yOGl.png") no-repeat;
   background-color: gray;
   background-size: cover;
   border-color: black;
@@ -1080,4 +1083,22 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
     border-color: red;
     border-width: 100px;
     border-radius: 100px;
+  }
+
+  .season-space {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 9%;
+    padding-top: 5%;
+  }
+
+  .button-spring{
+    background-size: cover;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5px;
+    cursor:pointer;
+    border:none;
+    width:15%;
+    height:15%;
   }
