@@ -51,8 +51,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>This tile has a ${plantdefs[tileState[i].weedName].commonname}!</h1>
-            <p>${plantdefs[tileState[i].weedName].description}</p>
         </a>
         </div>
     </li>`
@@ -63,8 +61,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img src="public/assets/dirt.jpg" alt="" />
-            <h1>No Plants Here!</h1>
-            <p>Plant here or wait for weeds to grow!</p>
         </a>
         </div>
     </li>`;
@@ -74,8 +70,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img class="baby" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -85,8 +79,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -96,8 +88,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img class="med" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -107,8 +97,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Plant Name Here</h1>
-            <p>Description of plant</p>
 
         </a>
         </div>
@@ -122,8 +110,6 @@ export const renderGame = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Plant Name Here</h1>
-            <p>Description of plant</p>
         </a>
         </div>
     </li>`;
@@ -212,8 +198,6 @@ export const renderWeedingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Remove Weed!</h1>
-            <p></p>
         </a>
         </div>
     </li>`
@@ -224,8 +208,6 @@ export const renderWeedingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="public/assets/dirt.jpg" alt="" />
-            <h1>Nothing to Remove</h1>
-            <p></p>
         </a>
         </div>
     </li>`;
@@ -237,8 +219,6 @@ export const renderWeedingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img class="baby" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -249,8 +229,6 @@ export const renderWeedingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -261,8 +239,6 @@ export const renderWeedingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img class="med" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -274,8 +250,6 @@ export const renderWeedingBoard = function() {
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
 
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Remove Weed</h1>
-            <p></p>
 
         </a>
         </div>
@@ -291,8 +265,6 @@ export const renderWeedingBoard = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Plant Name Here</h1>
-            <p>Description of plant</p>
         </a>
         </div>
     </li>`;
@@ -355,8 +327,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Remove Weed first!</h1>
-            <p></p>
         </a>
         </div>
     </li>`
@@ -367,8 +337,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="public/assets/dirt.jpg" alt="" />
-            <h1>Plant Here!</h1>
-            <p></p>
         </a>
         </div>
     </li>`;
@@ -380,8 +348,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img class="baby" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -392,8 +358,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -404,8 +368,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img class="med" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -416,8 +378,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Remove Weed</h1>
-            <p></p>
         </a>
         </div>
     </li>`;
@@ -432,8 +392,6 @@ export const renderPlantingBoard = function() {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
-            <h1>Plant Name Here</h1>
-            <p>Description of plant</p>
         </a>
         </div>
     </li>`;
@@ -586,8 +544,6 @@ export const updateCurrentTile = function (tile, scroll) {
         string+=`
     <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
         <img src="${plantdefs[tileState[tile].weedName].image}" alt="" />
-        <h1>Remove Weed</h1>
-        <p></p>
     </a>
     `
 $root.on('click', '#'+idString, handleWeedActionClick);
@@ -596,8 +552,6 @@ $root.on('click', '#'+idString, handleWeedActionClick);
     string+=`
     <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
         <img src="public/assets/dirt.jpg" alt="" />
-        <h1>Remove Weed</h1>
-        <p></p>
     </a>`;
 $root.on('click', '#'+idString, handleWeedActionClick);
 //weedCount++;
@@ -606,8 +560,6 @@ $root.on('click', '#'+idString, handleWeedActionClick);
         string+=`
     <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
         <img class="baby" src="${plantdefs[tileState[tile].name].image}" alt="" />
-        <h1>Remove Weed</h1>
-        <p></p>
     </a>
     `;
 $root.on('click', '#'+idString, handleWeedActionClick);
@@ -616,8 +568,6 @@ $root.on('click', '#'+idString, handleWeedActionClick);
         string+=`
     <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
         <img src="${plantdefs[tileState[tile].weedName].image}" alt="" />
-        <h1>Remove Weed</h1>
-        <p></p>
     </a>
     `;
 $root.on('click', '#'+idString, handleWeedActionClick);
@@ -626,8 +576,6 @@ $root.on('click', '#'+idString, handleWeedActionClick);
         string+=`
     <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
         <img class="med" src="${plantdefs[tileState[tile].name].image}" alt="" />
-        <h1>Remove Weed</h1>
-        <p></p>
     </a>
     `;
 $root.on('click', '#'+idString, handleWeedActionClick);
@@ -636,8 +584,6 @@ $root.on('click', '#'+idString, handleWeedActionClick);
         string+=`
     <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
         <img src="${plantdefs[tileState[tile].weedName].image}" alt="" />
-        <h1>Remove Weed</h1>
-        <p></p>
     </a>
     `;
 $root.on('click', '#'+idString, handleWeedActionClick);
@@ -650,8 +596,6 @@ $root.on('click', '#'+idString, handleWeedActionClick);
         string+=`
     <a class="hexLink weedTile" href="#" onclick="popup(this)">
         <img src="${plantdefs[tileState[tile].weedName].image}" alt="" />
-        <h1>Plant Name Here</h1>
-        <p>Description of plant</p>
     </a>
     `;
 $root.on('click', '#'+idString, handleWeedActionClick);
@@ -890,8 +834,6 @@ export const handleSeason = function(i) {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -901,8 +843,6 @@ export const handleSeason = function(i) {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -912,8 +852,6 @@ export const handleSeason = function(i) {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
@@ -924,8 +862,6 @@ export const handleSeason = function(i) {
         <div class="hexIn">
         <a class="hexLink weedTile" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].name].dormant}" alt="" />
-            <h1>${plantdefs[tileState[i].name].commonname}</h1>
-            <p>${plantdefs[tileState[i].name].description}</p>
         </a>
         </div>
     </li>`;
