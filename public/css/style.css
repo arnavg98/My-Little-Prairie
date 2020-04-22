@@ -184,7 +184,8 @@ header {
   display: block;
   margin: auto;
   padding: 40%;
-  width: 50%; 
+  width: 50%;
+  background-image: url("dirt.jpg");
   
 }
 
@@ -194,6 +195,7 @@ header {
   display: block;
   padding: 30%;
   width: 50%;
+  background-image: url("dirt.jpg");
 }
 
 .adult {
@@ -1081,4 +1083,22 @@ box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) in
     border-color: red;
     border-width: 100px;
     border-radius: 100px;
+  }
+
+  .season-space {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 9%;
+    padding-top: 5%;
+  }
+
+  .button-spring{
+    background-size: cover;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5px;
+    cursor:pointer;
+    border:none;
+    width:15%;
+    height:15%;
   }
