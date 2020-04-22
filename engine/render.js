@@ -1,6 +1,6 @@
 import { plantdefs } from "../public/defs/plantdefs.js";
 import { renderCatalog } from "./rendercatalog.js";
-import { addGameState } from "./actionslog.js";
+import { logGameState } from "./actionslog.js";
 import ActiveEvents from "./events.js";
 
 //for reference src="${plantdefs[tileState[i].name].image}" is how to refer to plant's image
@@ -24,6 +24,17 @@ let season = "";
 let seasonid = 1;
 let score = 0;
 let activeEvents = new ActiveEvents();
+
+for(let i = 0; i < 59; i++) {
+    tileState[i] = {
+        state: 0,
+        name: "Empty",
+        weedName: "Empty",
+        growthCounter: 0,
+        weedCounter: 0,
+        plantAge: 0,
+    }
+}
 
 /*
 tileState UPDATE:
@@ -468,8 +479,8 @@ export const handleWeedActionClick = function(event) {
     if(tileState[currentTile].state%2==1) {
         if(currenttool==plantdefs[tileState[currentTile].weedName].removetool) {
         tileState[currentTile].state--;
-        let localWeedCount=weedCounter[currentTile];
-        weedCounter[currentTile]=0;
+        let localWeedCount=tileState[currentTile].weedCounter;
+        tileState[currentTile].weedCounter=0;
         if(tileState[currentTile].state>0) {
 
             let lengthMultiplier=(tileState[currentTile].state)/2;
@@ -516,8 +527,8 @@ export const handleWeedActionClick = function(event) {
     
         //alert("Tile " + currentTile + " weeded!");
         actions = actions + 1;
-        activeEvents.updateEvents(clone(logGameState()));
-        logGameState();
+        activeEvents.updateEvents(clone(assembleGameState()));
+        logGameState(assembleGameState());
         console.log(actions);
         if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
@@ -552,8 +563,8 @@ export const handleWeedActionClick = function(event) {
         alert("Tile " + currentTile +" did not have weeds!");
         if(tileState[currentTile].state>0) {
             tileState[currentTile].state=0;
-            growthCounter[currentTile]=0;
-            plantAge[currentTile]=0;
+            tileState[currentTile].growthCounter=0;
+            tileState[currentTile].plantAge=0;
             score=score-500;
         }
     }
@@ -672,13 +683,13 @@ export const agePlants = function() {
         //if it has a weed
         if(tileState[i].state%2==1) {
             //Countdown to plant death gets closer
-            weedCounter[i]++;
+            tileState[i].weedCounter++;
 
             //If it is this plant's time to die
-            if(weedCounter[i]>5&&tileState[i].state>1) {
+            if(tileState[i].weedCounter>5&&tileState[i].state>1) {
                 //It dies and becomes an Empty with Weed space
                 tileState[i].state=1;
-                //weedCounter[i]=0;
+                //tileState[i].weedCounter=0;
                 score=score-200*plantdefs[tileState[i].name].growthrate;
                 plantAge[i]=0;
             }
@@ -690,21 +701,21 @@ export const agePlants = function() {
             if(tileState[i].state>0 && tileState[i].state!=6) {
 
                 //It will grow
-                growthCounter[i]++;
+                tileState[i].growthCounter++;
 
                 //If it has grown enough
-                if(growthCounter[i]>3*plantdefs[tileState[i].name].growthrate){
+                if(tileState[i].growthCounter>3*plantdefs[tileState[i].name].growthrate){
 
                     //It transforms into a new phase
                     tileState[i].state+=2;
-                    growthCounter[i]=0;
+                    tileState[i].growthCounter=0;
                     score+=100*(plantdefs[tileState[i].name].growthrate)*(tileState[i].state/2);
                 }
                 if(actions%5==0) {
                     score+=50*(plantdefs[tileState[i].name].growthrate);
                 }
                 if(tileState[i].state>0) {
-                    plantAge[i]++;
+                    tileState[i].plantAge++;
                 }
 
             }
@@ -729,16 +740,16 @@ export const handlePlantActionClick = function(event) {
     }
     else {
         tileState[currentTile].state=2;
-        growthCounter[currentTile]=0;
-        plantAge[currentTile]=0;
+        tileState[currentTile].growthCounter=0;
+        tileState[currentTile].plantAge=0;
         tileState[currentTile].name=currentplant;
         console.log("You just planted a " + tileState[currentTile].name);
         //alert("Planted on Tile " + currentTile +".");
 
         //score+=50*plantdefs[currentplant].growthrate;
         actions = actions + 1;
-        activeEvents.updateEvents(clone(logGameState()));
-        logGameState();
+        activeEvents.updateEvents(clone(assembleGameState()));
+        logGameState(assembleGameState());
         console.log(actions);
         if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
@@ -840,12 +851,10 @@ export const scoreUpdate = function() {
 
 }
 
-export function logGameState() {
+export function assembleGameState() {
     return {
         tileState: tileState,
         actions: actions,
-        growthCounter: growthCounter,
-        weedCounter: weedCounter,
         currenttool: currenttool,
         currentplant: currentplant,
         year: year,
@@ -1015,7 +1024,7 @@ export const main = function() {
     $root.append(renderSite());
     $root.append(renderGame());
     renderCatalog();
-    activeEvents.updateEvents(clone(logGameState()));
+    activeEvents.updateEvents(clone(assembleGameState()));
     
 };
 
