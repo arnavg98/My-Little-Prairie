@@ -19,7 +19,7 @@
                 <br>
                 <button onclick="reg()" id="register" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 8%;">Register</button>
             </form>
-            <button onclick="location.href = 'http://arnavg98.github.io/My-Little-Prairie/home.html'" id="playnow" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 10%;">Play Now!</button>
+            <button onclick="location.href = 'home.html'" id="playnow" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 10%;">Play Now!</button>
         </div>
 
         <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
@@ -43,20 +43,14 @@
             //firebase.analytics();
         </script>
         <script>
-            function navigateTo(url) {
-                console.log(url);
-                window.location=url;
-                console.log(window.location);
-            }
-        </script>
-        <script>
             // register via firebase auth
             function reg() {
                 var here = document.getElementById("form1");
                 var username = here.elements[0].value;
                 var password = here.elements[1].value;
-                //navigateTo("https://arnavg98.github.io/My-Little-Prairie/register.html");
-                firebase.auth().createUserWithEmailAndPassword(username, password).catch(function(error) {
+                firebase.auth().createUserWithEmailAndPassword(username, password).then(function() {
+                    window.location.href = "register.html";
+                }).catch(function(error) {
                     console.log("error");
                     // Handle Errors here.
                     var errorCode = error.code;
@@ -64,45 +58,43 @@
                     console.log(errorCode + ' ' + errorMessage);
                     // ...
                 });
-                console.log("success"); 
             }
             // login via firebase auth
             function log() {
-                console.log("working");
                 var here = document.getElementById("form1");
                 var username = here.elements[0].value;
                 var password = here.elements[1].value;
-                //navigateTo("https://arnavg98.github.io/My-Little-Prairie/login.html");
-                firebase.auth().signInWithEmailAndPassword(username, password).catch(function(error) {
+                firebase.auth().signInWithEmailAndPassword(username, password).then(function() {
+                    window.location.href = "login.html"
+                }).catch(function(error) {
                     // Handle Errors here.
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     console.log(errorCode + ' ' + errorMessage);
                     // ...
                 });
-                console.log("success");
             }
         </script>
         <script>
             firebase.auth().onAuthStateChanged(function(user) {
                 console.log("authstatechanged");
-            if (user) {
-                console.log("signed in");
-                console.log(user);
-                // User is signed in.
-                var displayName = user.displayName;
-                // var email = user.email;
-                // var emailVerified = user.emailVerified;
-                // var photoURL = user.photoURL;
-                // var isAnonymous = user.isAnonymous;
-                // var uid = user.uid;
-                // var providerData = user.providerData;
-                // ...
-              } else {
-                console.log("signed out");
-                // User is signed out.
-                // ...
-              }
+                if (user) {
+                    console.log("signed in");
+                    console.log(user);
+                    // User is signed in.
+                    var displayName = user.displayName;
+                    // var email = user.email;
+                    // var emailVerified = user.emailVerified;
+                    // var photoURL = user.photoURL;
+                    // var isAnonymous = user.isAnonymous;
+                    // var uid = user.uid;
+                    // var providerData = user.providerData;
+                    // ...
+                  } else {
+                    console.log("signed out");
+                    // User is signed out.
+                    // ...
+                  }
             });
         </script>
     </body>

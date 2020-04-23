@@ -3,9 +3,9 @@ import { handleEvents, addPoints, shuffle } from "./render.js";
 import { plants } from "../public/defs/plantdefs.js";
 
 export default class ActiveEvents {
-	constructor(gamestate) {
-		this.arr = [];
-		this.currentGamestate = gamestate;
+	constructor(ae) {
+    if(!Array.isArray(ae)) ae = [];
+		this.arr = ae;
 	}
 // this is how we will export the event engine, by turning it into an object
 

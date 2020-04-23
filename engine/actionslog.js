@@ -1,8 +1,8 @@
 
 var alog = [];
-var subscribe = false; // if true, then any updates to alog will be printed to console
+var subscribe = true; // if true, then any updates to alog will be printed to console
 
-export const addGameState = function(obj) {
+export const logGameState = function(obj) {
 	alog.push(JSON.parse(JSON.stringify(obj)));
 
 	if(subscribe) console.log(alog[alog.length-1]);

@@ -13,8 +13,14 @@
         <div class="eventDIV"></div>
         <div id="root"></div>
         <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    </head>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        </head>
+
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+        <script src="engine/myfirebase.js" type="module"></script>
+
         <script src="engine/render.js" type="module"></script>       
         <script type='text/javascript'>
             function popup(el){
@@ -22,6 +28,6 @@
                    // do nothing rn
                 //}
             }
-            </script> 
+        </script> 
     </body>
 </html>

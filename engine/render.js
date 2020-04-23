@@ -1,41 +1,125 @@
 import { plantdefs } from "../public/defs/plantdefs.js";
 import { renderCatalog } from "./rendercatalog.js";
-import { addGameState } from "./actionslog.js";
+import { logGameState } from "./actionslog.js";
+import { addauthlistener, isloggedin, getsavedgame, setsavedgame } from "./myfirebase.js";
 import ActiveEvents from "./events.js";
 
 //for reference src="${plantdefs[tileState[i].name].image}" is how to refer to plant's image
 
-let tileState = []; //array that will have a zero or a 1 depending on if it has weed or not
-let actions = 0;
-let growthCounter = [];
-let weedCounter = [];
-let plantAge = [];
-let tester = "buttonplant1";
+// GAME STATE VARIABLES
 
-for(let i = 0; i<59; i++) {
-    growthCounter[i]=0;
-    weedCounter[i]=0;
-    plantAge[i]=0;
-}
-let currenttool = 0;
-let currentplant = 0;
-let year = 1;
-let season = "Spring";
-let seasonid = 1;
-let score = 0;
-let activeEvents = new ActiveEvents(logGameState());
-
-/*
-tileState UPDATE:
-0: Empty
-1: Empty with weed
-2: Baby Plant
-3: Baby plant with weed
-4: Medium plant
-5: Medium Plant with weed
-6: Adult Plant
-7: Adult Plant with weed
+let tileState; /* An array of objects corresponding to each tile on the board.
+each object has the following properties:
+  state: a number that corresponds to the following
+    0: Empty
+    1: Empty with weed
+    2: Baby Plant
+    3: Baby plant with weed
+    4: Medium plant
+    5: Medium Plant with weed
+    6: Adult Plant
+    7: Adult Plant with weed
+  name: string. corresponds to the common name of a plant inside plantdefs
+  weedName: string. corresponds to the common name of a weed inside plantdefs
+  growthCounter: number. keeps track of plant's growth in between stages
+  weedCounter: number. how long a weed has been around a plant
+  plantAge: number. how many actions a plant has been alive
 */
+let actions; // number.
+let score; // number.
+let activeEvents; // class
+
+let tester; // string. idk what this is for
+let currenttool; // number. current tool selected
+let currentplant; // number. current plant selected
+let year; // number.
+let season; // string.
+let seasonid; // number.
+
+resetGameState();
+
+// resets all game state variables back to default
+function resetGameState() {
+    tileState = [];
+    for(let i = 0; i < 59; i++) {
+        tileState[i] = {
+            state: 0,
+            name: "Empty",
+            weedName: "Empty",
+            growthCounter: 0,
+            weedCounter: 0,
+            plantAge: 0,
+        }
+    }
+    actions = 0;
+    score = 0;
+    activeEvents = new ActiveEvents();
+
+    tester = "buttonplant1";
+    currenttool = 0;
+    currentplant = 0;
+    year = 1;
+    season = "";
+    seasonid = 1;
+}
+
+function initializeGameState(save) {
+    resetGameState();
+    if(save === undefined) return;
+    if(Array.isArray(save.tileState)) {
+        const tsprops = [ // map of properties inside a tileState object to their types
+            ["state", "number"],
+            ["name", "string"],
+            ["weedName", "string"],
+            ["growthCounter", "number"],
+            ["weedCounter", "number"],
+            ["plantAge", "number"],
+        ]
+        for(let i = 0; i < 59; i++) {
+            for(const [key, value] of tsprops) {
+                if(typeof save.tileState[i][key] == value)
+                    tileState[i][key] = save.tileState[i][key];
+                else
+                    console.error("incorrect type");
+            }
+        }
+    } else {
+        console.error("incorrect type");
+    }
+    if(typeof save.actions === "number") {
+        actions = save.actions;
+        year = calculateYear();
+        season = calculateSeason();
+        // TODO: add seasonid
+    } else {
+        console.error("incorrect type");
+    }
+    if(typeof save.score === "number") {
+        score = save.score;
+    } else {
+        console.error("incorrect type");
+    }
+    // screw typechecking this
+    activeEvents = new ActiveEvents(save.activeEvents)
+}
+
+// calculates the game year from the provided number
+// if no number is provided as parameter, then it uses "actions" from game state
+function calculateYear(a = actions) {
+    return Math.floor(a/120) + 1;
+}
+// calculates the gmame season from the provided number
+// if no number is provided as parameter, then it uses "actions" from game state
+function calculateSeason(a = actions) {
+    const seasons = ["Spring", "Summer", "Fall", "Winter"];
+    const span = 30;
+    return seasons[Math.floor(a%120 / span)];
+}
+// this useless function
+function calculateSeasonId(a = actions) {
+    const span = 30;
+    return Math.floor((a+span)%120 / span);
+}
 
 export const renderGame = function() {
     let string = `</div><button id="weed" class="large blue button">Weed</button>
@@ -422,8 +506,8 @@ export const handleWeedActionClick = function(event) {
     if(tileState[currentTile].state%2==1) {
         if(currenttool==plantdefs[tileState[currentTile].weedName].removetool) {
         tileState[currentTile].state--;
-        let localWeedCount=weedCounter[currentTile];
-        weedCounter[currentTile]=0;
+        let localWeedCount=tileState[currentTile].weedCounter;
+        tileState[currentTile].weedCounter=0;
         if(tileState[currentTile].state>0) {
 
             let lengthMultiplier=(tileState[currentTile].state)/2;
@@ -469,11 +553,7 @@ export const handleWeedActionClick = function(event) {
     }
     
         //alert("Tile " + currentTile + " weeded!");
-        actions = actions + 1;
-        activeEvents.updateEvents(clone(logGameState()));
-        handleSeason();
-        logGameState();
-        console.log(actions);
+        nextturn();
         //if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
             let random = Math.floor(Math.random() * 5);
@@ -507,8 +587,8 @@ export const handleWeedActionClick = function(event) {
         alert("Tile " + currentTile +" did not have weeds!");
         if(tileState[currentTile].state>0) {
             tileState[currentTile].state=0;
-            growthCounter[currentTile]=0;
-            plantAge[currentTile]=0;
+            tileState[currentTile].growthCounter=0;
+            tileState[currentTile].plantAge=0;
             score=score-500*(Math.floor(score/1000));
         }
     }
@@ -613,15 +693,15 @@ export const agePlants = function() {
         //if it has a weed
         if(tileState[i].state%2==1) {
             //Countdown to plant death gets closer
-            weedCounter[i]++;
+            tileState[i].weedCounter++;
 
             //If it is this plant's time to die
-            if(weedCounter[i]>5&&tileState[i].state>1) {
+            if(tileState[i].weedCounter>5&&tileState[i].state>1) {
                 //It dies and becomes an Empty with Weed space
                 tileState[i].state=1;
-                //weedCounter[i]=0;
+                //tileState[i].weedCounter=0;
                 score=score-200*plantdefs[tileState[i].name].growthrate*(Math.floor(score/1000));
-                plantAge[i]=0;
+                tileState[i].plantAge=0;
             }
         }
         //If it does not have a weed
@@ -631,21 +711,21 @@ export const agePlants = function() {
             if(tileState[i].state>0 && tileState[i].state!=6) {
 
                 //It will grow
-                growthCounter[i]++;
+                tileState[i].growthCounter++;
 
                 //If it has grown enough
-                if(growthCounter[i]>3*plantdefs[tileState[i].name].growthrate){
+                if(tileState[i].growthCounter>3*plantdefs[tileState[i].name].growthrate){
 
                     //It transforms into a new phase
                     tileState[i].state+=2;
-                    growthCounter[i]=0;
+                    tileState[i].growthCounter=0;
                     score+=100*(plantdefs[tileState[i].name].growthrate)*(tileState[i].state/2);
                 }
                 if(actions%5==0) {
                     score+=50*(plantdefs[tileState[i].name].growthrate);
                 }
                 if(tileState[i].state>0) {
-                    plantAge[i]++;
+                    tileState[i].plantAge++;
                 }
 
             }
@@ -670,18 +750,14 @@ export const handlePlantActionClick = function(event) {
     }
     else {
         tileState[currentTile].state=2;
-        growthCounter[currentTile]=0;
-        plantAge[currentTile]=0;
+        tileState[currentTile].growthCounter=0;
+        tileState[currentTile].plantAge=0;
         tileState[currentTile].name=currentplant;
         console.log("You just planted a " + tileState[currentTile].name);
         //alert("Planted on Tile " + currentTile +".");
 
         //score+=50*plantdefs[currentplant].growthrate;
-        actions = actions + 1;
-        activeEvents.updateEvents(clone(logGameState()));
-        logGameState();
-        handleSeason();
-        console.log(actions);
+        nextturn();
         //if (actions % 2 == 0) {
             let i = Math.floor(Math.random() * 59);
             let random = Math.floor(Math.random() * 5);
@@ -775,17 +851,16 @@ export const handlePlantPress = function(event) {
     console.log(this.id);
 }
 
-export function logGameState() {
+export function assembleGameState() {
     return {
         tileState: tileState,
         actions: actions,
-        growthCounter: growthCounter,
-        weedCounter: weedCounter,
         currenttool: currenttool,
         currentplant: currentplant,
         year: year,
         season: season,
         score: score,
+        activeEvents: activeEvents.arr,
     };
 }
 //addpoints is for events to be able to add to the score, dont touch it or you break events!
@@ -824,7 +899,6 @@ export const handleSeason = function(i) {
         season = "Winter";
         seasonid = 0;
         console.log("Winter");
-        year++;
         changed=true;
     }
     if (i != null) {
@@ -896,6 +970,23 @@ export const handleEvents = function () {
 
 export const handleCloseEvent = function () {
     $('.eventDIV').empty();
+}
+
+// increments actions and takes care of updating relevant stuff
+function nextturn() {
+    actions = actions + 1;
+    year = calculateYear();
+    season = calculateSeason();
+    seasonid = calculateSeasonId();
+    activeEvents.updateEvents(clone(assembleGameState()));
+    logGameState(assembleGameState());
+    setsavedgame({
+        tileState: tileState,
+        actions: actions,
+        score: score,
+        activeEvents: activeEvents.arr,
+    })
+    console.log(actions);
 }
 
 export const gameEnd = function() {
@@ -986,25 +1077,17 @@ export const main = function() {
     $root.append(renderSite());
     $root.append(renderGame());
     renderCatalog();
-    activeEvents.updateEvents(clone(logGameState()));
-
-    
+    activeEvents.updateEvents(clone(assembleGameState()));
 };
 
-$(function () {
-  
-  for(let i =0; i<59; i++) {
-    //   if(i%3==0) {
-          //IT IS NOW AN OBJECT
-          tileState[i]= new Object();
-          tileState[i].state = 1;
-          tileState[i].name = "Empty";
-          
+// temporarily named...
+function infestation() {
+    resetGameState();
+    for(let i = 0; i < 59; i++) {
+        tileState[i].state = 1;          
 
-          //let i = Math.floor(Math.random() * 59);
         let random = Math.floor(Math.random() * 9);
         switch(random) {
-
             case 0:
                 tileState[i].weedName = "Kudzu";
                 break;
@@ -1036,21 +1119,25 @@ $(function () {
                 tileState[i].weedName = "Kudzu";
                 break;
         }
-          
-        
-      //}
+    }
+}
 
-      //MAKING IT SO ALL TILES HAVE WEEDS AT FIRST
-    //   else {
-    //       //CHANGED THESE FOR TESTING PURPOSES, MAKE SURE TO CHANGE THE SECOND STATEMENT SO IT EQUALS 0 AND THE THIRD
-    //       //SO THAT IT EQUALS "Empty"
-    //       tileState[i]=new Object();
-    //       tileState[i].state = 0;
-    //       tileState[i].name = "Empty";
-    //       tileState[i].weedName = "Empty"
-    //   }
-  }
-  
-  main();
+$(function () {
 
-  });
+    // waits to hear back from firebase auth before loading the game
+    addauthlistener(function() {
+        if(isloggedin()) {
+            getsavedgame().then((doc) => {
+                if(doc.exists) {
+                    initializeGameState(doc.data());
+                } else {
+                    infestation();
+                }
+                main();
+            })
+        } else {
+            infestation();
+            main();
+        }
+    });
+});
