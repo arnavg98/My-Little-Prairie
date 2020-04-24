@@ -62,11 +62,13 @@ export const setsavedgame = function(data) {
     user_saved_game.doc(firebase.auth().currentUser.uid).set(data);
 }
 
-/**
+/** gets the top n high scores in descending order
  * returns a promise with parameter: result
  *   result.exists - true/false depending on if it exists
+ *   result.size - gives the size of "result"
  *   result.docs - an array of docs. you can retrieve the contents of
- *                 each doc by calling .data() on each element
+ *                 each doc by calling .data() on each element. the data
+ *                 should have two properties: name and score
  */
 export const gettopn = function(n) {
     return leaderboard.orderBy('score', 'desc').limit(n).get();
@@ -75,7 +77,8 @@ export const gettopn = function(n) {
 /** gets the user's high score
  * returns a promise with parameter: doc
  *   doc.exists - true/false depending on if it exists
- *   doc.data() - gives the data for the docs
+ *   doc.data() - gives the data for the docs. the data should have two
+ *                properties: name and score
  */
 export const gethighscore = function() {
     if(!isloggedin()) return false;
