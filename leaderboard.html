@@ -6,6 +6,7 @@
         
         <title>My Little Prairie</title>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <link rel="stylesheet" href="public/css/style.css"/>
     </head>
 
@@ -13,18 +14,22 @@
         <div class="box" style="margin-top: 45%;">
             <img class="homepage" src="public/assets/logo.png"></img>
             <h1 style="margin-bottom: 15%;">Leaderboard:</h1>
-            <h1 style="margin-bottom: 15%;">1. </h1>
-            <h1 style="margin-bottom: 15%;">2. </h1>
-            <h1 style="margin-bottom: 15%;">3. </h1>
-            <h1 style="margin-bottom: 15%;">4. </h1>
-            <h1 style="margin-bottom: 15%;">5. </h1>
-            <h1 style="margin-bottom: 15%;">6. </h1>
-            <h1 style="margin-bottom: 15%;">7. </h1>
-            <h1 style="margin-bottom: 15%;">8. </h1>
-            <h1 style="margin-bottom: 15%;">9. </h1>
-            <h1 style="margin-bottom: 15%;">10. </h1>
-                <button onclick="location.href = 'http://arnavg98.github.io/My-Little-Prairie/home.html'" id="playnow" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 10%;">Play Again!</button>
+            <h1 id="1" style="margin-bottom: 15%;">1. </h1>
+            <h1 id="2" style="margin-bottom: 15%;">2. </h1>
+            <h1 id="3" style="margin-bottom: 15%;">3. </h1>
+            <h1 id="4" style="margin-bottom: 15%;">4. </h1>
+            <h1 id="5" style="margin-bottom: 15%;">5. </h1>
+            <h1 id="6" style="margin-bottom: 15%;">6. </h1>
+            <h1 id="7" style="margin-bottom: 15%;">7. </h1>
+            <h1 id="8" style="margin-bottom: 15%;">8. </h1>
+            <h1 id="9" style="margin-bottom: 15%;">9. </h1>
+            <h1 id="10" style="margin-bottom: 15%;">10. </h1>
+            <button onclick="location.href = 'home.html'" id="playnow" class="large blue button login" style="width: 40%; margin-left: 30%; margin-right: 30%; margin-bottom: 10%;">Play Again!</button>
           </div>
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
 
+        <script src="engine/leaderboard.js" type="module"></script>       
     </body>
 </html>
