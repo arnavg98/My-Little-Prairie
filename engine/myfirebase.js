@@ -13,16 +13,14 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 var db = firebase.firestore();
+var leaderboard = db.collection("leaderboard");
 var user_saved_game = db.collection("user_saved_game");
-var myuser;
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         console.log("signed in");
-        myuser = user;
     } else {
         console.log("signed out");
-        myuser = undefined;
     }
 });
 
@@ -40,16 +38,16 @@ export const signout = function() {
 }
 
 export const isloggedin = function() {
-    return myuser !== undefined;
+    return firebase.auth().currentUser !== undefined;
 }
 
 /** 
- * returns a promise with parameter doc
+ * returns a promise with parameter: doc
  *   doc.exists - true/false depending on if it exists
  *   doc.data() - gives the data for that doc
  */
 export const getsavedgame = function() {
-    return user_saved_game.doc(myuser.uid).get();
+    return user_saved_game.doc(firebase.auth().currentUser.uid).get();
     //.then((doc) => {
     //     if (doc.exists) {
     //         console.log("Document data:", doc.data());
@@ -61,5 +59,31 @@ export const getsavedgame = function() {
 
 export const setsavedgame = function(data) {
     if(!isloggedin()) return false;
-    user_saved_game.doc(myuser.uid).set(data);
+    user_saved_game.doc(firebase.auth().currentUser.uid).set(data);
+}
+
+/**
+ * returns a promise with parameter: result
+ *   result.exists - true/false depending on if it exists
+ *   result.docs - an array of docs. you can retrieve the contents of
+ *                 each doc by calling .data() on each element
+ */
+export const gettopn = function(n) {
+    return leaderboard.orderBy('score', 'desc').limit(n).get();
+}
+
+/** gets the user's high score
+ * returns a promise with parameter: doc
+ *   doc.exists - true/false depending on if it exists
+ *   doc.data() - gives the data for the docs
+ */
+export const gethighscore = function() {
+    if(!isloggedin()) return false;
+    return leaderboard.doc(firebase.auth().currentUser.uid).get();
+}
+
+// sets the user's high score
+export const sethighscore = function(name, score) {
+    if(!isloggedin()) return false;
+    leaderboard.doc(firebase.auth().currentUser.uid).set({ name: name, score: score });;
 }
