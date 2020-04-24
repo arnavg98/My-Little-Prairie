@@ -6,7 +6,7 @@ function main() {
     gettopn(10).then(function(result) {
         console.log(result);
         for(let i = 1; i <= result.size; i++) {
-            let data = result.docs[i].data();
+            let data = result.docs[i-1].data();
             $("#"+i).text(i+". "+data.name+" - "+data.score);
         }
 
