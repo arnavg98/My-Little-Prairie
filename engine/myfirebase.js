@@ -38,7 +38,7 @@ export const signout = function() {
 }
 
 export const isloggedin = function() {
-    return firebase.auth().currentUser !== undefined;
+    return firebase.auth().currentUser !== null;
 }
 
 /** 
