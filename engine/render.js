@@ -904,18 +904,18 @@ export const handleSeason = function(i) {
     if (i != null) {
     switch(season) {
         case "Spring":
-            string=`<li class="hex">
-        <div class="hexIn">
-        <a class="hexLink weedTile" href="#" onclick="popup(this)">
-            <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
-        </a>
-        </div>
-    </li>`;
+            string+=`<li class="hex">
+            <div class="hexIn">
+            <a class="hexLink" href="#" onclick="popup(this)">
+                <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
+            </a>
+            </div>
+        </li>`;
             break;
         case "Summer":
             string=`<li class="hex">
         <div class="hexIn">
-        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+        <a class="hexLink" href="#" onclick="popup(this)">
             <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
         </a>
         </div>
@@ -924,7 +924,7 @@ export const handleSeason = function(i) {
         case "Fall":
             string=`<li class="hex">
         <div class="hexIn">
-        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+        <a class="hexLink" href="#" onclick="popup(this)">
             <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
         </a>
         </div>
@@ -934,7 +934,7 @@ export const handleSeason = function(i) {
         case "Winter":
             string=`<li class="hex">
         <div class="hexIn">
-        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+        <a class="hexLink" href="#" onclick="popup(this)">
             <img src="${plantdefs[tileState[i].name].dormant}" alt="" />
         </a>
         </div>
