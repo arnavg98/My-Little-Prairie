@@ -169,7 +169,7 @@ let plants =
 		latinname: "Andropogon ternarius",
 		class: "plant",
 		image: "public/assets/splitbeardbroomsedge.jpg",
-		dormant: "public/ssets/splitbeardbroomsedge.jpg",
+		dormant: "public/assets/splitbeardbroomsedge.jpg",
 		pollinators: "sparrows",
 		bloom: {"oct": "white", "nov": "die", "dec": "die"},
 		growthratemonth: [1,1,1,1,1,0.5,0,0,0,0,0,0],
