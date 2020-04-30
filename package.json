@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "console": "node -r esm run_in_console.js"
+    "console": "node -r esm run_in_console.js",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -11,9 +12,17 @@
     "browser-sync": "^2.26.7",
     "esm": "^3.2.25",
     "firebase": "^7.14.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "keypress": "^0.2.1"
   },
   "devDependencies": {},
-  "description": ""
+  "description": "COMP 585",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnavg98/My-Little-Prairie.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arnavg98/My-Little-Prairie/issues"
+  },
+  "homepage": "https://github.com/arnavg98/My-Little-Prairie#readme"
 }
