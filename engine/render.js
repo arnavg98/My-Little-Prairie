@@ -187,7 +187,13 @@ export const renderGame = function() {
     </li>`;
         }
         else if(tileState[i].state==6){
-            string+=handleSeason(i);
+            string+=`<li class="hex">
+        <div class="hexIn">
+        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+            <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
+        </a>
+        </div>
+    </li>`;
         }
         else if(tileState[i].state==7){
             string+=`<li class="hex">
@@ -238,6 +244,10 @@ export const handleCatalogButtonPress = function(e) {
 };
 
 export const renderWeedingBoard = function() {
+
+    // for(let i=0; i<59; i++) {
+    //     console.log("Plant " + i + " is a " + tileState[i].name + " in state " + tileState[i].state);
+    // }
 
     const $root = $('#root');
     
@@ -341,13 +351,19 @@ export const renderWeedingBoard = function() {
     $root.on('click', '#'+idString, handleWeedActionClick);
         }
         else if(tileState[i].state==6){
-            string+=handleSeason(i);
+            string+=`<li class="hex">
+        <div class="hexIn">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
+            <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
+        </a>
+        </div>
+    </li>`;
     $root.on('click', '#'+idString, handleWeedActionClick);
         }
         else if(tileState[i].state==7){
             string+=`<li class="hex">
         <div class="hexIn">
-        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
         </a>
         </div>
@@ -468,13 +484,19 @@ export const renderPlantingBoard = function() {
     $root.on('click', '#'+idString, handlePlantActionClick);
         }
         else if(tileState[i].state==6){
-            string+=handleSeason(i);
+            string+=`<li class="hex">
+        <div class="hexIn">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
+            <img class="adult" src="${plantdefs[tileState[i].name].image}" alt="" />
+        </a>
+        </div>
+    </li>`;
     $root.on('click', '#'+idString, handlePlantActionClick);
         }
         else if(tileState[i].state==7){
             string+=`<li class="hex">
         <div class="hexIn">
-        <a class="hexLink weedTile" href="#" onclick="popup(this)">
+        <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
             <img src="${plantdefs[tileState[i].weedName].image}" alt="" />
         </a>
         </div>
@@ -493,12 +515,13 @@ export const renderPlantingBoard = function() {
 }
 
 export const handleWeedActionClick = function(event) {
+    //console.log("Weed Action Happened");
     if (currenttool == 0) { 
         alert("Please select a tool!");
     } else {
         event.preventDefault();
     var tempScrollTop = $(window).scrollTop();
-        console.log("Class Id Is " + event.currentTarget.className)
+        //console.log("Class Id Is " + event.currentTarget.className)
     let currentTile = event.currentTarget.getAttribute("id");
     //if(currenttool==tileState[currentTile].weedName)
     console.log("Tile " + currentTile + " is in plant state " + tileState[currentTile].state);
@@ -569,7 +592,7 @@ export const handleWeedActionClick = function(event) {
                     console.log(i + "added a " + tileState[i].weedName);
                     //handleFinishWeedingButtonPress();
                 } else if (tileState[i].state == 6) {
-                    tileState[i].state = 7
+                    tileState[i].state = 7;
                     weedType(i);
                     console.log(i + "added a " + tileState[i].weedName);
                     //handleFinishWeedingButtonPress();
@@ -579,6 +602,7 @@ export const handleWeedActionClick = function(event) {
                     console.log(i + "added a " + tileState[i].weedName);
                     //handleFinishWeedingButtonPress();
                 }
+                console.log("Now this spot is " + tileState[i].name + " in state " + tileState[i].state);
             } 
         //}
     
@@ -674,7 +698,7 @@ $root.on('click', '#'+idString, handleWeedActionClick);
     }
     else if(tileState[tile].state==7){
         string+=`
-    <a class="hexLink weedTile" href="#" onclick="popup(this)">
+    <a class="hexLink" href="#" id="${idString}" data-id="${idString}">
         <img src="${plantdefs[tileState[tile].weedName].image}" alt="" />
     </a>
     `;
@@ -773,7 +797,7 @@ export const handlePlantActionClick = function(event) {
                     console.log(i + "added a " + tileState[i].weedName);
                     //handleFinishWeedingButtonPress();
                 } else if (tileState[i].state == 6) {
-                    tileState[i].state = 7
+                    tileState[i].state = 7;
                     weedType(i);
                     console.log(i + "added a " + tileState[i].weedName);
                     //handleFinishWeedingButtonPress();
@@ -1084,7 +1108,7 @@ export const main = function() {
 function infestation() {
     resetGameState();
     for(let i = 0; i < 59; i++) {
-        tileState[i].state = 1;          
+        tileState[i].state = 1;         
 
         let random = Math.floor(Math.random() * 9);
         switch(random) {
