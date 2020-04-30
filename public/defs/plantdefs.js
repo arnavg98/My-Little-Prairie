@@ -338,7 +338,7 @@ let weeds =
 		growthrateseason: [0,0.5,0.8,0.3],
 		spread: "seed",
 		spreadrate: 2,
-		removetool: "burn",
+		removetool: "pull",
 		growthrate: 3,
 	},
 ]
